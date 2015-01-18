@@ -4,7 +4,7 @@ My Emacs consolidated setup
 
 ## Windows
 
-At command prompt
+At command prompt, run the following commands at repository root directory.
 ~~~
 @REM Goto repository root
 mklink /J %HOME%\.emacs.d .emacs.d
