@@ -12,6 +12,12 @@ See help of `format-time-string' for possible replacements")
   (interactive)
   (insert (format-time-string timestamp-format (current-time))))
 
+;; Open GTD file quickly
+(defun gtd ()
+  (interactive)
+  (find-file "~/org/gtd.org")
+)
+ 
 (setq my-command-buffer-hooks (make-hash-table))
 
 ; (defun my-command-on-save-buffer (c)

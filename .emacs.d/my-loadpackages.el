@@ -2,6 +2,7 @@
 ; loading package
 (load "~/.emacs.d/my-packages.el")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Mode
 (require 'org)
 ;; Make org-mode work with files ending in .org
@@ -11,17 +12,50 @@
   (find-file "~/org/gtd.org")
 )
 (setq org-agenda-files (list "~/org/gtd.org"
+                             "~/org/someday.org"
 ;                             "~/org/mastery.org"
 ))
+; Capture notes
+(setq org-default-notes-file (concat org-directory "~/org/notes.org"))
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")))
+'(org-refile-targets (quote (("newgtd.org" :maxlevel . 1) 
+                              ("someday.org" :level . 2))))
 ;; Multi-state flow
-(setq org-todo-keywords
-    '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")
-      (sequence "PENDING(p)" "|")))
+;(setq org-todo-keywords
+;    '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")
+;      (sequence "PENDING(p)" "|")))
+(setq org-todo-keyword-faces
+   (quote (("TODO" :foreground "medium green" :weight bold)
+		   ("APPT" :foreground "medium blue" :weight bold)
+		   ("NOTE" :foreground "dark violet" :weight bold)
+		   ("STARTED" :foreground "dark orange" :weight bold)
+		   ("WAITING" :foreground "red" :weight bold)
+		   ("DELEGATED" :foreground "red" :weight bold))))
+(setq org-agenda-custom-commands 
+      '(
+	  ;("c" "Desk Work" tags-todo "computer" ;; (1) (2) (3) (4)
+      ;   ((org-agenda-files '("~/org/widgets.org" "~/org/clients.org")) ;; (5)
+      ;    (org-agenda-sorting-strategy '(priority-up effort-down))) ;; (5) cont.
+      ;   ("~/computer.html")) ;; (6)
+        ;; ...other commands here
+		 ("D" "Daily Action List"
+      (
+           (agenda "" ((org-agenda-ndays 1)
+                       (org-agenda-sorting-strategy
+                        (quote ((agenda time-up priority-down tag-up) )))
+                       (org-deadline-warning-days 0)
+                       ))))
+        ))
 ;; Tag list
-(setq org-tag-alist '(("@Computer" . ?c) ("@Work" . ?w) ("@Home" . ?h) ("Laptop" . ?l) ("Habit" . ?t)))
+;(setq org-tag-alist '(("@Computer" . ?c) ("@Work" . ?w) ("@Home" . ?h) ("Laptop" . ?l) ("Habit" . ?t)))
 ;; Shortcut key
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
 (setq org-log-done t)
 
 ;; magit
