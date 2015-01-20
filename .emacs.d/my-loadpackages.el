@@ -13,13 +13,12 @@
 )
 (setq org-agenda-files (list "~/org/gtd.org"
                              "~/org/someday.org"
-;                             "~/org/mastery.org"
 ))
 ; Capture notes
 (setq org-default-notes-file (concat org-directory "~/org/notes.org"))
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-             "* TODO %?\n  %i\n  %a")
+             "* TODO %?\n  %U\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
              "* %?\nEntered on %U\n  %i\n  %a")))
 '(org-refile-targets (quote (("newgtd.org" :maxlevel . 1) 
@@ -29,21 +28,22 @@
 ;    '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")
 ;      (sequence "PENDING(p)" "|")))
 (setq org-todo-keyword-faces
-   (quote (("TODO" :foreground "medium green" :weight bold)
+   (quote (("TODO" :foreground "medium blue" :weight bold)
 		   ("APPT" :foreground "medium blue" :weight bold)
 		   ("NOTE" :foreground "dark violet" :weight bold)
 		   ("STARTED" :foreground "dark orange" :weight bold)
 		   ("WAITING" :foreground "red" :weight bold)
 		   ("DELEGATED" :foreground "red" :weight bold))))
+;; Agenda
 (setq org-agenda-custom-commands 
       '(
-	  ;("c" "Desk Work" tags-todo "computer" ;; (1) (2) (3) (4)
+      ; ("c" "Desk Work" tags-todo "computer" ;; (1) (2) (3) (4)
       ;   ((org-agenda-files '("~/org/widgets.org" "~/org/clients.org")) ;; (5)
       ;    (org-agenda-sorting-strategy '(priority-up effort-down))) ;; (5) cont.
       ;   ("~/computer.html")) ;; (6)
         ;; ...other commands here
-		 ("D" "Daily Action List"
-      (
+        ("D" "Daily Action List"
+          (
            (agenda "" ((org-agenda-ndays 1)
                        (org-agenda-sorting-strategy
                         (quote ((agenda time-up priority-down tag-up) )))
@@ -58,6 +58,16 @@
 (define-key global-map "\C-cc" 'org-capture)
 (setq org-log-done t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org-habit
+(require 'org-install)
+(require 'org-habit)
+(add-to-list 'org-modules "org-habit")
+(setq org-habit-preceding-days 7
+      org-habit-following-days 1
+      org-habit-graph-column 80
+      org-habit-show-habits-only-for-today t
+      org-habit-show-all-today t)
 ;; magit
 ; (require 'magit)
 ; (define-key global-map (kbd "C-c m") 'magit-status)
