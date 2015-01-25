@@ -6,8 +6,52 @@
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen 1)
 
+;; Disable scratch message
+(setq inhibit-scratch-message 1)
+					; 
+;; Disable scroll bar
+; (scroll-bar-mode -1)
+
+;; Disable tool bar
+(tool-bar-mode -1)
+
+;; Disable menu bar
+; (menu-bar-mode -1)
+
 ;; Enable transient mark mode
 (transient-mark-mode 1)
+
+;; Disable dialog box and mute noise
+(setq use-dialog-box nil
+      visible-bell 1)
+
+;; Disable backup files
+(setq make-backup-files nil)
+
+;; Temporary file
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+;; Font
+; (when window-system
+;   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+;   (set-face-attribute 'default nil
+;                       :family "Inconsolata"
+;                       :height 140
+;                       :weight 'normal
+;                       :width 'normal)
+; 
+;   (when (functionp 'set-fontset-font)
+;     (set-fontset-font "fontset-default"
+;                       'unicode
+;                       (font-spec :family "DejaVu Sans Mono"
+;                                  :width 'normal
+;                                  :size 12.4
+;                                  :weight 'normal))))
+
+; (setq-default indicate-empty-lines t)
+; (when (not indicate-empty-lines)
+;   (toggle-indicate-empty-lines))
 
 ;; Line number
 (global-linum-mode 1)
@@ -30,7 +74,10 @@
      (setq linum-format 'linum-format-func)))
 
 ;; Color Theme
-(load-theme 'wheatgrass t)
+(if window-system
+    (load-theme 'solarized-light t)
+  (load-theme 'wombat t))
+;(load-theme 'wheatgrass t)
 
 ;; Remove scrollbars, menu bars, and toolbars
 ; when is a special form of "if", with no else clause, it reads:
@@ -44,3 +91,10 @@
 ; (global-set-key (kbd "C-c C-k") 'windmove-down)
 ; (global-set-key (kbd "C-c C-l") 'windmove-up)
 ; (global-set-key (kbd "C-c C-;") 'windmove-right)
+
+; Tab width mode
+; (setq tab-width 2
+;      indent-tabs-mode nil)
+
+;; Show parenthesis
+(show-paren-mode t)
