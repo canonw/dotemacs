@@ -120,9 +120,14 @@
 ; (require 'magit)
 ; (define-key global-map (kbd "C-c m") 'magit-status)
 ;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; yasnippet
-; (require 'yasnippet)
-; (yas-global-mode 1)
+(require 'yasnippet)
+(yas-global-mode 1)
 ; (yas-load-directory "~/.emacs.d/snippets")
-; (add-hook 'term-mode-hook (lambda()
-;     (setq yas-dont-activate t)))
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+	))
+(add-hook 'term-mode-hook (lambda()
+   (setq yas-dont-activate t)))

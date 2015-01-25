@@ -1,0 +1,20 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: HTML 5 
+# key: html5
+# binding: direct-keybinding
+# --
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <!-- CSS Here-->
+    </head>
+    <body>
+        <div id="content">
+            <p></p>
+        </div>
+        <!-- JavaScript Files Here -->
+    </body>
+</html>
