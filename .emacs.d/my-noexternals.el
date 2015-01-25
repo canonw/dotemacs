@@ -28,6 +28,9 @@
 ;; Disable backup files
 (setq make-backup-files nil)
 
+;; Shorten yes and no
+(defalias 'yes-or-no-p 'y-or-n-p) 
+
 ;; Temporary file
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
@@ -98,3 +101,16 @@
 
 ;; Show parenthesis
 (show-paren-mode t)
+
+;; Make file in Unix mode
+ (defun no-junk-please-were-unixish ()
+   (let ((coding-str (symbol-name buffer-file-coding-system)))
+     (when (string-match "-\\(?:dos\\|mac\\)$" coding-str)
+       (setq coding-str
+        (concat (substring coding-str 0 (match-beginning 0)) "-unix"))
+       (message "CODING: %s" coding-str)
+      (set-buffer-file-coding-system (intern coding-str)))))
+
+(add-hook 'find-file-hooks 'no-junk-please-were-unixish)
+
+
