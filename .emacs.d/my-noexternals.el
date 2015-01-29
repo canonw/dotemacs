@@ -112,5 +112,3 @@
       (set-buffer-file-coding-system (intern coding-str)))))
 
 (add-hook 'find-file-hooks 'no-junk-please-were-unixish)
-
-

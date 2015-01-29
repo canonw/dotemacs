@@ -84,10 +84,10 @@
  'org-babel-load-languages
  '(
    (ditaa . t)
+   (plantuml . t)
    ))
 
 ;  (sh . t)
-;   (plantuml . t)
 ;   (dot . t)
 ;   (ruby . t)
 ;   (js . t)
@@ -116,7 +116,9 @@
           'append)
 
 ; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
-(setq org-ditaa-jar-path "~/.emacs.d/vendors/ditaa0_9.jar")
+(setq org-ditaa-jar-path (expand-file-name "~/.emacs.d/vendors/ditaa0_9.jar"))
+
+(setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/vendors/plantuml.jar"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; evil-mode
