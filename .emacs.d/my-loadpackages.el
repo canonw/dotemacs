@@ -77,39 +77,46 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org-babel
-; (require 'ob)
-; 
-; (org-babel-do-load-languages
-;  'org-babel-load-languages
-;  '((sh . t)
-;    (ditaa . t)
-;    (plantuml . t)
-;    (dot . t)
-;    (ruby . t)
-;    (js . t)
-;    (C . t)))
-; 
+;; http://orgmode.org/worg/org-contrib/babel/
+(require 'ob)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (ditaa . t)
+   ))
+
+;  (sh . t)
+;   (plantuml . t)
+;   (dot . t)
+;   (ruby . t)
+;   (js . t)
+;   (C . t)
+
 ; (add-to-list 'org-src-lang-modes (quote ("dot". graphviz-dot)))
 ; (add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
-; (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
-; 
+;  (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
+
 ; (defvar org-babel-default-header-args:clojure
 ;   '((:results . "silent") (:tangle . "yes")))
-; 
+
 ; (defun org-babel-execute:clojure (body params)
 ;   (lisp-eval-string body)
 ;   "Done!")
-; 
+
 ; (provide 'ob-clojure)
-; 
-; (setq org-src-fontify-natively t
-;       org-confirm-babel-evaluate nil)
-; 
-; (add-hook 'org-babel-after-execute-hook (lambda ()
-;                                           (condition-case nil
-;                                               (org-display-inline-images)
-;                                             (error nil)))
-;           'append)
+
+(setq org-src-fontify-natively t
+      org-confirm-babel-evaluate nil)
+
+(add-hook 'org-babel-after-execute-hook (lambda ()
+                                          (condition-case nil
+                                              (org-display-inline-images)
+                                            (error nil)))
+          'append)
+
+; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
+(setq org-ditaa-jar-path "~/.emacs.d/vendors/ditaa0_9.jar")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; evil-mode
