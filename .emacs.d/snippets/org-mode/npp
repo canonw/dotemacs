@@ -1,0 +1,43 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Natual Project Planning
+# key: npp
+# binding: direct-keybinding
+# --
+#+STARTUP: overview
+#+STARTUP: showall
+
+http://members.optusnet.com.au/~charles57/GTD/Natural_Project_Planning.html
+
+* $1 
+file
+** Why?
+Give yourself a quota of 6 responses to the question.
+- 
+- 
+- 
+- 
+- 
+- 
+
+** Outcome
+Clarifying outcomes
+View the project from beyond the completion date. A useful exercise is to write a future newspaper article reporting on the success of your project. Describe what happened, and what you achieved.
+Envision Wild Success.
+Write down the features, aspects and qualities you want to have in your successful project.
+- 
+- 
+- 
+- 
+- 
+- 
+
+
+** Brainstorming Ideas
+Quota of 10 ideas
+- Who?
+- What?
+- When?
+- Where?
+- Why?
+- How?
+** 
