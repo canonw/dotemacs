@@ -1,12 +1,12 @@
-; ~/.emacs.d/my-packages.el
+;; ~/.emacs.d/my-packages.el
 (require 'cl)
 
 (when (>= emacs-major-version 24)
   (require 'package)
   (add-to-list 'package-archives
-         '("melpa" . "http://melpa.milkbox.net/packages/") t)
+	       '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (add-to-list 'package-archives
-         '("marmalade" . "http://marmalade-repo.org/packages/") t)
+	       '("marmalade" . "http://marmalade-repo.org/packages/") t)
   (package-initialize)
   )
 
@@ -14,24 +14,24 @@
   '(
     evil
     solarized-theme
-;    csharp-mode
-;     magit
+    ;; csharp-mode
+    ;; magit
     yasnippet
-   ) "a list of packages to ensure are installed at launch.")
+    ) "a list of packages to ensure are installed at launch.")
 
-; method to check if all packages are installed
+;; Method to check if all packages are installed
 (defun packages-installed-p ()
   (loop for p in required-packages
         when (not (package-installed-p p)) do (return nil)
         finally (return t)))
 
-; if not all packages are installed, check one by one and in the missing ones.
+;; If not all packages are installed, check one by one and in the missing ones.
 (unless (packages-installed-p)
-  ; check for new packages (package versions)
+  ;; Check for new packages (package versions)
   (message "%s" "Emacs is now refreshing its package database...")
   (package-refresh-contents)
   (message "%s" " done.")
-  ; install the missing packages
+  ;; Install the missing packages
   (dolist (p required-packages)
     (when (not (package-installed-p p))
       (package-install p))))
