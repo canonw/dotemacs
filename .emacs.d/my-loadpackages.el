@@ -68,7 +68,7 @@
 ;; org-habit
 (require 'org-install)
 (require 'org-habit)
-(add-to-list 'org-modules "org-habit")
+(add-to-list 'org-modules 'org-habit)
 (setq org-habit-preceding-days 7
       org-habit-following-days 1
       org-habit-graph-column 80
@@ -140,3 +140,11 @@
 	))
 (add-hook 'term-mode-hook (lambda()
    (setq yas-dont-activate t)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Recentf
+;; http://www.emacswiki.org/emacs/RecentFiles
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+;; (global-set-key "\C-x\ \C-r" 'recentf-open-files)
