@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ko.observable()
+# key: ko.o
+# binding: direct-keybinding
+# --
+ko.observable($1);

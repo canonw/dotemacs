@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ko.pureComputed
+# key: ko.pc
+# binding: direct-keybinding
+# --
+ko.pureComputed(function() {
+    return $1;
+}, this);

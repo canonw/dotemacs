@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ko.applyBindings
+# key: ko.ab
+# binding: direct-keybinding
+# --
+ko.applyBindings($1);
