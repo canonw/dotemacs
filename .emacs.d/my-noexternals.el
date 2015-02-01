@@ -1,29 +1,39 @@
 ;; ~/.emacs.d/my-noexternals.el
 
+;; Set UTF-8 as default 
 (set-language-environment "UTF-8")
-					; Set UTF-8 as default 
+
+;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen 1)
-					; Disable the splash screen (to enable it agin, replace the t with 0)
+
+;; Disable scratch message 
 (setq inhibit-scratch-message 1) 
-					; Disable scratch message 
+
+;; Disable scroll bar
 ;; (scroll-bar-mode -1)
-					; Disable scroll bar
+
+;; Disable tool bar
 (tool-bar-mode -1)
-					; Disable tool bar
+
+;; Disable menu bar
 ;; (menu-bar-mode -1)
-					; Disable menu bar
+
+;; Enable transient mark mode
 (transient-mark-mode 1)
-					; Enable transient mark mode
+
+;; Disable dialog box
 (setq use-dialog-box nil
-					; Disable dialog box
+      ;; Mute noise	
       visible-bell 1)
-					; Mute noise
+
+;; Disable backup file
 (setq make-backup-files nil)
-					; Disable backup file
+
+;; Shorten yes and no
 (defalias 'yes-or-no-p 'y-or-n-p)
-					; Shorten yes and no
+
+;; Temporary file
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-					; Temporary file
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ;;; Font
@@ -48,8 +58,9 @@
 ;;   (toggle-indicate-empty-lines))
 
 ;;; Line number
+;; Line number format - include line seperator, no leading space
 (global-linum-mode 1)
-					; Line number format - include line seperator, no leading space
+
 (eval-after-load 'linum
   '(progn
      (defface linum-leading-zero
@@ -68,14 +79,15 @@
      (setq linum-format 'linum-format-func)))
 
 ;;; Color Theme
-;;(if window-system
-;;    (load-theme 'solarized-dark t)
-;;  (load-theme 'wombat t))
+(if window-system
+    ;; Load a theme 
+    (load-random-theme)
+  ;;    (load-theme 'solarized-dark t)
+  (load-theme 'wombat t))
 
-(load-random-theme)
+;; Load different theme periodically
 ;;(run-with-timer 1 (* 60 60) 'load-random-theme)
-					; Load different theme periodically
-
+					
 ;; Remove scrollbars, menu bars, and toolbars
 ;; when is a special form of "if", with no else clause, it reads:
 ;; (when <condition> <code-to-execute-1> <code-to-execute2> ...)
@@ -93,10 +105,10 @@
 ;; (setq tab-width 2
 ;;      indent-tabs-mode nil)
 
+;; Show parenthesis 
 (show-paren-mode t)
-					; Show parenthesis 
 
-;; Make file in Unix mode
+;; Make file mode in Unix mode
 (defun no-junk-please-were-unixish ()
   (let ((coding-str (symbol-name buffer-file-coding-system)))
     (when (string-match "-\\(?:dos\\|mac\\)$" coding-str)

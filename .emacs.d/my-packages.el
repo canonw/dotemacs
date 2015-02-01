@@ -18,7 +18,10 @@
     markdown-mode
     ;; csharp-mode
     ;; magit
+    monokai-theme
     solarized-theme
+    zenburn-theme
+    colonoscopy-theme
     ) "a list of packages to ensure are installed at launch.")
 
 ;; Method to check if all packages are installed
