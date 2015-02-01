@@ -5,12 +5,6 @@
 ;;;;
 ;;; Org Mode
 (require 'org)
-;; Make org-mode work with files ending in .org
-;;(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(defun gtd ()
-  (interactive)
-  (find-file "~/org/gtd.org")
-)
 (setq org-agenda-files (list "~/org/gtd.org"
                              "~/org/someday.org"
 ))
@@ -125,7 +119,9 @@
 (require 'evil)
 (evil-mode t)
 
-;; magit
+;;;;
+;;;;
+;;; magit
 ;; (require 'magit)
 ;; (define-key global-map (kbd "C-c m") 'magit-status)
 ;;
@@ -136,13 +132,35 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"
+			 ;; ... extra path here
 			 ))
 (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
 
 ;;;;
+;;;;
 ;; Recentf
 ;; http://www.emacswiki.org/emacs/RecentFiles
 (require 'recentf)
-(recentf-mode 1)
+(recentf-mode t)
+					; Enable menu
 (setq recentf-max-menu-items 25)
-;; (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+					; Maximum number of items
+(global-set-key "\C-c\ \C-r" 'recentf-open-files)
+
+;;;;
+;;;;
+;; Smex
+;; (require 'smex)
+;; (smex-initialize)
+
+;;;;
+;;;;
+;; Ido
+(ido-mode 1)
+					; Enable auto suggestion 
+(setq ido-enable-flex-matching t
+      ido-everywhere t
+					; Enable flex match in buffer and files
+      ido-separator "\n"
+					; Display choices vertically 
+)
