@@ -72,7 +72,8 @@
 ;;    (load-theme 'solarized-dark t)
 ;;  (load-theme 'wombat t))
 
-(run-with-timer 1 (* 15 15) 'load-random-theme)
+(load-random-theme)
+;(run-with-timer 1 (* 60 60) 'load-random-theme)
 					; Load different theme periodically
 
 ;; Remove scrollbars, menu bars, and toolbars
