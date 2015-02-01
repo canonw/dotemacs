@@ -73,7 +73,7 @@
 ;;  (load-theme 'wombat t))
 
 (load-random-theme)
-;(run-with-timer 1 (* 60 60) 'load-random-theme)
+;;(run-with-timer 1 (* 60 60) 'load-random-theme)
 					; Load different theme periodically
 
 ;; Remove scrollbars, menu bars, and toolbars
@@ -105,3 +105,12 @@
       (message "CODING: %s" coding-str)
       (set-buffer-file-coding-system (intern coding-str)))))
 (add-hook 'find-file-hooks 'no-junk-please-were-unixish)
+
+;;; Custom mode setup
+(add-hook 'emacs-lisp-mode-hook
+	  (lambda ()
+	    ;; Enable ruler mode
+	    (ruler-mode)
+	    ;; Enable whitespace mode 
+	    (whitespace-mode)
+	    ))

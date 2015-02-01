@@ -13,10 +13,12 @@
 (defvar required-packages
   '(
     evil
-    solarized-theme
+    yasnippet
+    ;; smex
+    markdown-mode
     ;; csharp-mode
     ;; magit
-    yasnippet
+    solarized-theme
     ) "a list of packages to ensure are installed at launch.")
 
 ;; Method to check if all packages are installed
