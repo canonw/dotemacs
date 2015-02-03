@@ -1,6 +1,7 @@
 ;; ~/.emacs.d/my-loadpackages.el
+;; loading package
 (load "~/.emacs.d/my-packages.el")
-					; loading package
+
 ;;;;
 ;;;;
 ;;; Org Mode
@@ -141,11 +142,12 @@
 ;; Recentf
 ;; http://www.emacswiki.org/emacs/RecentFiles
 (require 'recentf)
+;; Enable menu
 (recentf-mode t)
-					; Enable menu
+;; Maximum number of items
 (setq recentf-max-menu-items 25)
-					; Maximum number of items
-(global-set-key "\C-c\ \C-r" 'recentf-open-files)
+
+(global-set-key "\C-cr" 'recentf-open-files)
 
 ;;;;
 ;;;;
@@ -156,13 +158,14 @@
 ;;;;
 ;;;;
 ;; Ido
+;; Enable auto suggestion
 (ido-mode 1)
-					; Enable auto suggestion 
+;; Enable flexible matching
 (setq ido-enable-flex-matching t
+      ;; Enable flex match in buffer and files
       ido-everywhere t
-					; Enable flex match in buffer and files
+      ;; Display choices vertically 
       ido-separator "\n"
-					; Display choices vertically 
       )
 
 ;;;;
@@ -176,3 +179,12 @@
         (newline-mark 10 [182 10]) ; 10 LINE FEED
         (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
+
+;;;;;
+;;;;;
+;; magit
+
+;; Use ido to read branches
+(setq magit-completing-read-function 'magit-ido-completing-read)
+
+(global-set-key (kbd "C-c g") 'magit-status)

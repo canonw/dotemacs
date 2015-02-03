@@ -13,11 +13,12 @@
 (defvar required-packages
   '(
     evil
+    markdown-mode
+    magit
     yasnippet
     ;; smex
-    markdown-mode
     ;; csharp-mode
-    ;; magit
+    ;; themes
     monokai-theme
     solarized-theme
     zenburn-theme

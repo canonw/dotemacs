@@ -1,4 +1,4 @@
-; ~/.emacs
+;; ~/.emacs
 
 (load "~/.emacs.d/my-loadpackages.el")
 (load "~/.emacs.d/my-methods.el")
