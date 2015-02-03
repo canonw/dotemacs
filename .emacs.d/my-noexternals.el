@@ -9,21 +9,21 @@
 ;; Disable scratch message 
 (setq inhibit-scratch-message 1) 
 
-;; Disable scroll bar
-;; (scroll-bar-mode -1)
-
-;; Disable tool bar
-(tool-bar-mode -1)
+;; Remove tool bar
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 ;; Disable menu bar
 ;; (menu-bar-mode -1)
+
+;; Remove scrollbars
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Enable transient mark mode
 (transient-mark-mode 1)
 
 ;; Disable dialog box
 (setq use-dialog-box nil
-      ;; Mute noise	
+      ;; Mute noise
       visible-bell 1)
 
 ;; Disable backup file
@@ -87,13 +87,6 @@
 
 ;; Load different theme periodically
 ;;(run-with-timer 1 (* 60 60) 'load-random-theme)
-					
-;; Remove scrollbars, menu bars, and toolbars
-;; when is a special form of "if", with no else clause, it reads:
-;; (when <condition> <code-to-execute-1> <code-to-execute2> ...)
-;; (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-;; (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-;; (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; Wind-move
 ;; (global-set-key (kbd "C-c C-j") 'windmove-left)
