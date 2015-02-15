@@ -6,12 +6,23 @@
 ;;;;
 ;;; Org Mode
 (require 'org)
-(setq org-agenda-files (list "~/org/gtd.org"
-                             "~/org/someday.org"
+(setq org-agenda-files (list "~/org"
 ))
-;; (add-hook 'org-mode-hook
-;;           (lambda ()
-;;             (flyspell-mode)))
+
+;; Make folding neat
+(setq org-log-into-drawer t
+      org-clock-into-drawer t)
+
+;; Log TODO state change
+(setq org-log-done t)
+
+(add-hook 'org-mode-hook
+           (lambda ()
+	    ;; Disable linum due to slowness
+	    (global-linum-mode 0)
+	    (linum-mode 0)
+;; 	    ;;(flyspell-mode)
+ 	    ))
 ;; (add-hook 'org-mode-hook
 ;;           (lambda ()
 ;;             (writegood-mode)))
@@ -21,10 +32,11 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
              "* TODO %?\n  %U\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+        ("j" "Journal" entry (file+datetree "~/org/note/journal.org")
              "* %?\nEntered on %U\n  %i\n  %a")))
-'(org-refile-targets (quote (("newgtd.org" :maxlevel . 1) 
+'(org-refile-targets (quote (("gtd.org" :maxlevel . 1) 
                               ("someday.org" :level . 2))))
+
 ;; Multi-state flow
 ;;(setq org-todo-keywords
 ;;    '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")
@@ -52,9 +64,9 @@
                        (org-deadline-warning-days 0)
                        ))))
         ))
+;; Tag list
 ;;(setq org-tag-alist '(("@Computer" . ?c) ("@Work" . ?w) ("@Home" . ?h) ("Laptop" . ?l) ("Habit" . ?t)))
-					; Tag list
-(setq org-log-done t)
+
 ;; Shortcut key
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -116,29 +128,6 @@
 
 ;;;;
 ;;;;
-;;; evil-mode
-(require 'evil)
-(evil-mode t)
-
-;;;;
-;;;;
-;;; magit
-;; (require 'magit)
-;; (define-key global-map (kbd "C-c m") 'magit-status)
-;;
-
-;;;;
-;;;;
-;; yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"
-			 ;; ... extra path here
-			 ))
-(add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
-
-;;;;
-;;;;
 ;; Recentf
 ;; http://www.emacswiki.org/emacs/RecentFiles
 (require 'recentf)
@@ -180,7 +169,42 @@
         (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
         ))
 
+;;;;
+;;;;
+;; evil-mode
+(require 'evil)
+(evil-mode t)
+
+;;;;
+;;;;
+;; yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"
+			 ;; ... extra path here
+			 ))
+(add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+
+;;;;
+;;;;
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
 ;;;;;
+;;;;
+;;; magit
+;; (require 'magit)
+;; (define-key global-map (kbd "C-c m") 'magit-status)
+;;
+
+;;;
 ;;;;;
 ;; magit
 

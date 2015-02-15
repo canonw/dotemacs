@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Investor Buisness Daily Template
+# key: ibd
+# binding: direct-keybinding
+# --
+* Market
+  - Dow Jones
+  - S&P 500
+  - NASDAQ
+* Front Page
+** IBD's Top 10
+* To the Point
+
+* Internet & Technology

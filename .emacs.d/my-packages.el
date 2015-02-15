@@ -15,7 +15,10 @@
     evil
     markdown-mode
     magit
+    auto-complete
     yasnippet
+    js2-mode
+    ;; ac-js2
     ;; smex
     ;; csharp-mode
     ;; themes

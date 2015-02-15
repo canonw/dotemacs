@@ -57,9 +57,14 @@
 ;; (when (not indicate-empty-lines)
 ;;   (toggle-indicate-empty-lines))
 
+;;;;
+;;;;
 ;;; Line number
 ;; Line number format - include line seperator, no leading space
 (global-linum-mode 1)
+;; Speedup overall performance 
+(linum-delete-overlays)
+(setq linum-eager t)
 
 (eval-after-load 'linum
   '(progn
