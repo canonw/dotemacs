@@ -13,6 +13,8 @@
 (defvar required-packages
   '(
     evil
+    evil-surround
+    evil-numbers
     markdown-mode
     magit
     auto-complete
