@@ -4,6 +4,14 @@
 
 ;;;;
 ;;;;
+;;; Dired Mode
+
+;; Move deleted files to OS trash
+(setq delete-by-moving-to-trash t)
+
+
+;;;;
+;;;;
 ;;; Org Mode
 (require 'org)
 (setq org-agenda-files (list "~/org"
@@ -343,16 +351,26 @@
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
 
-;;;;;
+
+;;;;
+;;;;
+;; j2-mode
+
+;; Define js2-mode
+(add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
+
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
+
+;;;;
 ;;;;
 ;;; magit
 ;; (require 'magit)
 ;; (define-key global-map (kbd "C-c m") 'magit-status)
 ;;
-
-;;;
-;;;;;
-;; magit
 
 ;; Use ido to read branches
 (setq magit-completing-read-function 'magit-ido-completing-read)
