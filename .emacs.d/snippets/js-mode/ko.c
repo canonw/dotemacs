@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: ko.computed()
+# group: knockoutJS
 # key: ko.c
 # binding: direct-keybinding
 # --

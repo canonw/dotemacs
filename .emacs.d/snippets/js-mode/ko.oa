@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: ko.observableArray()
+# group: knockoutJS
 # key: ko.oa
 # binding: direct-keybinding
 # --

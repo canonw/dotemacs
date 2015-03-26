@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: ko.pureComputed
+# group: knockoutJS
 # key: ko.pc
 # binding: direct-keybinding
 # --

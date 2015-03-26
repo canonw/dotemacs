@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: ko.observable()
+# group: knockoutJS
 # key: ko.o
 # binding: direct-keybinding
 # --

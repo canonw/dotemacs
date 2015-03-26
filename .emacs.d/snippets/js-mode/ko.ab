@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: ko.applyBindings
+# group: knockoutJS
 # key: ko.ab
 # binding: direct-keybinding
 # --
