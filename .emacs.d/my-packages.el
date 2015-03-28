@@ -15,6 +15,9 @@
     evil
     evil-surround
     evil-numbers
+    evil-leader
+    evil-exchange
+    ace-jump-mode
     markdown-mode
     magit
     auto-complete

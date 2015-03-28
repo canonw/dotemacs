@@ -2,6 +2,7 @@
 ;; loading package
 (load "~/.emacs.d/my-packages.el")
 
+
 ;;;;
 ;;;;
 ;;; Dired Mode
@@ -319,6 +320,17 @@
 ;;;;
 ;;;;
 ;; evil-mode
+(require 'evil-leader)
+(global-evil-leader-mode)
+
+(evil-leader/set-key
+  "e" 'find-file
+  "b" 'switch-to-buffer
+  "k" 'kill-buffer)
+
+;; Set leader char
+(evil-leader/set-leader ";")
+
 (require 'evil)
 (evil-mode t)
 
@@ -328,6 +340,29 @@
 (require 'evil-numbers)
 (define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
+
+(require 'evil-exchange)
+(evil-exchange-install)
+
+;;;;
+;;;;
+;; ace-jump-mode
+(require 'ace-jump-mode)
+
+;; (define-key global-map (kbd "C-c SPC") 'ace-jump-word-mode)
+;; (define-key global-map (kbd "C-u C-c SPC") 'ace-jump-word-mode)
+
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;; Assign ace jump key in evil mode
+(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
 
 ;;;;
 ;;;;
