@@ -18,6 +18,8 @@
     evil-leader
     evil-exchange
     ace-jump-mode
+    ;; smart-tabs-mode
+    web-mode
     markdown-mode
     magit
     auto-complete

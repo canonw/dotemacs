@@ -99,9 +99,14 @@
 ;; (global-set-key (kbd "C-c C-l") 'windmove-up)
 ;; (global-set-key (kbd "C-c C-;") 'windmove-right)
 
-;; Tab width mode
-;; (setq tab-width 2
-;;      indent-tabs-mode nil)
+;; No tab.  Use space only
+(setq-default indent-tabs-mode nil)
+
+;; Set display tab width
+(setq-default tab-width 2)
+
+;;;; Set current buffer tab width
+;;(setq tab-width 4)
 
 ;; Show parenthesis 
 (show-paren-mode t)

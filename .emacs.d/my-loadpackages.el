@@ -13,6 +13,16 @@
 
 ;;;;
 ;;;;
+;;; Smart tab mode
+
+;; Specify smart tab mode to load automatically
+(smart-tabs-insinuate 'c 'javascript)
+
+(smart-tabs-advice js2-indent-line js2-basic-offset)
+
+
+;;;;
+;;;;
 ;;; Org Mode
 (require 'org)
 (setq org-agenda-files (list "~/org"
@@ -324,7 +334,7 @@
 (global-evil-leader-mode)
 
 (evil-leader/set-key
-  "e" 'find-file
+  "f" 'ido-find-file
   "b" 'switch-to-buffer
   "k" 'kill-buffer)
 
@@ -389,7 +399,7 @@
 
 ;;;;
 ;;;;
-;; j2-mode
+;; js2-mode
 
 ;; Define js2-mode
 (add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
@@ -398,6 +408,20 @@
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
+
+;;;;
+;;;;
+;; web-mode
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+
+;; Associate engine
+(setq web-mode-engines-alist '(("php" . "\\.phtml\\'")
+			       ("blade" . "\\.blade\\."))
+)
 
 
 ;;;;
