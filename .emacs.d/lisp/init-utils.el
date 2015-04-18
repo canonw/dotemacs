@@ -1,5 +1,3 @@
-;;  ~/.emacs.d/my-methods.el
-
 ;; Insert Date and Time
 ;; Reference: http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
 ;; Reference :http://www.emacswiki.org/emacs/InsertingTodaysDate
@@ -52,3 +50,5 @@ See help of `format-time-string' for possible replacements")
 ;; ;; add hooks
 ;; (add-hook 'kill-buffer-hook 'my-command-buffer-kill-hook)
 ;; (add-hook 'after-save-hook 'my-command-buffer-run-hook)
+
+(provide 'init-utils)

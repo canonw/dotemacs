@@ -1,0 +1,456 @@
+;;;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
+;;;; evil 1.0.8 search word instead of symbol
+;;(setq evil-symbol-word-search t)
+;;;;;; load undo-tree and ert
+;;;;(add-to-list 'load-path "~/.emacs.d/site-lisp/evil/lib")
+;;
+;;;; @see https://bitbucket.org/lyro/evil/issue/511/let-certain-minor-modes-key-bindings
+;;(eval-after-load 'git-timemachine
+;;  '(progn
+;;     (evil-make-overriding-map git-timemachine-mode-map 'normal)
+;;     ;; force update evil keymaps after git-timemachine-mode loaded
+;;     (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))
+;;
+;;(require 'evil)
+;;
+;;(autoload 'dictionary-new-search "dictionary" "" t nil)
+;;
+;;;; @see https://bitbucket.org/lyro/evil/issue/342/evil-default-cursor-setting-should-default
+;;;; cursor is alway black because of evil
+;;;; here is the workaround
+;;(setq evil-default-cursor t)
+
+;; enable evil-mode
+(evil-mode 1)
+
+;; {{@see https://github.com/timcharper/evil-surround
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+;; }}
+
+;; press ";" instead of ":"
+(define-key evil-normal-state-map (kbd ";") 'evil-ex)
+
+(autoload 'find-file-in-project "find-file-in-project" "" t)
+
+;;(require 'evil-mark-replace)
+;;
+;;;; {{ define my own text objects, works on evil v1.0.9 using older method
+;;;; @see http://stackoverflow.com/questions/18102004/emacs-evil-mode-how-to-create-a-new-text-object-to-select-words-with-any-non-sp
+;;(defmacro define-and-bind-text-object (key start-regex end-regex)
+;;  (let ((inner-name (make-symbol "inner-name"))
+;;        (outer-name (make-symbol "outer-name")))
+;;    `(progn
+;;       (evil-define-text-object ,inner-name (count &optional beg end type)
+;;         (evil-select-paren ,start-regex ,end-regex beg end type count nil))
+;;       (evil-define-text-object ,outer-name (count &optional beg end type)
+;;         (evil-select-paren ,start-regex ,end-regex beg end type count t))
+;;       (define-key evil-inner-text-objects-map ,key (quote ,inner-name))
+;;       (define-key evil-outer-text-objects-map ,key (quote ,outer-name)))))
+;;
+;;;; between dollar signs:
+;;(define-and-bind-text-object "$" "\\$" "\\$")
+;;;; between pipe characters:
+;;(define-and-bind-text-object "|" "|" "|")
+;;;; trimmed line
+;;(define-and-bind-text-object "l" "^ *" " *$")
+;;;; angular template
+;;(define-and-bind-text-object "r" "\{\{" "\}\}")
+;;;; }}
+;;
+;;;; {{ https://github.com/syl20bnr/evil-escape
+;;(require 'evil-escape)
+;;(setq-default evil-escape-delay 0.2)
+;;(setq evil-escape-excluded-major-modes '(dired-mode))
+;;(setq-default evil-escape-key-sequence "kj")
+;;(evil-escape-mode 1)
+;;;; }}
+;;
+;;;; Move back the cursor one position when exiting insert mode
+;;(setq evil-move-cursor-back t)
+;;
+;;(defun toggle-org-or-message-mode ()
+;;  (interactive)
+;;  (if (eq major-mode 'message-mode)
+;;    (org-mode)
+;;    (if (eq major-mode 'org-mode) (message-mode))
+;;    ))
+
+;; (evil-set-initial-state 'org-mode 'emacs)
+;; Remap org-mode meta keys for convenience
+(evil-declare-key 'normal org-mode-map
+    "gh" 'outline-up-heading
+    "gl" 'outline-next-visible-heading
+    "H" 'org-beginning-of-line ; smarter behaviour on headlines etc.
+    "L" 'org-end-of-line ; smarter behaviour on headlines etc.
+    "$" 'org-end-of-line ; smarter behaviour on headlines etc.
+    "^" 'org-beginning-of-line ; ditto
+    "-" 'org-ctrl-c-minus ; change bullet style
+    "<" 'org-metaleft ; out-dent
+    ">" 'org-metaright ; indent
+    (kbd "TAB") 'org-cycle)
+
+;;(loop for (mode . state) in
+;;      '((minibuffer-inactive-mode . emacs)
+;;        (ggtags-global-mode . emacs)
+;;        (grep-mode . emacs)
+;;        (Info-mode . emacs)
+;;        (term-mode . emacs)
+;;        (sdcv-mode . emacs)
+;;        (anaconda-nav-mode . emacs)
+;;        (log-edit-mode . emacs)
+;;        (vc-log-edit-mode . emacs)
+;;        (magit-log-edit-mode . emacs)
+;;        (inf-ruby-mode . emacs)
+;;        (direx:direx-mode . emacs)
+;;        (yari-mode . emacs)
+;;        (erc-mode . emacs)
+;;        (w3m-mode . emacs)
+;;        (gud-mode . emacs)
+;;        (help-mode . emacs)
+;;        (eshell-mode . emacs)
+;;        (shell-mode . emacs)
+;;        ;;(message-mode . emacs)
+;;        (fundamental-mode . emacs)
+;;        (weibo-timeline-mode . emacs)
+;;        (weibo-post-mode . emacs)
+;;        (sr-mode . emacs)
+;;        (dired-mode . emacs)
+;;        (compilation-mode . emacs)
+;;        (speedbar-mode . emacs)
+;;        (magit-commit-mode . normal)
+;;        (magit-diff-mode . normal)
+;;        (js2-error-buffer-mode . emacs)
+;;        )
+;;      do (evil-set-initial-state mode state))
+;;
+;;(evil-define-key 'motion magit-commit-mode-map
+;;  (kbd "TAB") 'magit-toggle-section
+;;  (kbd "RET") 'magit-visit-item
+;;  (kbd "C-w") 'magit-copy-item-as-kill)
+;;
+;;(evil-define-key 'motion magit-diff-mode-map
+;;  (kbd "TAB") 'magit-toggle-section
+;;  (kbd "RET") 'magit-visit-item
+;;  (kbd "C-w") 'magit-copy-item-as-kill)
+
+(define-key evil-ex-completion-map (kbd "M-p") 'previous-complete-history-element)
+(define-key evil-ex-completion-map (kbd "M-n") 'next-complete-history-element)
+
+(define-key evil-normal-state-map "Y" (kbd "y$"))
+(define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
+(define-key evil-normal-state-map "go" 'goto-char)
+(define-key evil-normal-state-map (kbd "M-y") 'browse-kill-ring)
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
+
+;; press ",xx" to expand region
+;; then press "z" to contract, "x" to expand
+(eval-after-load "evil"
+  '(setq expand-region-contract-fast-key "z"))
+
+;; I learn this trick from ReneFroger, need latest expand-region
+;; @see https://github.com/redguardtoo/evil-matchit/issues/38
+(define-key evil-visual-state-map (kbd "v") 'er/expand-region)
+(define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+(define-key evil-insert-state-map (kbd "C-k") 'kill-line)
+(define-key evil-insert-state-map (kbd "TAB") 'my-yas-expand)
+(define-key evil-insert-state-map (kbd "M-j") 'my-yas-expand)
+(define-key evil-emacs-state-map (kbd "M-j") 'my-yas-expand)
+(global-set-key (kbd "C-r") 'undo-tree-redo)
+
+;; My frequently used commands are listed here
+(setq evil-leader/leader ";")
+(global-evil-leader-mode)
+(require 'evil-leader)
+(evil-leader/set-key
+  "ae" 'evil-ace-jump-word-mode ; ,ae for Ace Jump (word)
+  "al" 'evil-ace-jump-line-mode ; ,al for Ace Jump (line)
+  "ac" 'evil-ace-jump-char-mode ; ,ac for Ace Jump (char)
+  "rf" 'recentf-open-files
+;;  "as" 'ack-same
+;;  "ac" 'ack
+;;  "aa" 'ack-find-same-file
+;;  "af" 'ack-find-file
+;;  "bf" 'beginning-of-defun
+;;  "bu" 'backward-up-list
+;;  "bb" '(lambda () (interactive) (switch-to-buffer nil))
+;;  "ef" 'end-of-defun
+;;  "db" 'sdcv-search-pointer ; in buffer
+;;  "dt" 'sdcv-search-input+ ;; in tip
+;;  "dd" '(lambda ()
+;;          (interactive)
+;;          (dictionary-new-search (cons (if (region-active-p)
+;;                                           (buffer-substring-no-properties (region-beginning) (region-end))
+;;                                         (thing-at-point 'symbol)) dictionary-default-dictionary)))
+;;  "mf" 'mark-defun
+;;  "em" 'erase-message-buffer
+;;  "eb" 'eval-buffer
+;;  "sd" 'sudo-edit
+;;  "sr" 'evil-surround-region
+;;  "sc" 'shell-command
+;;  "spt" 'sr-speedbar-toggle
+;;  "spr" 'sr-speedbar-refresh-toggle
+;;  "ee" 'eval-expression
+;;  "cx" 'copy-to-x-clipboard
+;;  "cy" 'strip-convert-lines-into-one-big-string
+;;  "cff" 'current-font-face
+;;  "fl" 'cp-filename-line-number-of-current-buffer
+;;  "fn" 'cp-filename-of-current-buffer
+;;  "fp" 'cp-fullpath-of-current-buffer
+;;  "dj" 'dired-jump ;; open the dired from current file
+;;  "ff" 'toggle-full-window ;; I use WIN+F in i3
+;;  "ip" 'find-file-in-project
+;;  "tm" 'get-term
+;;  "tff" 'toggle-frame-fullscreen
+;;  "tfm" 'toggle-frame-maximized
+;;  "px" 'paste-from-x-clipboard
+;;  ;; "ci" 'evilnc-comment-or-uncomment-lines
+;;  ;; "cl" 'evilnc-comment-or-uncomment-to-the-line
+;;  ;; "cc" 'evilnc-copy-and-comment-lines
+;;  ;; "cp" 'evilnc-comment-or-uncomment-paragraphs
+;;  "epy" 'emmet-expand-yas
+;;  "epl" 'emmet-expand-line
+;;  "rd" 'evil-mark-replace-in-defun
+;;  "rb" 'evil-mark-replace-in-buffer
+;;  "tt" 'evil-mark-tag-selected-region ;; recommended
+;;  "rt" 'evil-mark-replace-in-tagged-region ;; recommended
+;;  "yy" 'cb-switch-between-controller-and-view
+;;  "tua" 'artbollocks-mode
+;;  "yu" 'cb-get-url-from-controller
+;;  "ht" 'helm-etags-select ;; better than find-tag (C-])
+;;  "hm" 'helm-bookmarks
+;;  "hb" 'helm-back-to-last-point
+;;  "hh" 'browse-kill-ring
+;;  "cg" 'helm-ls-git-ls
+;;  "ud" '(lambda ()(interactive)
+;;          (gud-gdb (concat "gdb --fullname \"" (cppcm-get-exe-path-current-buffer) "\"")))
+;;  "uk" 'gud-kill-yes
+;;  "ur" 'gud-remove
+;;  "ub" 'gud-break
+;;  "uu" 'gud-run
+;;  "up" 'gud-print
+;;  "ue" 'gud-cls
+;;  "un" 'gud-next
+;;  "us" 'gud-step
+;;  "ui" 'gud-stepi
+;;  "uc" 'gud-cont
+;;  "uf" 'gud-finish
+;;  "W" 'save-some-buffers
+;;  "K" 'kill-buffer-and-window ;; "k" is preserved to replace "C-g"
+;;  "it" 'issue-tracker-increment-issue-id-under-cursor
+;;  "lh" 'highlight-symbol-at-point
+;;  "ln" 'highlight-symbol-next
+;;  "lp" 'highlight-symbol-prev
+;;  "lq" 'highlight-symbol-query-replace
+;;  "bm" 'pomodoro-start ;; beat myself
+;;  "im" 'helm-imenu
+;;  "ii" 'ido-imenu
+;;  "ij" 'rimenu-jump
+;;  "." 'evil-ex
+;;  ;; @see https://github.com/pidu/git-timemachine
+;;  ;; p: previous; n: next; w:hash; W:complete hash; g:nth version; q:quit
+;;  "gm" 'git-timemachine-toggle
+;;  "gn" 'git-timemachine-show-next-revision
+;;  "gp" 'git-timemachine-show-previous-revision
+;;  "gw" 'git-timemachine-kill-abbreviated-revision
+;;  "gW" 'git-timemachine-kill-revision
+;;  "gg" 'git-timemachine-show-nth-revision
+;;  "gq" 'git-timemachine-quit
+;;  ;; toggle overview,  @see http://emacs.wordpress.com/2007/01/16/quick-and-dirty-code-folding/
+;;  "ov" '(lambda () (interactive) (set-selective-display (if selective-display nil 1)))
+;;  "or" 'open-readme-in-git-root-directory
+;;  "mq" '(lambda () (interactive) (man (concat "-k " (thing-at-point 'symbol))))
+;;  "mgh" '(lambda () (interactive) (magit-show-commit "HEAD"))
+;;  "sg" 'w3m-google-by-filetype
+;;  "sq" 'w3m-stackoverflow-search
+;;  "sj" 'w3m-search-js-api-mdn
+;;  "sh" 'w3mext-hacker-search ; code search in all engines with firefox
+;;  "gss" 'git-gutter:set-start-revision
+;;  "gsh" '(lambda () (interactive) (git-gutter:set-start-revision "HEAD^")
+;;           (message "git-gutter:set-start-revision HEAD^"))
+;;  "gsr" '(lambda () (interactive) (git-gutter:set-start-revision nil)
+;;           (message "git-gutter reset")) ;; reset
+;;  "hr" 'helm-recentf
+;;  "rr" 'steve-ido-choose-from-recentf ;; more quick than helm
+;;  "di" 'evilmi-delete-items
+;;  "si" 'evilmi-select-items
+;;  "jb" 'js-beautify
+;;  "jpp" 'jsons-print-path
+;;  "se" 'string-edit-at-point
+;;  "xe" 'eval-last-sexp
+;;  "x0" 'delete-window
+;;  "x1" 'delete-other-windows
+;;  "x2" '(lambda () (interactive) (if *emacs23* (split-window-vertically) (split-window-right)))
+;;  "x3" '(lambda () (interactive) (if *emacs23* (split-window-horizontally) (split-window-below)))
+;;  "xr" 'rotate-windows
+;;  "xt" 'toggle-window-split
+;;  "xu" 'winner-undo
+;;  "to" 'toggle-web-js-offset
+;;  "cam" 'org-tags-view ;; "C-c a m" search items in org-file-apps by tag
+;;  "cf" 'helm-for-files ;; "C-c f"
+;;  "sl" 'sort-lines
+;;  "ulr" 'uniquify-all-lines-region
+;;  "ulb" 'uniquify-all-lines-buffer
+;;  "ls" 'package-list-packages
+;;  "lo" 'moz-console-log-var
+;;  "lj" 'moz-load-js-file-and-send-it
+;;  "lk" 'latest-kill-to-clipboard
+;;  "mr" 'moz-console-clear
+;;  "rnr" 'rinari-web-server-restart
+;;  "rnc" 'rinari-find-controller
+;;  "rnv" 'rinari-find-view
+;;  "rna" 'rinari-find-application
+;;  "rnk" 'rinari-rake
+;;  "rnm" 'rinari-find-model
+;;  "rnl" 'rinari-find-log
+;;  "rno" 'rinari-console
+;;  "rnt" 'rinari-find-test
+;;  "ws" 'w3mext-hacker-search
+;;  "ss" 'swiper ; http://oremacs.com/2015/03/25/swiper-0.2.0/ for guide
+;;  "st" '(lambda () (interactive)
+;;          (swiper (if (region-active-p)
+;;                    (buffer-substring-no-properties (region-beginning) (region-end))
+;;                    (thing-at-point 'symbol))))
+;;  "hst" 'hs-toggle-fold
+;;  "hsa" 'hs-toggle-fold-all
+;;  "hsh" 'hs-hide-block
+;;  "hss" 'hs-show-block
+;;  "hd" 'describe-function
+;;  "hf" 'find-function
+;;  "hk" 'describe-key
+;;  "hv" 'describe-variable
+;;  "gt" 'ggtags-find-tag-dwim
+;;  "gr" 'ggtags-find-reference
+;;  "fb" 'flyspell-buffer
+;;  "fe" 'flyspell-goto-next-error
+;;  "fa" 'flyspell-auto-correct-word
+;;  "pe" 'flymake-goto-prev-error
+;;  "ne" 'flymake-goto-next-error
+;;  "fw" 'ispell-word
+;;  "bc" '(lambda () (interactive) (wxhelp-browse-class-or-api (thing-at-point 'symbol)))
+;;  "ma" 'mc/mark-all-like-this-in-defun
+;;  "mw" 'mc/mark-all-words-like-this-in-defun
+;;  "ms" 'mc/mark-all-symbols-like-this-in-defun
+;;  ;; recommended in html
+;;  "md" 'mc/mark-all-like-this-dwim
+;;  "oc" 'occur
+;;  "om" 'toggle-org-or-message-mode
+;;  "ops" 'my-org2blog-post-subtree
+;;  "ut" 'undo-tree-visualize
+;;  "al" 'align-regexp
+;;  "ww" 'save-buffer
+;;  "bk" 'buf-move-up
+;;  "bj" 'buf-move-down
+;;  "bh" 'buf-move-left
+;;  "bl" 'buf-move-right
+;;  "so" 'sos
+;;  "0" 'select-window-0
+;;  "1" 'select-window-1
+;;  "2" 'select-window-2
+;;  "3" 'select-window-3
+;;  "4" 'select-window-4
+;;  "5" 'select-window-5
+;;  "6" 'select-window-6
+;;  "7" 'select-window-7
+;;  "8" 'select-window-8
+;;  "9" 'select-window-9
+;;  "xm" 'smex
+;;  "mx" 'helm-M-x
+;;  "xx" 'er/expand-region
+;;  "xf" 'ido-find-file
+;;  "xb" 'ido-switch-buffer
+;;  "xc" 'save-buffers-kill-terminal
+;;  "xo" 'helm-find-files
+;;  "ri" '(lambda () (interactive) (require 'helm) (yari-helm))
+;;  "vv" 'scroll-other-window
+;;  "vu" '(lambda () (interactive) (scroll-other-window '-))
+;;  "vr" 'vr/replace
+;;  "vq" 'vr/query-replace
+;;  "vm" 'vr/mc-mark
+;;  "js" 'w3mext-search-js-api-mdn
+;;  "jde" 'js2-display-error-list
+;;  "jte" 'js2-mode-toggle-element
+;;  "jtf" 'js2-mode-toggle-hide-functions
+;;  "xh" 'mark-whole-buffer
+;;  "xk" 'ido-kill-buffer
+;;  "xs" 'save-buffer
+;;  "xz" 'suspend-frame
+;;  "xvv" 'vc-next-action
+;;  "xva" 'git-add-current-file
+;;  "xvp" 'git-push-remote-origin
+;;  "xvu" 'git-add-option-update
+;;  "xvg" 'vc-annotate
+;;  "xv=" 'git-gutter:popup-hunk
+;;  "ps" 'my-goto-previous-section
+;;  "ns" 'my-goto-next-section
+;;  "pp" 'my-goto-previous-hunk
+;;  "nn" 'my-goto-next-hunk
+;;  "xvs" 'git-gutter:stage-hunk
+;;  "xvr" 'git-gutter:revert-hunk
+;;  "xvl" 'vc-print-log
+;;  "xvb" 'git-messenger:popup-message
+;;  "xnn" 'narrow-or-widen-dwim
+;;  "xnw" 'widen
+;;  "xnd" 'narrow-to-defun
+;;  "xnr" 'narrow-to-region
+;;  "ycr" (lambda ()
+;;          (interactive)
+;;          (unless (featurep 'yasnippet) (require 'yasnippet))
+;;          (yas-compile-directory (file-truename "~/.emacs.d/snippets"))
+;;          (yas-reload-all))
+;;  "zc" 'wg-create-workgroup
+;;  "zk" 'wg-kill-workgroup
+;;  "zv" '(lambda (wg)
+;;          (interactive (list (progn (wg-find-session-file wg-default-session-file)
+;;                                    (wg-read-workgroup-name))))
+;;          (wg-switch-to-workgroup wg))
+;;  "zj" '(lambda (index)
+;;          (interactive (list (progn (wg-find-session-file wg-default-session-file)
+;;                                    (wg-read-workgroup-index))))
+;;          (wg-switch-to-workgroup-at-index index))
+;;  "zs" '(lambda () (interactive)  (wg-save-session t))
+;;  "zb" 'wg-switch-to-buffer
+;;  "zwr" 'wg-redo-wconfig-change
+;;  "zws" 'wg-save-wconfig
+;;  "wf" 'popup-which-function
+)
+
+;; Remap org-mode meta keys for convenience
+;; http://stackoverflow.com/questions/8483182/evil-mode-best-practice
+;;(mapcar (lambda (state)
+;;    (evil-declare-key state org-mode-map
+;;      (kbd "M-l") 'org-metaright
+;;      (kbd "M-h") 'org-metaleft
+;;      (kbd "M-k") 'org-metaup
+;;      (kbd "M-j") 'org-metadown
+;;      (kbd "M-L") 'org-shiftmetaright
+;;      (kbd "M-H") 'org-shiftmetaleft
+;;      (kbd "M-K") 'org-shiftmetaup
+;;      (kbd "M-J") 'org-shiftmetadown))
+;;  '(normal insert))
+;;
+;;;; change mode-line color by evil state
+;;(lexical-let ((default-color (cons (face-background 'mode-line)
+;;                                   (face-foreground 'mode-line))))
+;;  (add-hook 'post-command-hook
+;;            (lambda ()
+;;              (let ((color (cond ((minibufferp) default-color)
+;;                                 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+;;                                 ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+;;                                 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+;;                                 (t default-color))))
+;;                (set-face-background 'mode-line (car color))
+;;                (set-face-foreground 'mode-line (cdr color))))))
+;;
+;;(require 'evil-exchange)
+;;(evil-exchange-install)
+;;
+;;(require 'evil-nerd-commenter)
+;;(evilnc-default-hotkeys)
+
+(provide 'init-evil)

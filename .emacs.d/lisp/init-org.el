@@ -1,30 +1,8 @@
-;; ~/.emacs.d/my-loadpackages.el
-;; loading package
-(load "~/.emacs.d/my-packages.el")
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
+(define-key global-map "\C-cb" 'org-iswitchb)
 
-
-;;;;
-;;;;
-;;; Dired Mode
-
-;; Move deleted files to OS trash
-(setq delete-by-moving-to-trash t)
-
-
-;;;;
-;;;;
-;;; Smart tab mode
-
-;; Specify smart tab mode to load automatically
-(smart-tabs-insinuate 'c 'javascript)
-
-(smart-tabs-advice js2-indent-line js2-basic-offset)
-
-
-;;;;
-;;;;
-;;; Org Mode
-(require 'org)
 (setq org-agenda-files (list "~/org"
 ))
 
@@ -34,17 +12,6 @@
 
 ;; Log TODO state change
 (setq org-log-done t)
-
-(add-hook 'org-mode-hook
-           (lambda ()
-           ;; Disable linum due to slowness
-           (global-linum-mode 0)
-            (linum-mode 0)
-;;         ;;(flyspell-mode)
-           ))
-;; (add-hook 'org-mode-hook
-;;           (lambda ()
-;;             (writegood-mode)))
 
 ;; Capture notes
 ;; (setq org-default-notes-file (concat org-directory "~/org/notes.org"))
@@ -224,12 +191,6 @@
               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
-;; Shortcut key
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(define-key global-map "\C-cc" 'org-capture)
-(define-key global-map "\C-cb" 'org-iswitchb)
-
 ;;; org-habit
 (require 'org-install)
 (require 'org-habit)
@@ -284,154 +245,4 @@
 
 (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/vendors/plantuml.jar"))
 
-;;;;
-;;;;
-;; Recentf
-;; http://www.emacswiki.org/emacs/RecentFiles
-(require 'recentf)
-;; Enable menu
-(recentf-mode t)
-;; Maximum number of items
-(setq recentf-max-menu-items 25)
-
-(global-set-key "\C-cr" 'recentf-open-files)
-
-;;;;
-;;;;
-;; Smex
-;; (require 'smex)
-;; (smex-initialize)
-
-;;;;
-;;;;
-;; Ido
-;; Enable auto suggestion
-(ido-mode 1)
-;; Enable flexible matching
-(setq ido-enable-flex-matching t
-      ;; Enable flex match in buffer and files
-      ido-everywhere t
-      ;; Display choices vertically 
-      ido-separator "\n"
-      )
-
-;;;;
-;;;;
-;; whitespace-mode
-;; (setq whitespace-style
-;;      (quote (spaces tabs newline space-mark tab-mark newline-mark)))
-(setq whitespace-display-mappings
-      '(
-        (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-        (newline-mark 10 [182 10]) ; 10 LINE FEED
-        (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
-        ))
-
-;;;;
-;;;;
-;; evil-mode
-(require 'evil-leader)
-(global-evil-leader-mode)
-
-(evil-leader/set-key
-  "f" 'ido-find-file
-  "b" 'switch-to-buffer
-  "k" 'kill-buffer)
-
-;; Set leader char
-(evil-leader/set-leader ";")
-
-(require 'evil)
-(evil-mode t)
-
-(require 'evil-surround)
-(global-evil-surround-mode 1)
-
-(require 'evil-numbers)
-(define-key evil-normal-state-map (kbd "C-c +") 'evil-numbers/inc-at-pt)
-(define-key evil-normal-state-map (kbd "C-c -") 'evil-numbers/dec-at-pt)
-
-(require 'evil-exchange)
-(evil-exchange-install)
-
-;;;;
-;;;;
-;; ace-jump-mode
-(require 'ace-jump-mode)
-
-;; (define-key global-map (kbd "C-c SPC") 'ace-jump-word-mode)
-;; (define-key global-map (kbd "C-u C-c SPC") 'ace-jump-word-mode)
-
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
-
-;; Assign ace jump key in evil mode
-(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
-
-;;;;
-;;;;
-;; yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"
-			 ;; ... extra path here
-			 ))
-(add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
-
-;;;;
-;;;;
-;; auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-;;; set the trigger key so that it can work together with yasnippet on tab key,
-;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
-;;; activate, otherwise, auto-complete will
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
-
-
-;;;;
-;;;;
-;; js2-mode
-
-;; Define js2-mode
-(add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
-
-;; (add-hook 'js-mode-hook 'js2-minor-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
-
-
-;;;;
-;;;;
-;; web-mode
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-
-;; Associate engine
-(setq web-mode-engines-alist '(("php" . "\\.phtml\\'")
-			       ("blade" . "\\.blade\\."))
-)
-
-
-;;;;
-;;;;
-;;; magit
-;; (require 'magit)
-;; (define-key global-map (kbd "C-c m") 'magit-status)
-;;
-
-;; Use ido to read branches
-(setq magit-completing-read-function 'magit-ido-completing-read)
-
-(global-set-key (kbd "C-c g") 'magit-status)
+(provide 'init-org)

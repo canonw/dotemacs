@@ -1,5 +1,3 @@
-;; ~/.emacs.d/my-noexternals.el
-
 ;; Set UTF-8 as default 
 (set-language-environment "UTF-8")
 
@@ -129,3 +127,5 @@
 	    ;; Enable whitespace mode 
 	    (whitespace-mode)
 	    ))
+
+(provide 'init-settings)
