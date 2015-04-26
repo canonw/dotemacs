@@ -79,4 +79,6 @@
 
 (require-package 'auto-complete)
 
+(require-package 'markdown-mode)
+
 (provide 'init-elpa)

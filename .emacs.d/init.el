@@ -55,6 +55,8 @@
 (require 'init-yasnippet)
 (require 'init-auto-complete)
 
+(require 'init-markdown)
+
 (require 'init-ido)
 (when *emacs24*
   (require 'init-org))
