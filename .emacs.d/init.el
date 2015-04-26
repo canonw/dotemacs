@@ -53,6 +53,7 @@
 (require 'init-ace-jump-mode)
 
 (require 'init-yasnippet)
+(require 'init-auto-complete)
 
 (require 'init-ido)
 (when *emacs24*

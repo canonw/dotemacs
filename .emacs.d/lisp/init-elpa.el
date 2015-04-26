@@ -77,4 +77,6 @@
 
 (if *emacs24* (require-package 'yasnippet '(0 9 0 1) nil))
 
+(require-package 'auto-complete)
+
 (provide 'init-elpa)
