@@ -65,6 +65,10 @@
 (require-package 'evil-numbers)
 (require-package 'evil-surround)
 
+(require-package 'dired+)
+(require-package 'dired-sort)
+(require-package 'dired-details)
+
 (require-package 'ace-jump-mode)
 
 (require-package 'ido-ubiquitous)
