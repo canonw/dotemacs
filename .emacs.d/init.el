@@ -56,6 +56,7 @@
 (require 'init-auto-complete)
 
 (require 'init-markdown)
+(require 'init-emmet-mode)
 
 (require 'init-ido)
 (when *emacs24*

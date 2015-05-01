@@ -80,7 +80,10 @@
 
 (require-package 'auto-complete)
 
+(require-package 'emmet-mode)
 (require-package 'markdown-mode)
+;; cucumber-mode
+(require-package 'feature-mode)
 
 (provide 'init-elpa)
 
