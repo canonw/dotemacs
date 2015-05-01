@@ -74,6 +74,7 @@
 (require-package 'ido-ubiquitous)
 (when *emacs24*
   (require-package 'flx-ido))
+(require-package 'smex)
 
 (if *emacs24* (require-package 'yasnippet '(0 9 0 1) nil))
 
@@ -82,3 +83,4 @@
 (require-package 'markdown-mode)
 
 (provide 'init-elpa)
+
