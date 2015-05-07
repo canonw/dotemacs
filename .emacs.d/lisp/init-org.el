@@ -13,13 +13,14 @@
 ;; Log TODO state change
 (setq org-log-done t)
 
-;; Capture notes
-;; (setq org-default-notes-file (concat org-directory "~/org/notes.org"))
-;; (setq org-capture-templates
-;;      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-;;             "* TODO %?\n  %U\n  %i\n  %a")
-;;        ("j" "Journal" entry (file+datetree "~/org/note/journal.org")
-;;             "* %?\nEntered on %U\n  %i\n  %a")))
+;; Remove empty LOGBOOK drawers on clock out
+(defun remove-empty-drawer-on-clock-out ()
+  (interactive)
+  (save-excursion
+    (beginning-of-line 0)
+    (org-remove-empty-drawer-at (point))))
+
+(add-hook 'org-clock-out-hook 'remove-empty-drawer-on-clock-out 'append)
 
 ;; Capture templates for: TODO tasks, Notes, appointments,
 ;; phone calls, meetings, and org-protocol
