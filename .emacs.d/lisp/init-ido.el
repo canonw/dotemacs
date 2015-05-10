@@ -18,6 +18,8 @@
 (setq ido-use-virtual-buffers t)
 ;; @see https://github.com/lewang/flx
 (setq flx-ido-threshold 10000)
+; Use the current window when visiting files and buffers with ido
+(setq ido-default-file-method 'selected-window)
 ;; Allow the same buffer to be open in different frames
 (setq ido-default-buffer-method 'selected-window)
 
