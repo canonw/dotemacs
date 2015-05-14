@@ -11,7 +11,6 @@ At command prompt
 ~~~
 # Goto local repository root
 ln -Ffs ${PWD}/.emacs.d $HOME/.emacs.d
-ln -fs ${PWD}/.emacs $HOME/.emacs
 ~~~
 
 
@@ -24,7 +23,6 @@ At command prompt, run the following commands at repository root directory.
 ~~~
 @REM Goto repository root
 mklink /J %HOME%\.emacs.d .emacs.d
-mklink /H %HOME%\.emacs .emacs
 ~~~
 
 ### Additional Unix files
@@ -37,3 +35,7 @@ Place them to the same directory as emacs bin.
     Reference: <http://stackoverflow.com/a/26596768>
 
 2.  jpeg, libpng, and gif.   The library set enables inline picture viewing.
+
+### Other
+
+1.  aspell

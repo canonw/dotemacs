@@ -85,5 +85,7 @@
 ;; cucumber-mode
 (require-package 'feature-mode)
 
+(require-package 'flyspell-lazy)
+
 (provide 'init-elpa)
 

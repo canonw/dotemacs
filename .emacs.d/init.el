@@ -39,6 +39,7 @@
 (require 'init-modeline)
 (require 'init-linum-mode)
 (require 'init-whitespace-mode)
+(require 'init-flyspell)
 
 (require 'init-dired)
 
