@@ -39,7 +39,6 @@
 (require 'init-modeline)
 (require 'init-linum-mode)
 (require 'init-whitespace-mode)
-(require 'init-flyspell)
 
 (require 'init-dired)
 
@@ -47,6 +46,8 @@
 ;; (require 'idle-require)
 ;;(require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 (require 'init-elpa)
+
+(require 'init-flyspell)
 
 (require 'init-recentf)
 
@@ -63,5 +64,7 @@
 (when *emacs24*
   (require 'init-org))
 (require 'init-smex)
+
+(require 'init-helm)
 
 (require 'init-settings)
