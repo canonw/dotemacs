@@ -89,6 +89,7 @@
 (require-package 'flyspell-lazy)
 
 (require-package 'helm)
+(require-package 'helm-swoop)
 
 (provide 'init-elpa)
 
