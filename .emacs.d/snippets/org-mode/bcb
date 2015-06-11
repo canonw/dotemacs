@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Balel Code Blocks
+# key: bcb
+# binding: direct-keybinding
+# --
+#+begin_src ${1:js}  
+  $2
+#+end_src
