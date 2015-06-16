@@ -86,6 +86,8 @@
 ;; cucumber-mode
 (require-package 'feature-mode)
 
+(require-package 'csharp-mode)
+
 (require-package 'flyspell-lazy)
 
 (require-package 'helm)
