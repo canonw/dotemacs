@@ -93,5 +93,7 @@
 (require-package 'helm)
 (require-package 'helm-swoop)
 
+(require-package 'restclient)
+
 (provide 'init-elpa)
 
