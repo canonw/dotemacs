@@ -94,6 +94,7 @@
 (require-package 'helm-swoop)
 
 (require-package 'restclient)
+(require-package 'json-snatcher)
 
 (provide 'init-elpa)
 
