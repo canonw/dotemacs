@@ -215,6 +215,7 @@
               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
+
 ;;; org-habit
 (require 'org-install)
 (require 'org-habit)
@@ -224,6 +225,23 @@
       org-habit-graph-column 80
       org-habit-show-habits-only-for-today t
       org-habit-show-all-today t)
+
+
+;;; ical
+(setq org-combined-agenda-icalendar-file "~/org.ics")
+(setq org-icalendar-categories (quote (all-tags category todo-state)))
+(setq org-icalendar-include-body 1000)
+(setq org-icalendar-include-sexps nil)
+(setq org-icalendar-include-todo nil)
+(setq org-icalendar-store-UID t)
+(setq org-icalendar-timezone "America/Los_Angeles")
+(setq org-icalendar-include-body nil)
+; (setq org-icalendar-exclude-tags (quote (DONE)))
+(setq org-icalendar-use-deadline (quote (event-if-not-todo
+event-if-todo)))
+(setq org-icalendar-use-scheduled (quote (event-if-not-todo
+event-if-todo)))
+
 
 ;;; org-babel
 ;; http://orgmode.org/worg/org-contrib/babel/
