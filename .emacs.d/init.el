@@ -57,6 +57,8 @@
 (require 'init-yasnippet)
 (require 'init-auto-complete)
 
+(require 'init-sql)
+
 (require 'init-markdown)
 (require 'init-emmet-mode)
 
@@ -68,3 +70,7 @@
 (require 'init-helm)
 
 (require 'init-settings)
+(put 'narrow-to-region 'disabled nil)
+
+;; Local machine specific setup
+(if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
