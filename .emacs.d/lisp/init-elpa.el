@@ -88,6 +88,8 @@
 
 (require-package 'csharp-mode)
 
+(require-package 'groovy-mode)
+
 (require-package 'flyspell-lazy)
 
 (require-package 'helm)
