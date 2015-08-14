@@ -53,8 +53,10 @@
 ;; Themes
 (require-package 'zenburn-theme)    
 (require-package 'monokai-theme)
-(require-package 'solarized-theme)
+;; (require-package 'solarized-theme)
 (require-package 'zenburn-theme)
+(require-package 'color-theme-sanityinc-tomorrow)
+(require-package 'color-theme-solarized)
 (require-package 'colonoscopy-theme)
 
 (require-package 'evil)
