@@ -92,6 +92,8 @@
 
 (require-package 'groovy-mode)
 
+(require-package 'yaml-mode)
+
 (require-package 'flyspell-lazy)
 
 (require-package 'helm)
