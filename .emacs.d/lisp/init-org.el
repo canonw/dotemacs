@@ -252,6 +252,7 @@ event-if-todo)))
  '(
    (ditaa . t)
    (plantuml . t)
+   (sql . t)
    ))
 
 ;;  (sh . t)
