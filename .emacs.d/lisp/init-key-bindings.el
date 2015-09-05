@@ -326,4 +326,10 @@
 ;; (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
 
 
+;;
+;; ido
+
+(global-set-key "\C-ci" 'ido-goto-symbol)
+
+
 (provide 'init-key-bindings)

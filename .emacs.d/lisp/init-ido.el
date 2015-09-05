@@ -123,6 +123,4 @@ Symbols matching the text at point are put first in the completion list."
           (add-to-list 'symbol-names name)
           (add-to-list 'name-and-pos (cons name position))))))))
 
-(global-set-key "\C-ci" 'ido-goto-symbol) ; or any key you see fit
-
 (provide 'init-ido)
