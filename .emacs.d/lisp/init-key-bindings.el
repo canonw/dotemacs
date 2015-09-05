@@ -332,4 +332,12 @@
 (global-set-key "\C-ci" 'ido-goto-symbol)
 
 
+;;
+;; org
+
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
+(define-key global-map "\C-cb" 'org-iswitchb)
+
 (provide 'init-key-bindings)
