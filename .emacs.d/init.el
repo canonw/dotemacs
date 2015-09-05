@@ -70,6 +70,8 @@
 (require 'init-helm)
 
 (require 'init-settings)
+
+(require 'init-key-bindings)
 (put 'narrow-to-region 'disabled nil)
 
 ;; Local machine specific setup
