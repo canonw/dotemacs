@@ -6,6 +6,4 @@
 ;; Ignore file list
 (add-to-list 'recentf-exclude "\\ido.last\\'")
 
-(global-set-key "\C-cr" 'recentf-open-files)
-
 (provide 'init-recentf)

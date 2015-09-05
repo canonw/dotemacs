@@ -340,4 +340,9 @@
 (define-key global-map "\C-cc" 'org-capture)
 (define-key global-map "\C-cb" 'org-iswitchb)
 
+;;
+;; recenf
+
+(global-set-key "\C-cr" 'recentf-open-files)
+
 (provide 'init-key-bindings)
