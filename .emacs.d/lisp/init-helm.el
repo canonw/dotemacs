@@ -1,10 +1,6 @@
 (require 'helm-config)
 
 (autoload 'helm-c-yas-complete "helm-c-yasnippet" nil t)
-(global-set-key (kbd "C-c f") 'helm-for-files)
-;; (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
-(global-set-key (kbd "C-x C-o") 'ffap)
-
 (autoload 'helm-ls-git-ls "helm-ls-git" nil t)
 (autoload 'helm-browse-project "helm-ls-git" nil t)
 
@@ -71,25 +67,6 @@
 ;; helm swoop
 (require 'helm)
 (require 'helm-swoop)
-
-;; Change the keybinds to whatever you like :)
-(global-set-key (kbd "M-i") 'helm-swoop)
-(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
-;; (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
-;; (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
-
-;; ;; When doing isearch, hand the word over to helm-swoop
-;; (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-;; ;; From helm-swoop to helm-multi-swoop-all
-;; (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
-;; ;; When doing evil-search, hand the word over to helm-swoop
-;; (define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
-
-;; ;; Move up and down like isearch
-;; (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
-;; (define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
-;; (define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
-;; (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
 
 ;; Save buffer when helm-multi-swoop-edit complete
 (setq helm-multi-swoop-edit-save t)
