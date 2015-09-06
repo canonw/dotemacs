@@ -72,6 +72,7 @@
 (require-package 'dired-sort)
 (require-package 'dired-details)
 
+(require-package 'ace-window)
 (require-package 'ace-jump-mode)
 
 (require-package 'ido-ubiquitous)

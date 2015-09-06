@@ -7,12 +7,28 @@
 ;;If you use evil
 ; (eval-after-load "evil" '(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode))
 
+
+;;
+;; ace-window
+; (global-set-key (kbd "M-p") 'ace-window)
+;
+; (defvar aw-dispatch-alist
+; '((?x aw-delete-window " Ace - Delete Window")
+;     (?m aw-swap-window " Ace - Swap Window")
+;     (?n aw-flip-window)
+;     (?v aw-split-window-vert " Ace - Split Vert Window")
+;     (?b aw-split-window-horz " Ace - Split Horz Window")
+;     (?i delete-other-windows " Ace - Maximize Window")
+;     (?o delete-other-windows))
+; "List of actions for `aw-dispatch-default'.")
+
 ;;
 ;; evil-leader
 (evil-leader/set-key
   "ae" 'evil-ace-jump-word-mode ; ,ae for Ace Jump (word)
   "al" 'evil-ace-jump-line-mode ; ,al for Ace Jump (line)
   "ac" 'evil-ace-jump-char-mode ; ,ac for Ace Jump (char)
+  "aw" 'ace-window ; for frame/windows switching
   "rf" 'recentf-open-files
 ;;  "as" 'ack-same
 ;;  "ac" 'ack
