@@ -1,7 +1,7 @@
 (global-linum-mode t)
 
 ;http://stackoverflow.com/questions/3875213/ \
-;turning-on-linum-mode-when-in-python-c-mode
+;; Turn off linum in certain modes
 (setq linum-mode-inhibit-modes-list '(eshell-mode
                                       shell-mode
                                       dictionary-mode
