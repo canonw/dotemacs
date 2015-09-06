@@ -86,7 +86,8 @@
     ;; Load a theme 
     (load-random-theme)
   ;;    (load-theme 'solarized-dark t)
-  (load-theme 'wombat t))
+  ;;(load-theme 'wombat t)
+  )
 
 ;; Load different theme periodically
 ;;(run-with-timer 1 (* 60 60) 'load-random-theme)
@@ -130,5 +131,8 @@
 
 ;; Assign groovy mode
 (add-to-list 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
+
+;; Enable highlight
+(global-hi-lock-mode 1)
 
 (provide 'init-settings)

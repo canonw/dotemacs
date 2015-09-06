@@ -340,9 +340,26 @@
 (define-key global-map "\C-cc" 'org-capture)
 (define-key global-map "\C-cb" 'org-iswitchb)
 
+
 ;;
 ;; recenf
 
 (global-set-key "\C-cr" 'recentf-open-files)
+
+
+;;
+;; hi-lock-mode
+;; Use default key binding
+;; http://www.delorie.com/gnu/docs/emacs/emacs_81.html
+;;   (define-key map "\M-shl" 'highlight-lines-matching-regexp)
+;;   (define-key map "\M-shp" 'highlight-phrase)
+;;   (define-key map "\M-shr" 'highlight-regexp)
+;;   (define-key map "\M-sh." 'highlight-symbol-at-point)
+;;
+;;   (define-key map "\M-shu" 'unhighlight-regexp)
+;;
+;;   (define-key map "\M-shw" 'hi-lock-write-interactive-patterns)
+;;
+;;   (define-key map "\M-shf" 'hi-lock-find-patterns)
 
 (provide 'init-key-bindings)
