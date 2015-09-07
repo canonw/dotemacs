@@ -73,8 +73,8 @@
 (require-package 'dired-details)
 
 (require-package 'ace-window)
-(require-package 'ace-jump-mode)
-
+(require-package 'avy)
+ 
 (require-package 'ido-ubiquitous)
 (when *emacs24*
   (require-package 'flx-ido))

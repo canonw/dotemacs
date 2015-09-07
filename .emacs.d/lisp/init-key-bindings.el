@@ -1,11 +1,9 @@
 ;; Centralize key binding remap in one place
 
+
 ;;
-;; ace-jump-mode
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
- 
-;;If you use evil
-; (eval-after-load "evil" '(define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode))
+;; avy
+(define-key global-map (kbd "C-c SPC") 'avy-goto-char)
 
 
 ;;
@@ -25,9 +23,12 @@
 ;;
 ;; evil-leader
 (evil-leader/set-key
-  "ae" 'evil-ace-jump-word-mode ; ,ae for Ace Jump (word)
-  "al" 'evil-ace-jump-line-mode ; ,al for Ace Jump (line)
-  "ac" 'evil-ace-jump-char-mode ; ,ac for Ace Jump (char)
+  "jc" 'avy-goto-char
+  "ji" 'avy-goto-char-in-line
+  "j2" 'avy-goto-char-2 ; search two consecutive characters
+  "jl" 'avy-goto-line
+  "jw" 'avy-goto-word-1
+  "js" 'avy-goto-subword-1
   "aw" 'ace-window ; for frame/windows switching
   "rf" 'recentf-open-files
 ;;  "as" 'ack-same
