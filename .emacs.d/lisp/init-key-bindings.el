@@ -23,8 +23,8 @@
 ;;
 ;; evil-leader
 (evil-leader/set-key
-  "jc" 'avy-goto-char
-  "ji" 'avy-goto-char-in-line
+  "jC" 'avy-goto-char
+  "jci" 'avy-goto-char-in-line
   "j2" 'avy-goto-char-2 ; search two consecutive characters
   "jl" 'avy-goto-line
   "jw" 'avy-goto-word-1
