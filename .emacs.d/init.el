@@ -66,6 +66,7 @@
 (when *emacs24*
   (require 'init-org))
 (require 'init-smex)
+(require 'init-projectile)
 
 (require 'init-helm)
 

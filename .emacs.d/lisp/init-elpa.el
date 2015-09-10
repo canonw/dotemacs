@@ -101,6 +101,8 @@
 (require-package 'helm)
 (require-package 'helm-swoop)
 
+(require-package 'projectile)
+
 (require-package 'restclient)
 (require-package 'json-snatcher)
 
