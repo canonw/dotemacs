@@ -74,7 +74,8 @@
 
 (require-package 'ace-window)
 (require-package 'avy)
- 
+
+(require-package 'elmacro)
 (require-package 'ido-ubiquitous)
 (when *emacs24*
   (require-package 'flx-ido))
