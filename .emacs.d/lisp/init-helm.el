@@ -1,5 +1,7 @@
 (require 'helm-config)
 
+(helm-mode 1) 
+
 (autoload 'helm-c-yas-complete "helm-c-yasnippet" nil t)
 (autoload 'helm-ls-git-ls "helm-ls-git" nil t)
 (autoload 'helm-browse-project "helm-ls-git" nil t)
