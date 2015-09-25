@@ -1,6 +1,7 @@
 (setq org-agenda-files (list "~/org"
 ))
 
+
 ;; Make folding neat
 (setq org-log-into-drawer t
       org-clock-into-drawer t)
@@ -71,29 +72,16 @@
 ; Use the current window for indirect buffer display
 (setq org-indirect-buffer-display 'current-window)
 
+
 ;; Agenda
+;; Show agenda in current window, keeping all other windows
+(setq org-agenda-window-setup 'current-window)
+
 ;; Do not dim blocked tasks
 (setq org-agenda-dim-blocked-tasks nil)
 
 ;; Compact the block agenda view
 (setq org-agenda-compact-blocks t)
-
-;; Custom agenda command definitions
-;;(setq org-agenda-custom-commands 
-;;      '(
-      ;; ("c" "Desk Work" tags-todo "computer" ;; (1) (2) (3) (4)
-      ;;   ((org-agenda-files '("~/org/widgets.org" "~/org/clients.org")) ;; (5)
-      ;;    (org-agenda-sorting-strategy '(priority-up effort-down))) ;; (5) cont.
-      ;;   ("~/computer.html")) ;; (6)
-        ;; ...other commands here
-;;        ("D" "Daily Action List"
-;;          (
-;;           (agenda "" ((org-agenda-ndays 1)
-;;                       (org-agenda-sorting-strategy
-;;                        (quote ((agenda time-up priority-down tag-up) )))
-;;                       (org-deadline-warning-days 0)
-;;                       ))))
-;;       ))
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
