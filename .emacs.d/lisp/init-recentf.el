@@ -5,5 +5,7 @@
 
 ;; Ignore file list
 (add-to-list 'recentf-exclude "\\ido.last\\'")
+;; org babel temp files
+(add-to-list 'recentf-exclude "\\var\\'")
 
 (provide 'init-recentf)
