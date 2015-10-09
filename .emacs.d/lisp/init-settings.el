@@ -118,7 +118,8 @@
 	    (concat (substring coding-str 0 (match-beginning 0)) "-unix"))
       (message "CODING: %s" coding-str)
       (set-buffer-file-coding-system (intern coding-str)))))
-(add-hook 'find-file-hooks 'no-junk-please-were-unixish)
+;; TODO: Need a smarter way to make unixish files
+;; (add-hook 'find-file-hooks 'no-junk-please-were-unixish)
 
 ;;; Custom mode setup
 (add-hook 'emacs-lisp-mode-hook
