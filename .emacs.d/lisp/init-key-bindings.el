@@ -1,5 +1,10 @@
 ;; Centralize key binding remap in one place
 
+;; expand-region
+;; http://blog.binchen.org/posts/how-to-use-expand-region-efficiently.html
+(define-key evil-normal-state-map (kbd "+") 'er/expand-region)
+(define-key evil-visual-state-map (kbd "+") 'er/expand-region)
+(define-key evil-visual-state-map (kbd "_") 'er/contract-region)
 
 ;;
 ;; avy
