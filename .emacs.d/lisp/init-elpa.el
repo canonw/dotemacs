@@ -108,5 +108,7 @@
 (require-package 'restclient)
 (require-package 'json-snatcher)
 
+(require-package 'elmacro)
+
 (provide 'init-elpa)
 
