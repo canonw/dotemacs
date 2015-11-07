@@ -72,6 +72,8 @@
 (require-package 'dired-sort)
 (require-package 'dired-details)
 
+(require-package 'expand-region)
+
 (require-package 'ace-window)
 (require-package 'avy)
 
@@ -105,6 +107,8 @@
 
 (require-package 'restclient)
 (require-package 'json-snatcher)
+
+(require-package 'elmacro)
 
 (provide 'init-elpa)
 
