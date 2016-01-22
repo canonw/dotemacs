@@ -77,6 +77,8 @@
 (require-package 'ace-window)
 (require-package 'avy)
 
+(require-package 'org-journal)
+
 (require-package 'elmacro)
 (require-package 'ido-ubiquitous)
 (when *emacs24*

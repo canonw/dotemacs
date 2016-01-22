@@ -210,6 +210,12 @@
       org-habit-show-all-today t)
 
 
+;;; org-journal-dir
+(setq org-journal-dir "~/journal")
+(setq org-journal-date-format "%a, %Y-%m-%d")
+(setq org-journal-time-format "%H:%M:%S ")
+
+
 ;;; ical
 (setq org-combined-agenda-icalendar-file "~/org.ics")
 (setq org-icalendar-categories (quote (all-tags category todo-state)))
