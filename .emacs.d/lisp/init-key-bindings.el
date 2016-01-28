@@ -6,6 +6,9 @@
 (define-key evil-visual-state-map (kbd "+") 'er/expand-region)
 (define-key evil-visual-state-map (kbd "_") 'er/contract-region)
 
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-+") 'er/contract-region)
+
 ;;
 ;; avy
 (define-key global-map (kbd "C-c SPC") 'avy-goto-char)
