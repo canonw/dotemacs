@@ -97,6 +97,21 @@
                ((org-agenda-overriding-header "Habits")
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
+              ("g" . "GTD contexts")
+               ("gd" "POTD" tags-todo "POTD")
+               ("gw" "POTW" tags-todo "POTW")
+               ("gm" "POTM" tags-todo "POTM")
+               ("gy" "POTY" tags-todo "POTY")
+               ("gn" "NYR" tags-todo "NYR")
+               ("G" "GTD Weekly Agenda"
+                ((tags-todo "POTD")
+                 (tags-todo "POTW")
+                )
+                ;; nil                      ;; i.e., no local settings
+                ;; ("~/next-actions.html") ;; exports block to this file with C-c a e; TODO
+               )
+               ;; ..other commands here
+               
               (" " "Agenda"
                ((agenda "" nil)
                 (tags "REFILE"
