@@ -84,6 +84,11 @@
 (setq org-agenda-compact-blocks t)
 
 ;; Custom agenda command definitions
+;; Reference:
+;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
+;; http://orgmode.org/manual/Matching-tags-and-properties.html
+;; Change start date
+;; http://emacs.stackexchange.com/questions/13075/agenda-span-of-last-7-days
 (setq org-agenda-custom-commands
       (quote (("N" "Notes" tags "NOTE"
                ((org-agenda-overriding-header "Notes")
@@ -98,20 +103,27 @@
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
               ("g" . "GTD contexts")
-               ("gd" "POTD" tags-todo "POTD")
-               ("gw" "POTW" tags-todo "POTW")
-               ("gm" "POTM" tags-todo "POTM")
-               ("gy" "POTY" tags-todo "POTY")
-               ("gn" "NYR" tags-todo "NYR")
-               ("G" "GTD Weekly Agenda"
+              ("gd" "POTD" tags-todo "POTD")
+              ("gw" "POTW" tags-todo "POTW")
+              ("gm" "POTM" tags-todo "POTM")
+              ("gy" "POTY" tags-todo "POTY")
+              ("gn" "NYR" tags-todo "NYR")
+              ("G" "GTD Weekly Agenda"
                 ((tags-todo "POTD")
-                 (tags-todo "POTW")
+                 (tags-todo "+POTW-POTD") ;; Unplanned plan of the week
+                 (tags-todo "+TODO=\"NEXT\"-POTW-POTD") ;; Any NEXT action not part of planned
+                 (tags-todo "STYLE=\"habit\"")
                 )
                 ;; nil                      ;; i.e., no local settings
                 ;; ("~/next-actions.html") ;; exports block to this file with C-c a e; TODO
                )
-               ;; ..other commands here
-               
+               ("w" "Next 7 Days Deadline"
+                ((agenda "" ((org-agenda-span 8)))
+                 ;; type "l" in the agenda to review logged items 
+                 ;; (stuck "") ;; review stuck projects as designated by org-stuck-projects
+                 ;; ..other commands here
+                 )
+                )
               (" " "Agenda"
                ((agenda "" nil)
                 (tags "REFILE"
