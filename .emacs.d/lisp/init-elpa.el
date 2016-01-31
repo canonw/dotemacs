@@ -79,6 +79,9 @@
 
 (require-package 'org-journal)
 
+;; For org export
+(require-package 'htmlize)
+
 (require-package 'elmacro)
 (require-package 'ido-ubiquitous)
 (when *emacs24*

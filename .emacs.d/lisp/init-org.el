@@ -111,11 +111,11 @@
               ("G" "GTD Weekly Agenda"
                 ((tags-todo "POTD")
                  (tags-todo "+POTW-POTD") ;; Unplanned plan of the week
-                 (tags-todo "+TODO=\"NEXT\"-POTW-POTD") ;; Any NEXT action not part of planned
+                 (tags-todo "+TODO=\"NEXT\"-POTW-POTD|+TODO=\"WAITING\"") ;; Any NEXT action not part of planned
                  (tags-todo "STYLE=\"habit\"")
                 )
-                ;; nil                      ;; i.e., no local settings
-                ;; ("~/next-actions.html") ;; exports block to this file with C-c a e; TODO
+                nil                      ;; i.e., no local settings
+                ("~/next-actions.html") ;; exports block to this file with C-c a e; TODO
                )
                ("w" "Next 7 Days Deadline"
                 ((agenda "" ((org-agenda-span 8)))
