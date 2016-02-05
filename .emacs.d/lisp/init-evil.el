@@ -83,8 +83,9 @@
 ;;    (if (eq major-mode 'org-mode) (message-mode))
 ;;    ))
 
+(evil-set-initial-state 'calendar-mode 'emacs)
+(evil-set-initial-state 'help-mode 'emacs)
 ;; (evil-set-initial-state 'org-mode 'emacs)
-
 ;;(loop for (mode . state) in
 ;;      '((minibuffer-inactive-mode . emacs)
 ;;        (ggtags-global-mode . emacs)
