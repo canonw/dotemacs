@@ -324,16 +324,43 @@
 
 ;;
 ;; helm
-(global-set-key (kbd "C-c f") 'helm-for-files)
 ;; (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 (global-set-key (kbd "C-x C-o") 'ffap)
 
+(global-set-key (kbd "M-x")                          'undefined)
+(global-set-key (kbd "M-x")                          'helm-M-x)
+(global-set-key (kbd "M-y")                          'helm-show-kill-ring)
+(global-set-key (kbd "C-c f")                        'helm-recentf)
+(global-set-key (kbd "C-x C-f")                      'helm-find-files)
+;;(global-set-key (kbd "C-c <SPC>")                    'helm-all-mark-rings)
+(global-set-key (kbd "C-x r b")                      'helm-filtered-bookmarks)
+(global-set-key (kbd "C-h r")                        'helm-info-emacs)
+(global-set-key (kbd "C-:")                          'helm-eval-expression-with-eldoc)
+(global-set-key (kbd "C-,")                          'helm-calcul-expression)
+(global-set-key (kbd "C-h i")                        'helm-info-at-point)
+(global-set-key (kbd "C-x C-d")                      'helm-browse-project)
+;; (global-set-key (kbd "<f1>")                         'helm-resume)
+(global-set-key (kbd "C-h C-f")                      'helm-apropos)
+(global-set-key (kbd "C-h a")                        'helm-apropos)
+;;(global-set-key (kbd "<f5> s")                       'helm-find)
+;; (global-set-key (kbd "<f2>")                         'helm-execute-kmacro)
+(global-set-key (kbd "C-c i")                        'helm-imenu-in-all-buffers)
+;; (global-set-key (kbd "<f11> o")                      'helm-org-agenda-files-headings)
+(global-set-key (kbd "C-s")                          'helm-occur)
+(define-key global-map [remap jump-to-register]      'helm-register)
+(define-key global-map [remap list-buffers]          'helm-buffers-list)
+(define-key global-map [remap dabbrev-expand]        'helm-dabbrev)
+;; (define-key global-map [remap find-tag]              'helm-etags-select)
+;; (define-key global-map [remap xref-find-definitions] 'helm-etags-select)
+;; (define-key global-map (kbd "M-g a")                 'helm-do-grep-ag)
+;; (define-key global-map (kbd "M-g g")                 'helm-grep-do-git-grep)
+;; (define-key global-map (kbd "M-g i")                 'helm-gid)
 
 ;;
 ;; helm-swoop
 ;; Change the keybinds to whatever you like :)
-(global-set-key (kbd "M-i") 'helm-swoop)
-(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "M-s") 'helm-swoop)
+(global-set-key (kbd "M-r") 'helm-swoop-back-to-last-point)
 ;; (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
 ;; (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
 
@@ -369,7 +396,7 @@
 ;;
 ;; recenf
 
-(global-set-key "\C-cr" 'recentf-open-files)
+;; (global-set-key "\C-cr" 'recentf-open-files)
 
 
 ;;
