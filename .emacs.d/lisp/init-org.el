@@ -109,11 +109,12 @@
               ("gy" "POTY" tags-todo "POTY")
               ("gn" "NYR" tags-todo "NYR")
               ("G" "GTD Weekly Agenda"
-                ((tags-todo "POTD")
-                 (tags-todo "+POTW-POTD") ;; Unplanned plan of the week
-                 (tags-todo "+TODO=\"NEXT\"-POTW-POTD|+TODO=\"WAITING\"") ;; Any NEXT action not part of planned
-                 (tags-todo "STYLE=\"habit\"")
-                )
+               ((tags-todo "BURN")
+                (tags-todo "POTD")
+                (tags-todo "+POTW-POTD") ;; Unplanned plan of the week
+                (tags-todo "+TODO=\"NEXT\"-POTW-POTD|+TODO=\"WAITING\"") ;; Any NEXT action not part of planned
+                (tags-todo "STYLE=\"habit\"")
+               )
                 nil                      ;; i.e., no local settings
                 ("~/next-actions.html") ;; exports block to this file with C-c a e; TODO
                )
@@ -192,10 +193,10 @@
 
 ;; Tag list
 (setq org-tag-alist (quote ((:startgroup)
-                            ("@errand" . ?e)
-                            ("@office" . ?o)
-                            ("@home" . ?H)
-                            ("@farm" . ?f)
+                            ("POTD" . ?e)
+                            ("POTW" . ?o)
+                            ("POTM" . ?H)
+                            ("POTY" . ?f)
                             (:endgroup)
                             ("WAITING" . ?w)
                             ("HOLD" . ?h)
