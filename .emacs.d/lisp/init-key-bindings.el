@@ -2,12 +2,12 @@
 
 ;; expand-region
 ;; http://blog.binchen.org/posts/how-to-use-expand-region-efficiently.html
-(define-key evil-normal-state-map (kbd "+") 'er/expand-region)
-(define-key evil-visual-state-map (kbd "+") 'er/expand-region)
-(define-key evil-visual-state-map (kbd "_") 'er/contract-region)
+;; (define-key evil-normal-state-map (kbd "+") 'er/expand-region)
+;; (define-key evil-visual-state-map (kbd "+") 'er/expand-region)
+;; (define-key evil-visual-state-map (kbd "_") 'er/contract-region)
 
-(global-set-key (kbd "C-=") 'er/expand-region)
-(global-set-key (kbd "C-+") 'er/contract-region)
+;; (global-set-key (kbd "C-=") 'er/expand-region)
+;; (global-set-key (kbd "C-+") 'er/contract-region)
 
 ;;
 ;; avy
@@ -30,15 +30,15 @@
 
 ;;
 ;; evil-leader
-(evil-leader/set-key
-  "jC" 'avy-goto-char
-  "jci" 'avy-goto-char-in-line
-  "j2" 'avy-goto-char-2 ; search two consecutive characters
-  "jl" 'avy-goto-line
-  "jw" 'avy-goto-word-1
-  "js" 'avy-goto-subword-1
-  "aw" 'ace-window ; for frame/windows switching
-  "rf" 'recentf-open-files
+;; (evil-leader/set-key
+;;   "jC" 'avy-goto-char
+;;   "jci" 'avy-goto-char-in-line
+;;   "j2" 'avy-goto-char-2 ; search two consecutive characters
+;;   "jl" 'avy-goto-line
+;;   "jw" 'avy-goto-word-1
+;;   "js" 'avy-goto-subword-1
+;;   "aw" 'ace-window ; for frame/windows switching
+;;   "rf" 'recentf-open-files
 ;;  "as" 'ack-same
 ;;  "ac" 'ack
 ;;  "aa" 'ack-find-same-file
@@ -285,34 +285,34 @@
 ;;  "zwr" 'wg-redo-wconfig-change
 ;;  "zws" 'wg-save-wconfig
 ;;  "wf" 'popup-which-function
-)
+;;)
 
 
 ;; Remap org-mode meta keys for convenience
-(evil-declare-key 'normal org-mode-map
-    "gh" 'outline-up-heading
-    "gl" 'outline-next-visible-heading
-    "H" 'org-beginning-of-line ; smarter behaviour on headlines etc.
-    "L" 'org-end-of-line ; smarter behaviour on headlines etc.
-    "$" 'org-end-of-line ; smarter behaviour on headlines etc.
-    "^" 'org-beginning-of-line ; ditto
-    "-" 'org-ctrl-c-minus ; change bullet style
-    "<" 'org-metaleft ; out-dent
-    ">" 'org-metaright ; indent
-    (kbd "TAB") 'org-cycle)
+;;(evil-declare-key 'normal org-mode-map
+;;    "gh" 'outline-up-heading
+;;    "gl" 'outline-next-visible-heading
+;;    "H" 'org-beginning-of-line ; smarter behaviour on headlines etc.
+;;    "L" 'org-end-of-line ; smarter behaviour on headlines etc.
+;;    "$" 'org-end-of-line ; smarter behaviour on headlines etc.
+;;    "^" 'org-beginning-of-line ; ditto
+;;    "-" 'org-ctrl-c-minus ; change bullet style
+;;    "<" 'org-metaleft ; out-dent
+;;    ">" 'org-metaright ; indent
+;;    (kbd "TAB") 'org-cycle)
 
 ;; Remap org-mode meta keys for convenience
-(evil-declare-key 'normal org-mode-map
-    "gh" 'outline-up-heading
-    "gl" 'outline-next-visible-heading
-    "H" 'org-beginning-of-line ; smarter behaviour on headlines etc.
-    "L" 'org-end-of-line ; smarter behaviour on headlines etc.
-    "$" 'org-end-of-line ; smarter behaviour on headlines etc.
-    "^" 'org-beginning-of-line ; ditto
-    "-" 'org-ctrl-c-minus ; change bullet style
-    "<" 'org-metaleft ; out-dent
-    ">" 'org-metaright ; indent
-    (kbd "TAB") 'org-cycle)
+;;(evil-declare-key 'normal org-mode-map
+;;    "gh" 'outline-up-heading
+;;    "gl" 'outline-next-visible-heading
+;;    "H" 'org-beginning-of-line ; smarter behaviour on headlines etc.
+;;    "L" 'org-end-of-line ; smarter behaviour on headlines etc.
+;;    "$" 'org-end-of-line ; smarter behaviour on headlines etc.
+;;    "^" 'org-beginning-of-line ; ditto
+;;    "-" 'org-ctrl-c-minus ; change bullet style
+;;    "<" 'org-metaleft ; out-dent
+;;    ">" 'org-metaright ; indent
+;;    (kbd "TAB") 'org-cycle)
 
 
 ;;
@@ -381,7 +381,7 @@
 ;;
 ;; ido
 
-(global-set-key "\C-ci" 'ido-goto-symbol)
+;;(global-set-key "\C-ci" 'ido-goto-symbol)
 
 
 ;;

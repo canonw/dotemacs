@@ -51,8 +51,10 @@
 
 (require 'init-recentf)
 
-(require 'init-evil)
+; (require 'init-evil)
 ;; (require 'init-ace-jump-mode) ;; Replace by avy
+
+(require 'init-ergoemacs)
 
 (require 'init-yasnippet)
 (require 'init-auto-complete)

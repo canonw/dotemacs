@@ -59,14 +59,16 @@
 (require-package 'zenburn-theme)
 ;; (require-package 'solarized-theme)  ;; replaced by color-theme-solarized
 
-(require-package 'evil)
-(require-package 'evil-escape)
-(require-package 'evil-exchange)
-(require-package 'evil-leader)
-(require-package 'evil-matchit)
-(require-package 'evil-nerd-commenter)
-(require-package 'evil-numbers)
-(require-package 'evil-surround)
+;; (require-package 'evil)
+;; (require-package 'evil-escape)
+;; (require-package 'evil-exchange)
+;; (require-package 'evil-leader)
+;; (require-package 'evil-matchit)
+;; (require-package 'evil-nerd-commenter)
+;; (require-package 'evil-numbers)
+;; (require-package 'evil-surround)
+
+(require-package 'ergoemacs-mode)
 
 (require-package 'dired+)
 (require-package 'dired-sort)
