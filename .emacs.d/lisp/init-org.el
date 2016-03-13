@@ -9,6 +9,16 @@
 ;; Log TODO state change
 (setq org-log-done t)
 
+;; Log schedule change
+;; (setq org-log-reschedule (quote nil))
+;; (setq org-log-reschedule (quote note))
+(setq org-log-reschedule (quote time))
+
+;; Log deadline change
+;; (setq org-log-redeadline (quote nil))
+;; (setq org-log-redeadline (quote note))
+(setq org-log-redeadline (quote time))
+
 ; Set default column view headings: Task Effort Clock_Summary
 (setq org-columns-default-format "%80ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM")
 
@@ -102,17 +112,13 @@
                ((org-agenda-overriding-header "Habits")
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
-              ("g" . "GTD contexts")
-              ("gd" "POTD" tags-todo "POTD")
-              ("gw" "POTW" tags-todo "POTW")
-              ("gm" "POTM" tags-todo "POTM")
-              ("gy" "POTY" tags-todo "POTY")
-              ("gn" "NYR" tags-todo "NYR")
-              ("G" "GTD Weekly Agenda"
-               ((tags-todo "BURN")
-                (tags-todo "POTD")
+              ("g" "Planning Agenda"
+               (
+                (tags-todo "+NYR")
+                (tags-todo "BURN-POTW-POTD")
+                (tags-todo "+POTD")
                 (tags-todo "+POTW-POTD") ;; Unplanned plan of the week
-                (tags-todo "+TODO=\"NEXT\"-POTW-POTD|+TODO=\"WAITING\"") ;; Any NEXT action not part of planned
+                (tags-todo "+TODO=\"NEXT\"-POTW-POTD-BURN|+TODO=\"WAITING\"") ;; Any NEXT action not part of planned
                 (tags-todo "STYLE=\"habit\"")
                )
                 nil                      ;; i.e., no local settings
@@ -193,21 +199,20 @@
 
 ;; Tag list
 (setq org-tag-alist (quote ((:startgroup)
-                            ("POTD" . ?e)
-                            ("POTW" . ?o)
-                            ("POTM" . ?H)
-                            ("POTY" . ?f)
+                            ("POTD" . ?d)
+                            ("POTW" . ?w)
+                            ("POTM" . ?m)
+                            ("NYR" . ?y)
                             (:endgroup)
-                            ("WAITING" . ?w)
-                            ("HOLD" . ?h)
-                            ("PERSONAL" . ?P)
-                            ("WORK" . ?W)
-                            ("FARM" . ?F)
-                            ("ORG" . ?O)
-                            ("NORANG" . ?N)
-                            ("crypt" . ?E)
-                            ("NOTE" . ?n)
-                            ("CANCELLED" . ?c)
+;                             ("WAITING" . ?w)
+;                             ("HOLD" . ?h)
+;                             ("PERSONAL" . ?P)
+;                             ("WORK" . ?W)
+;                             ("ORG" . ?O)
+;                             ("NORANG" . ?N)
+;                             ("crypt" . ?E)
+;                             ("NOTE" . ?n)
+;                             ("CANCELLED" . ?c)
                             ("FLAGGED" . ??))))
 
 ; Allow setting single tags without the menu
