@@ -4,3 +4,6 @@
 .emacs.d/recentf
 .emacs.d/smex-items
 .emacs.d/auto-save-list/*~
+.emacs.d/eshell
+.emacs.d/var
+.emacs.d/.org-id-locations
