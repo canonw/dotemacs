@@ -40,6 +40,8 @@
 (require 'init-linum-mode)
 (require 'init-whitespace-mode)
 
+(require 'init-calendar)
+
 (require 'init-dired)
 
 (require 'init-whitespace-mode)
