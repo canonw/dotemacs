@@ -1,42 +1,31 @@
-(global-linum-mode t)
+(require 'linum)
+(require 'linum-off)
+(require 'hlinum)
 
-;http://stackoverflow.com/questions/3875213/ \
-;; Turn off linum in certain modes
-(setq linum-mode-inhibit-modes-list '(eshell-mode
-                                      shell-mode
-                                      dictionary-mode
-                                      erc-mode
-                                      dired-mode
-                                      help-mode
-                                      text-mode
-                                      fundamental-mode
-                                      jabber-roster-mode
-                                      jabber-chat-mode
-                                      inferior-scheme-mode
-                                      twittering-mode
-                                      compilation-mode
-                                      weibo-timeline-mode
-                                      woman-mode
-                                      Info-mode
-                                      calc-mode
-                                      calc-trail-mode
-                                      comint-mode
-                                      gnus-group-mode
-                                      inf-ruby-mode
-                                      gud-mode
-                                      org-mode
-                                      vc-git-log-edit-mode
-                                      log-edit-mode
-                                      term-mode
-                                      w3m-mode
-                                      speedbar-mode
-                                      gnus-summary-mode
-                                      gnus-article-mode
-                                      calendar-mode))
-(defadvice linum-on (around linum-on-inhibit-for-modes)
-           "Stop the load of linum-mode for some major modes."
-           (unless (member major-mode linum-mode-inhibit-modes-list)
-             ad-do-it))
-(ad-activate 'linum-on)
+;; http://stackoverflow.com/questions/3875213/
+;; https://www.emacswiki.org/emacs/LineNumbers
+;; https://www.emacswiki.org/emacs/linum-off.el
+
+;; Speedup overall performance 
+(linum-delete-overlays)
+(setq linum-eager t)
+
+;; Line number format - include line seperator, no leading space
+(eval-after-load 'linum
+  '(progn
+     (defface linum-leading-zero
+       `((t :inherit 'linum
+            :foreground ,(face-attribute 'linum :background nil t)))
+       "Face for displaying leading zeroes for line numbers in display margin."
+       :group 'linum)
+     (defun linum-format-func (line)
+       (let ((w (length
+                 (number-to-string (count-lines (point-min) (point-max))))))
+         (concat
+          (propertize (make-string (- w (length (number-to-string line))) ?0)
+                      'face 'linum-leading-zero)
+          (propertize (number-to-string line) 'face 'linum)
+          (propertize "\u2502" 'face 'linum))))
+     (setq linum-format 'linum-format-func)))
 
 (provide 'init-linum-mode)

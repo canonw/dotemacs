@@ -115,5 +115,9 @@
 
 (require-package 'elmacro)
 
+;; line numbering
+(require-package 'linum-off)
+(require-package 'hlinum)
+
 (provide 'init-elpa)
 

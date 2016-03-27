@@ -34,6 +34,8 @@
 (setq-default gc-cons-threshold (* 1024 1024 512)
               gc-cons-percentage 0.5)
 
+(require 'init-elpa)
+
 (require 'init-utils)
 
 (require 'init-modeline)
@@ -44,10 +46,7 @@
 
 (require 'init-dired)
 
-(require 'init-whitespace-mode)
 ;; (require 'idle-require)
-;;(require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
-(require 'init-elpa)
 
 (require 'init-flyspell)
 

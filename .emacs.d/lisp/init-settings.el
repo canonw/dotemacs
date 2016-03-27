@@ -58,28 +58,9 @@
 ;;;;
 ;;;;
 ;;; Line number
-;; Line number format - include line seperator, no leading space
+;;; Additional settings are set in init-linum-mode.el
+(hlinum-activate)
 (global-linum-mode 1)
-;; Speedup overall performance 
-(linum-delete-overlays)
-(setq linum-eager t)
-
-(eval-after-load 'linum
-  '(progn
-     (defface linum-leading-zero
-       `((t :inherit 'linum
-            :foreground ,(face-attribute 'linum :background nil t)))
-       "Face for displaying leading zeroes for line numbers in display margin."
-       :group 'linum)
-     (defun linum-format-func (line)
-       (let ((w (length
-                 (number-to-string (count-lines (point-min) (point-max))))))
-         (concat
-          (propertize (make-string (- w (length (number-to-string line))) ?0)
-                      'face 'linum-leading-zero)
-          (propertize (number-to-string line) 'face 'linum)
-          (propertize "\u2502" 'face 'linum))))
-     (setq linum-format 'linum-format-func)))
 
 ;;; Color Theme
 (if window-system
