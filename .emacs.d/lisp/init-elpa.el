@@ -117,7 +117,8 @@
 
 ;; line numbering
 (require-package 'linum-off)
-(require-package 'hlinum)
+(when (and *emacs24* (> emacs-minor-version 4))
+  (require-package 'hlinum))
 
 (provide 'init-elpa)
 

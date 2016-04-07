@@ -1,6 +1,7 @@
 (require 'linum)
 (require 'linum-off)
-(require 'hlinum)
+(when (and *emacs24* (> emacs-minor-version 4))
+  (require 'hlinum))
 
 ;; http://stackoverflow.com/questions/3875213/
 ;; https://www.emacswiki.org/emacs/LineNumbers

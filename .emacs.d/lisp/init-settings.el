@@ -59,7 +59,9 @@
 ;;;;
 ;;; Line number
 ;;; Additional settings are set in init-linum-mode.el
-(hlinum-activate)
+
+(when (and *emacs24* (> emacs-minor-version 4))
+  (hlinum-activate))
 (global-linum-mode 1)
 
 ;;; Color Theme
