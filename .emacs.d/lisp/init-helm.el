@@ -1,3 +1,4 @@
+(require 'helm)
 (require 'helm-config)
 
 (helm-mode 1) 
@@ -67,7 +68,6 @@
 
 ;;
 ;; helm swoop
-(require 'helm)
 (require 'helm-swoop)
 
 ;; Save buffer when helm-multi-swoop-edit complete
@@ -86,7 +86,12 @@
 (setq helm-swoop-move-to-line-cycle t)
 
 ;; Optional face for line numbers
-;; Face name is `helm-swoop-line-number-face`
+;; ace name is `helm-swoop-line-number-face`
 (setq helm-swoop-use-line-number-face t)
+
+;; optional fuzzy matching for helm-M-x
+;;(setq helm-M-x-fuzzy-match t)
+
+(require 'helm-eshell)
 
 (provide 'init-helm)

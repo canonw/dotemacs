@@ -1,0 +1,15 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: (MySQL) Create table conditionally 
+# key: ctc
+# group: MySQL
+# binding: direct-keybinding
+# --
+CREATE TABLE IF NOT EXISTS ${1:myTable}
+(
+  {1}Id bigint(20) NOT NULL AUTO_INCREMENT
+  , ${2:myColumn} ${3:varchar(255)} NOT NULL
+  , PRIMARY KEY ({1}Id)
+  -- , INDEX idx_{1}_Column (column)
+  -- , UNIQUE INDEX uq_{1} (columns)
+  -- , CONSTRAINT fk_{1}_clumns FOREIGN KEY ({2}) REFERENCES table(column) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
