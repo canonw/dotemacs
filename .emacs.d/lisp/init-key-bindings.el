@@ -428,12 +428,241 @@
 ;; | |  | |  __/ | | | | | |
 ;; |_|  |_|\___|_|_| |_| |_|
 ;;                          
-;;                          
+;; Helm
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-unset-key (kbd "C-x c"))
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+
+;;  _    _           _           
+;; | |  | |         | |          
+;; | |__| |_   _  __| |_ __ __ _ 
+;; |  __  | | | |/ _` | '__/ _` |
+;; | |  | | |_| | (_| | | | (_| |
+;; |_|  |_|\__, |\__,_|_|  \__,_|
+;;          __/ |                
+;;         |___/                 
+;;
+;; Hydra
+(defhydra kw/hydra-toggle (:color blue :exit t)
+  ("a" abbrev-mode "abbrev")
+  ("f" auto-fill-mode "fill")
+  ("d" toggle-debug-on-error "debug")
+  ("t" toggle-truncate-lines "truncate")
+  ("w" whitespace-mode "whitespace")
+  ("q" nil "quit"))
+(global-set-key (kbd "C-; t") 'kw/hydra-toggle/body)
+
+(defhydra kw/hydra-zoom (global-map "C-; z")
+  "zoom"
+  ("+" text-scale-increase "in")
+  ("-" text-scale-decrease "out")
+  ("r" (text-scale-set 0) "reset" :bind nil)
+  ("0" (text-scale-set 0) :bind nil :exit t)
+  ("1" (text-scale-set 0) nil :bind nil :exit t))
+
+;; TODO: Disable linum.  Halt in org mode.  A better way is to lookup a flag map to enable
+;; (defhydra kw/hydra-line-action (goto-map "" :pre (linum-mode 1) :post (linum-mode -1))
+(defhydra kw/hydra-line-action (:color blue :exit f)
+  "line action"
+  ("G" avy-goto-line "avy go")
+  ("g" goto-line "go")
+  ("c" avy-copy-line "copy from")
+  ("M" avy-move-line "move from")
+  ("t" transpose-lines "transpose")
+  ("m" set-mark-command "mark" :bind nil)
+  ("q" nil "quit"))
+(global-set-key (kbd "C-; l") 'kw/hydra-line-action/body)
+
+;; (defhydra hydra-launcher (:color blue)
+;;    "Launch"
+;;    ("h" man "man")
+;;    ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
+;;    ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
+;;    ("s" shell "shell")
+;;    ("q" nil "cancel"))
+;; (global-set-key (kbd "C-c r") 'hydra-launcher/body)
+
+
+;; ;; Source: [[http://oremacs.com/2016/04/04/hydra-doc-syntax/][Extended syntax for hydra docstrings · (or emacs]]
+;; (defun org-agenda-cts ()
+;;   (let ((args (get-text-property
+;;                (min (1- (point-max)) (point))
+;;                'org-last-args)))
+;;     (nth 2 args)))
+;; 
+;; (defhydra hydra-org-agenda-view (:hint nil)
+;;   "
+;; _d_: ?d? day        _g_: time grid=?g? _a_: arch-trees
+;; _w_: ?w? week       _[_: inactive      _A_: arch-files
+;; _t_: ?t? fortnight  _f_: follow=?f?    _r_: report=?r?
+;; _m_: ?m? month      _e_: entry =?e?    _D_: diary=?D?
+;; _y_: ?y? year       _q_: quit          _L__l__c_: ?l?"
+;;   ("SPC" org-agenda-reset-view)
+;;   ("d" org-agenda-day-view
+;;        (if (eq 'day (org-agenda-cts))
+;;            "[x]" "[ ]"))
+;;   ("w" org-agenda-week-view
+;;        (if (eq 'week (org-agenda-cts))
+;;            "[x]" "[ ]"))
+;;   ("t" org-agenda-fortnight-view
+;;        (if (eq 'fortnight (org-agenda-cts))
+;;            "[x]" "[ ]"))
+;;   ("m" org-agenda-month-view
+;;        (if (eq 'month (org-agenda-cts)) "[x]" "[ ]"))
+;;   ("y" org-agenda-year-view
+;;        (if (eq 'year (org-agenda-cts)) "[x]" "[ ]"))
+;;   ("l" org-agenda-log-mode
+;;        (format "% -3S" org-agenda-show-log))
+;;   ("L" (org-agenda-log-mode '(4)))
+;;   ("c" (org-agenda-log-mode 'clockcheck))
+;;   ("f" org-agenda-follow-mode
+;;        (format "% -3S" org-agenda-follow-mode))
+;;   ("a" org-agenda-archives-mode)
+;;   ("A" (org-agenda-archives-mode 'files))
+;;   ("r" org-agenda-clockreport-mode
+;;        (format "% -3S" org-agenda-clockreport-mode))
+;;   ("e" org-agenda-entry-text-mode
+;;        (format "% -3S" org-agenda-entry-text-mode))
+;;   ("g" org-agenda-toggle-time-grid
+;;        (format "% -3S" org-agenda-use-time-grid))
+;;   ("D" org-agenda-toggle-diary
+;;        (format "% -3S" org-agenda-include-diary))
+;;   ("!" org-agenda-toggle-deadlines)
+;;   ("["
+;;    (let ((org-agenda-include-inactive-timestamps t))
+;;      (org-agenda-check-type t 'timeline 'agenda)
+;;      (org-agenda-redo)))
+;;   ("q" (message "Abort") :exit t))
+;; 
+;; (define-key org-agenda-mode-map
+;;     "v" 'hydra-org-agenda-view/body)
+
+;; (global-set-key
+;;  (kbd "C-c v")
+;;  (defhydra hydra-vi
+;;      (:pre
+;;       (set-cursor-color "#40e0d0")
+;;       :post
+;;       (set-cursor-color "#ffffff")
+;;       :color amaranth)
+;;    "vi"
+;;    ("l" forward-char)
+;;    ("h" backward-char)
+;;    ("j" next-line)
+;;    ("k" previous-line)
+;;    ("q" nil "quit")))
+
+;; http://oremacs.com/2015/02/19/hydra-colors-reloaded/
+;; (defhydra hydra-toggle (:color pink)
+;;   "
+;; _a_ abbrev-mode:       %`abbrev-mode
+;; _d_ debug-on-error:    %`debug-on-error
+;; _f_ auto-fill-mode:    %`auto-fill-function
+;; _g_ golden-ratio-mode: %`golden-ratio-mode
+;; _t_ truncate-lines:    %`truncate-lines
+;; _w_ whitespace-mode:   %`whitespace-mode
+;; 
+;; "
+;;   ("a" abbrev-mode nil)
+;;   ("d" toggle-debug-on-error nil)
+;;   ("f" auto-fill-mode nil)
+;;   ("g" golden-ratio-mode nil)
+;;   ("t" toggle-truncate-lines nil)
+;;   ("w" whitespace-mode nil)
+;;   ("q" nil "cancel"))
+;; 
+;; (global-set-key (kbd "C-c C-v") 'hydra-toggle/body)
+
+;; (defhydra hydra-toggle (:color blue :idle 1.5)
+;;   "
+;; _a_ abbrev-mode:       %`abbrev-mode
+;; _d_ debug-on-error:    %`debug-on-error
+;; _f_ auto-fill-mode:    %`auto-fill-function
+;; _t_ truncate-lines:    %`truncate-lines
+;; _w_ whitespace-mode:   %`whitespace-mode
+;; 
+;; "
+;;   ("a" abbrev-mode nil)
+;;   ("d" toggle-debug-on-error nil)
+;;   ("f" auto-fill-mode nil)
+;;   ("t" toggle-truncate-lines nil)
+;;   ("w" whitespace-mode nil)
+;;   ("q" nil "quit"))
+;; (global-set-key (kbd "C-c t") 'hydra-toggle/body)
+
+
+;; (defhydra hydra-yank-pop ()
+;;   "yank"
+;;   ("C-y" yank nil)
+;;   ("M-y" yank-pop nil)
+;;   ("y" (yank-pop 1) "next")
+;;   ("Y" (yank-pop -1) "prev")
+;;   ("l" helm-show-kill-ring "list" :color blue))   ; or browse-kill-ring
+;; (global-set-key (kbd "M-y") #'hydra-yank-pop/yank-pop)
+;; (global-set-key (kbd "C-y") #'hydra-yank-pop/yank)
+
+
+;; (global-set-key
+;;  (kbd "C-c C-n")
+;;  (defhydra hydra-move
+;;    (:body-pre (next-line))
+;;    "move"
+;;    ("n" next-line)
+;;    ("p" previous-line)
+;;    ("f" forward-char)
+;;    ("b" backward-char)
+;;    ("a" beginning-of-line)
+;;    ("e" move-end-of-line)
+;;    ("v" scroll-up-command)
+;;    ;; Converting M-v to V here by analogy.
+;;    ("V" scroll-down-command)
+;;    ("l" recenter-top-bottom)))
+
+;; (defhydra hydra-page (ctl-x-map "" :pre (widen))
+;;   "page"
+;;   ("]" forward-page "next")
+;;   ("[" backward-page "prev")
+;;   ("n" narrow-to-page "narrow" :bind nil :exit t))
+
+;; (defhydra hydra-outline (:color pink :hint nil)
+;;   "
+;; ^Hide^             ^Show^           ^Move
+;; ^^^^^^------------------------------------------------------
+;; _q_: sublevels     _a_: all         _u_: up
+;; _t_: body          _e_: entry       _n_: next visible
+;; _o_: other         _i_: children    _p_: previous visible
+;; _c_: entry         _k_: branches    _f_: forward same level
+;; _l_: leaves        _s_: subtree     _b_: backward same level
+;; _d_: subtree
+;; 
+;; "
+;;   ;; Hide
+;;   ("q" hide-sublevels)    ; Hide everything but the top-level headings
+;;   ("t" hide-body)         ; Hide everything but headings (all body lines)
+;;   ("o" hide-other)        ; Hide other branches
+;;   ("c" hide-entry)        ; Hide this entry's body
+;;   ("l" hide-leaves)       ; Hide body lines in this entry and sub-entries
+;;   ("d" hide-subtree)      ; Hide everything in this entry and sub-entries
+;;   ;; Show
+;;   ("a" show-all)          ; Show (expand) everything
+;;   ("e" show-entry)        ; Show this heading's body
+;;   ("i" show-children)     ; Show this heading's immediate child sub-headings
+;;   ("k" show-branches)     ; Show all sub-headings under this heading
+;;   ("s" show-subtree)      ; Show (expand) everything in this heading & below
+;;   ;; Move
+;;   ("u" outline-up-heading)                ; Up
+;;   ("n" outline-next-visible-heading)      ; Next
+;;   ("p" outline-previous-visible-heading)  ; Previous
+;;   ("f" outline-forward-same-level)        ; Forward - same level
+;;   ("b" outline-backward-same-level)       ; Backward - same level
+;;   ("z" nil "leave"))
+;; 
+;; (global-set-key (kbd "C-c #") 'hydra-outline/body) ; by example
+
+;; https://github.com/abo-abo/hydra/wiki/Emacs
 
 (provide 'init-key-bindings)

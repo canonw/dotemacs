@@ -115,6 +115,8 @@
 
 (require-package 'elmacro)
 
+(require-package 'hydra)
+
 ;; line numbering
 (require-package 'linum-off)
 (when (and *emacs24* (> emacs-minor-version 4))

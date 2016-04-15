@@ -42,6 +42,8 @@
 (require 'init-linum-mode)
 (require 'init-whitespace-mode)
 
+(require 'init-hydra)
+
 (require 'init-calendar)
 
 (require 'init-dired)
