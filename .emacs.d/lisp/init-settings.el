@@ -16,6 +16,9 @@
 ;; Remove scrollbars
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; Enable winner mode
+(when (fboundp 'winner-mode) (winner-mode 1))
+
 ;; Enable transient mark mode
 (transient-mark-mode 1)
 
