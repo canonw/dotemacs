@@ -348,7 +348,8 @@
 ;; (global-set-key (kbd "<f2>")                         'helm-execute-kmacro)
 (global-set-key (kbd "C-c i")                        'helm-imenu-in-all-buffers)
 ;; (global-set-key (kbd "<f11> o")                      'helm-org-agenda-files-headings)
-(global-set-key (kbd "C-s")                          'helm-occur)
+;; Prefer swiper-helm over helm-occur.  swiper highlight patterns in buffer.
+(global-set-key (kbd "C-s")                          'swiper-helm)
 (define-key global-map [remap jump-to-register]      'helm-register)
 (define-key global-map [remap list-buffers]          'helm-buffers-list)
 (define-key global-map [remap dabbrev-expand]        'helm-dabbrev)

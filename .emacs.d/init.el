@@ -78,6 +78,8 @@
 (require 'init-key-bindings)
 (put 'narrow-to-region 'disabled nil)
 
+(require 'swiper-helm)
+
 ;; Local machine specific setup
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
 
