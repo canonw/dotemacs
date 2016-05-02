@@ -1,11 +1,8 @@
-
-;;
 ;; Dislay week number in calendar
 ;; http://stackoverflow.com/questions/21364948/how-to-align-the-calendar-with-week-number-as-the-intermonth-text
 
-;; Make Monday as first column the get week number accurate
 (setq calendar-week-start-day 1)
-
+                                        ; Make Monday as first column the get week number accurate
 (setq calendar-intermonth-text
       '(propertize
         (format "%2d"

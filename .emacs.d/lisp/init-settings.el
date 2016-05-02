@@ -10,17 +10,21 @@
 ;; Remove tool bar
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
+;; Move deleted files to OS trash
+(setq delete-by-moving-to-trash t)
+
 ;; Disable menu bar
 ;; (menu-bar-mode -1)
 
 ;; Remove scrollbars
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Enable winner mode
-(when (fboundp 'winner-mode) (winner-mode 1))
+;; TODO: Enable
+;; ;; Enable winner mode
+;; (when (fboundp 'winner-mode) (winner-mode 1))
 
-;; Enable transient mark mode
-(transient-mark-mode 1)
+;; ;; Enable transient mark mode
+;; (transient-mark-mode 1)
 
 ;; Disable dialog box
 (setq use-dialog-box nil
@@ -63,14 +67,14 @@
 ;;; Line number
 ;;; Additional settings are set in init-linum-mode.el
 
-(when (and *emacs24* (> emacs-minor-version 4))
-  (hlinum-activate))
-(global-linum-mode 1)
+;; (when (and *emacs24* (> emacs-minor-version 4))
+;;   (hlinum-activate))
+;; (global-linum-mode 1)
 
 ;;; Color Theme
 (if window-system
     ;; Load a theme 
-    (load-random-theme)
+    (random-color-theme)
   ;;    (load-theme 'solarized-dark t)
   ;;(load-theme 'wombat t)
   )
@@ -96,28 +100,28 @@
 ;; Show parenthesis 
 (show-paren-mode t)
 
-;; Make file mode in Unix mode
-(defun no-junk-please-were-unixish ()
-  (let ((coding-str (symbol-name buffer-file-coding-system)))
-    (when (string-match "-\\(?:dos\\|mac\\)$" coding-str)
-      (setq coding-str
-	    (concat (substring coding-str 0 (match-beginning 0)) "-unix"))
-      (message "CODING: %s" coding-str)
-      (set-buffer-file-coding-system (intern coding-str)))))
-;; TODO: Need a smarter way to make unixish files
-;; (add-hook 'find-file-hooks 'no-junk-please-were-unixish)
+;; ;; Make file mode in Unix mode
+;; (defun no-junk-please-were-unixish ()
+;;   (let ((coding-str (symbol-name buffer-file-coding-system)))
+;;     (when (string-match "-\\(?:dos\\|mac\\)$" coding-str)
+;;       (setq coding-str
+;; 	    (concat (substring coding-str 0 (match-beginning 0)) "-unix"))
+;;       (message "CODING: %s" coding-str)
+;;       (set-buffer-file-coding-system (intern coding-str)))))
+;; ;; TODO: Need a smarter way to make unixish files
+;; ;; (add-hook 'find-file-hooks 'no-junk-please-were-unixish)
 
-;;; Custom mode setup
-(add-hook 'emacs-lisp-mode-hook
-	  (lambda ()
-	    ;; Enable ruler mode
-	    (ruler-mode)
-	    ;; Enable whitespace mode 
-	    (whitespace-mode)
-	    ))
+;; ;;; Custom mode setup
+;; (add-hook 'emacs-lisp-mode-hook
+;; 	  (lambda ()
+;; 	    ;; Enable ruler mode
+;; 	    (ruler-mode)
+;; 	    ;; Enable whitespace mode 
+;; 	    (whitespace-mode)
+;; 	    ))
 
-;; Assign groovy mode
-(add-to-list 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
+;; ;; Assign groovy mode
+;; (add-to-list 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
 
 ;; Enable highlight
 (global-hi-lock-mode 1)

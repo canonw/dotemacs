@@ -1,9 +1,9 @@
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"
-			 ;; ... extra path here
-			 ))
-(add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
+;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"
+;; 			 ;; ... extra path here
+;; 			 ))
+;; (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
 
 ;;(defun my-yas-reload-all ()
 ;;  (interactive)

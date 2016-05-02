@@ -14,41 +14,19 @@ See help of `format-time-string' for possible replacements")
   (find-file "~/org/gtd.org")
   )
 
-(setq my-command-buffer-hooks (make-hash-table))
-
-;; http://www.tech-thoughts-blog.com/2013/08/make-emacs-load-random-theme-at-startup.html
-(defun load-random-theme ()
+;; https://gist.github.com/ober/5275534
+(defun random-color-theme ()
   "Load any random theme from the available ones."
   (interactive)
-  
-  ;; disable any previously set theme
-  (if (boundp 'theme-of-the-day)
-      (progn
-	(disable-theme theme-of-the-day)
-	(makunbound 'theme-of-the-day)))
-  
-  (defvar themes-list (custom-available-themes))
-  (defvar theme-of-the-day (nth (random (length themes-list))
-				themes-list))
-  (load-theme (princ theme-of-the-day) t)) 
+  (let ((chosen-theme
+         (nth
+          (random
+           (length (mapcar 'symbol-name (custom-available-themes))))
+          (custom-available-themes))))
+    (message "Theme: %s" chosen-theme)
+    (load-theme chosen-theme t nil)))
 
-;; (defun my-command-on-save-buffer (c)
-;;     "Run a command <c> every time the buffer is saved "
-;;     (interactive "sShell command: ")
-;;     (puthash (buffer-file-name) c my-command-buffer-hooks))
-;; 
-;; (defun my-command-buffer-kill-hook ()
-;;   "Remove a key from <command-buffer-hooks> if it exists"
-;;   (remhash (buffer-file-name) my-command-buffer-hooks))
-;; 
-;; (defun my-command-buffer-run-hook ()
-;;   "Run a command if it exists in the hook"
-;;   (let ((hook (gethash (buffer-file-name) my-command-buffer-hooks)))
-;;     (when hook
-;;         (shell-command hook))))
-;; 
-;; ;; add hooks
-;; (add-hook 'kill-buffer-hook 'my-command-buffer-kill-hook)
-;; (add-hook 'after-save-hook 'my-command-buffer-run-hook)
+(defun show-me-the-colors ()  (interactive) (loop do (random-color-theme) (sit-for 3)))
+(setq color-theme-is-cumulative 'false)
 
 (provide 'init-utils)

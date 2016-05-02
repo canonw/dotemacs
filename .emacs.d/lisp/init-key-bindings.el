@@ -1,3 +1,4 @@
+;; TODO: Reviese it
 ;; Centralize key binding remap in one place
 
 ;; expand-region
@@ -452,10 +453,11 @@
   ("a" abbrev-mode "abbrev")
   ("f" auto-fill-mode "fill")
   ("d" toggle-debug-on-error "debug")
+  ("l" linum-mode "linum")
   ("t" toggle-truncate-lines "truncate")
   ("w" whitespace-mode "whitespace")
   ("q" nil "quit"))
-(global-set-key (kbd "C-; t") 'kw/hydra-toggle/body)
+(global-set-key (kbd "C-; ;") 'kw/hydra-toggle/body)
 
 (defhydra kw/hydra-zoom (global-map "C-; z")
   "zoom"
