@@ -7,6 +7,8 @@
 ;; Disable scratch message 
 (setq inhibit-scratch-message 1) 
 
+(setq inhibit-startup-message t)
+
 ;; Remove tool bar
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
@@ -32,7 +34,11 @@
       visible-bell 1)
 
 ;; Disable backup file
-(setq make-backup-files nil)
+;; (setq make-backup-files nil)
+
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
 
 ;; Shorten yes and no
 (defalias 'yes-or-no-p 'y-or-n-p)

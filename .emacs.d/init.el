@@ -54,13 +54,20 @@
 (require 'init-modeline)
 (require 'init-dired)
 (require 'init-whitespace-mode)
+(require 'init-regex)
 ;; TODO
 ;; (require 'init-flyspell)
 
-(use-package recentf
-  :config (recentf-mode 1)
-  )
 
+(use-package golden-ratio
+  :ensure t
+  :diminish golden-ratio-mode
+  :init
+  (golden-ratio-mode 1)
+  (setq golden-ratio-auto-scale t))
+
+(use-package winner
+  :init (winner-mode))
 (require 'init-hydra)
 (require 'init-helm)
 (require 'init-evil)
@@ -96,15 +103,15 @@
 ;; 
 ;; (require 'init-sql)
 ;; 
-;; (require 'init-markdown)
 ;; (require 'init-emmet-mode)
 ;; 
 ;; (require 'init-ido)
-;; (when *emacs24*
-;;   (require 'init-org))
+(when *emacs24*
+  (require 'init-org))
 ;; (require 'init-smex)
 ;; (require 'init-projectile)
 ;; 
+(require 'init-markdown)
 
 (require 'init-settings)
 

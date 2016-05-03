@@ -2,6 +2,7 @@
   :config
   (use-package dired+)
   (use-package dired-sort)
+  (use-package dired-details)
   (when (fboundp 'global-dired-hide-details-mode)
     (global-dired-hide-details-mode -1))
   (setq dired-recursive-deletes 'top)

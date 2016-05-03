@@ -13,7 +13,7 @@
 
 ;; Standard package repositories
 
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; We include the org repository for completeness, but don't normally
 ;; use it.
@@ -64,8 +64,6 @@
 ;; (require-package 'colonoscopy-theme)
 ;; (require-package 'color-theme-sanityinc-tomorrow)
 ;; (require-package 'color-theme-solarized)
-;; (require-package 'monokai-theme)
-;; (require-package 'zenburn-theme)
 ;; (require-package 'zenburn-theme)
 ;; ;; (require-package 'solarized-theme)  ;; replaced by color-theme-solarized
 ;; 
@@ -79,15 +77,6 @@
 ;; (require-package 'evil-nerd-commenter)
 ;; (require-package 'evil-numbers)
 ;; (require-package 'evil-surround)
-;; 
-;; (require-package 'dired+)
-;; (require-package 'dired-sort)
-;; (require-package 'dired-details)
-;; 
-;; (require-package 'expand-region)
-;; 
-;; (require-package 'ace-window)
-;; (require-package 'avy)
 ;; 
 ;; (require-package 'org-journal)
 ;; 
@@ -132,10 +121,6 @@
 ;; 
 ;; (require-package 'hydra)
 ;; 
-;; ;; line numbering
-;; (require-package 'linum-off)
-;; (when (and *emacs24* (> emacs-minor-version 4))
-;;   (require-package 'hlinum))
 
 (provide 'init-elpa)
 

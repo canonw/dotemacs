@@ -449,23 +449,7 @@
 ;;         |___/                 
 ;;
 ;; Hydra
-(defhydra kw/hydra-toggle (:color blue :exit t)
-  ("a" abbrev-mode "abbrev")
-  ("f" auto-fill-mode "fill")
-  ("d" toggle-debug-on-error "debug")
-  ("l" linum-mode "linum")
-  ("t" toggle-truncate-lines "truncate")
-  ("w" whitespace-mode "whitespace")
-  ("q" nil "quit"))
-(global-set-key (kbd "C-; ;") 'kw/hydra-toggle/body)
 
-(defhydra kw/hydra-zoom (global-map "C-; z")
-  "zoom"
-  ("+" text-scale-increase "in")
-  ("-" text-scale-decrease "out")
-  ("r" (text-scale-set 0) "reset" :bind nil)
-  ("0" (text-scale-set 0) :bind nil :exit t)
-  ("1" (text-scale-set 0) nil :bind nil :exit t))
 
 ;; TODO: Disable linum.  Halt in org mode.  A better way is to lookup a flag map to enable
 ;; (defhydra kw/hydra-line-action (goto-map "" :pre (linum-mode 1) :post (linum-mode -1))
