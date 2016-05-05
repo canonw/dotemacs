@@ -17,7 +17,10 @@
   (add-hook 'org-clock-out-hook 'remove-empty-drawer-on-clock-out 'append)
 
   :defer t
-  :bind ("\C-c a" . org-agenda)
+  :bind (("\C-c a" . org-agenda)
+         ("\C-cb" . org-iswitchb)
+         ("\C-cl" . org-store-link)
+         ("\C-cc" . org-capture))
   :config
   ;; Custom functions for emacs & org mode
   ;; (load-file "~/.emacs.d/config/bh-org.el")
@@ -80,8 +83,6 @@
   ;; Compact the block agenda view
   (setq org-agenda-compact-blocks t)
 
-  (define-key global-map "\C-cl" 'org-store-link)
-
   ;; Run/highlight code using babel in org-mode
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -98,14 +99,102 @@
                                                 (org-display-inline-images)
                                               (error nil)))
             'append)
-  
+
   ;; http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-ditaa.html
   (setq org-ditaa-jar-path (expand-file-name "~/.emacs.d/vendors/ditaa0_9.jar"))
   
   (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/vendors/plantuml.jar"))
 
   )
- 
+
+;; Tag list
+(setq org-tag-alist (quote ((:startgroup)
+                            ("POTD" . ?d)
+                            ("POTW" . ?w)
+                            ("POTM" . ?m)
+                            ("NYR" . ?y)
+                            (:endgroup)
+;                             ("WAITING" . ?w)
+;                             ("HOLD" . ?h)
+;                             ("PERSONAL" . ?P)
+;                             ("WORK" . ?W)
+;                             ("ORG" . ?O)
+;                             ("NORANG" . ?N)
+;                             ("crypt" . ?E)
+;                             ("NOTE" . ?n)
+;                             ("CANCELLED" . ?c)
+                            ("FLAGGED" . ??))))
+
+
+;; Custom agenda command definitions
+;; Reference:
+;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
+;; http://orgmode.org/manual/Matching-tags-and-properties.html
+;; Change start date
+;; http://emacs.stackexchange.com/questions/13075/agenda-span-of-last-7-days
+(setq org-agenda-custom-commands
+      (quote (("N" "Notes" tags "NOTE"
+               ((org-agenda-overriding-header "Notes")
+                (org-tags-match-list-sublevels t)))
+              ("D" "Daily Action List"
+               ((agenda "" ((org-agenda-ndays 1)
+                       (org-agenda-sorting-strategy
+                        (quote ((agenda time-up priority-down tag-up) )))
+                       (org-deadline-warning-days 0)))))
+              ("h" "Habits" tags-todo "STYLE=\"habit\""
+               ((org-agenda-overriding-header "Habits")
+                (org-agenda-sorting-strategy
+                 '(todo-state-down effort-up category-keep))))
+              ("g" "Planning Agenda"
+               (
+                (tags-todo "+NYR")
+                (tags-todo "BURN-POTW-POTD")
+                (tags-todo "+POTD")
+                (tags-todo "+POTW-POTD") ;; Unplanned plan of the week
+                (tags-todo "+TODO=\"NEXT\"-POTW-POTD-BURN|+TODO=\"WAITING\"") ;; Any NEXT action not part of planned
+                (tags-todo "STYLE=\"habit\"")
+               )
+                nil                      ;; i.e., no local settings
+                ("~/next-actions.html") ;; exports block to this file with C-c a e; TODO
+               )
+               ("w" "Next 7 Days Deadline"
+                ((agenda "" ((org-agenda-span 8)))
+                 ;; type "l" in the agenda to review logged items 
+                 ;; (stuck "") ;; review stuck projects as designated by org-stuck-projects
+                 ;; ..other commands here
+                 )
+                )))
+      )
+
+;; Tags trigger state list
+(setq org-todo-state-tags-triggers
+      (quote (("CANCELLED" ("CANCELLED" . t))
+              ("WAITING" ("WAITING" . t))
+              ("HOLD" ("WAITING") ("HOLD" . t))
+              (done ("WAITING") ("HOLD"))
+              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+
+
+;;; org-habit
+(use-package org-install)
+(use-package org-habit)
+(add-to-list 'org-modules 'org-habit)
+(setq org-habit-preceding-days 7
+      org-habit-following-days 1
+      org-habit-graph-column 80
+      org-habit-show-habits-only-for-today t
+      org-habit-show-all-today t)
+
+
+;;; org-journal-dir
+(setq org-journal-dir "~/journal")
+(setq org-journal-date-format "%a, %Y-%m-%d")
+(setq org-journal-time-format "%H:%M:%S ")
+
+
+
 
 ;; 
 ;; ;; Capture templates for: TODO tasks, Notes, appointments,
@@ -238,59 +327,13 @@
 ;;                        (org-tags-match-list-sublevels nil))))
 ;;                nil))))
 ;; 
-;; 
-;; ;; Tag list
-;; (setq org-tag-alist (quote ((:startgroup)
-;;                             ("POTD" . ?d)
-;;                             ("POTW" . ?w)
-;;                             ("POTM" . ?m)
-;;                             ("NYR" . ?y)
-;;                             (:endgroup)
-;; ;                             ("WAITING" . ?w)
-;; ;                             ("HOLD" . ?h)
-;; ;                             ("PERSONAL" . ?P)
-;; ;                             ("WORK" . ?W)
-;; ;                             ("ORG" . ?O)
-;; ;                             ("NORANG" . ?N)
-;; ;                             ("crypt" . ?E)
-;; ;                             ("NOTE" . ?n)
-;; ;                             ("CANCELLED" . ?c)
-;;                             ("FLAGGED" . ??))))
-;; 
 ;; ; Allow setting single tags without the menu
 ;; (setq org-fast-tag-selection-single-key (quote expert))
 ;; 
 ;; ; For tag searches ignore tasks with scheduled and deadline dates
 ;; (setq org-agenda-tags-todo-honor-ignore-options t)
 ;; 
-;; ;; Tags trigger state list
-;; (setq org-todo-state-tags-triggers
-;;       (quote (("CANCELLED" ("CANCELLED" . t))
-;;               ("WAITING" ("WAITING" . t))
-;;               ("HOLD" ("WAITING") ("HOLD" . t))
-;;               (done ("WAITING") ("HOLD"))
-;;               ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-;;               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-;;               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
-;; 
-;; 
-;; ;;; org-habit
-;; (require 'org-install)
-;; (require 'org-habit)
-;; (add-to-list 'org-modules 'org-habit)
-;; (setq org-habit-preceding-days 7
-;;       org-habit-following-days 1
-;;       org-habit-graph-column 80
-;;       org-habit-show-habits-only-for-today t
-;;       org-habit-show-all-today t)
-;; 
-;; 
-;; ;;; org-journal-dir
-;; (setq org-journal-dir "~/journal")
-;; (setq org-journal-date-format "%a, %Y-%m-%d")
-;; (setq org-journal-time-format "%H:%M:%S ")
-;; 
-;; 
+
 ;; ;;; ical
 ;; (setq org-combined-agenda-icalendar-file "~/org.ics")
 ;; (setq org-icalendar-categories (quote (all-tags category todo-state)))

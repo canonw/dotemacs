@@ -58,33 +58,95 @@
 ;; TODO
 ;; (require 'init-flyspell)
 
+(use-package auto-complete
+  :diminish auto-complete-mode
+  :config
+  (progn
+;;    (ac-config-default)
+   (setq ac-use-fuzzy t
+         ac-disable-inline t
+         ac-use-menu-map t
+         ac-auto-show-menu t
+         ac-auto-start t
+         ac-ignore-case t
+         ac-candidate-menu-min 0)
+    (add-to-list 'ac-modes 'org-mode)
+    (add-to-list 'ac-modes 'web-mode)
+    (add-to-list 'ac-modes 'lisp-mode)
+    ))
 
 (use-package golden-ratio
   :ensure t
   :diminish golden-ratio-mode
   :init
   (golden-ratio-mode 1)
-  (setq golden-ratio-auto-scale t))
+  (setq golden-ratio-auto-scale t)
+  (defun pl/helm-alive-p ()
+    (if (boundp 'helm-alive-p)
+        (symbol-value 'helm-alive-p)))
+
+(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+  )
+
+(use-package flyspell
+  :ensure t
+  :defer t
+;;  :init
+;;  (progn
+;;    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;;    (add-hook 'text-mode-hook 'flyspell-mode)
+;;    )
+  :commands
+  (flyspell-mode flyspell-prog-mode)
+  :config
+  (setq ispell-program-name (executable-find "aspell")
+        ispell-extra-args '("--sug-mode=ultra"))
+  )
 
 (use-package winner
   :init (winner-mode))
+
+(use-package ido
+  :init (progn (ido-mode 1)
+               (ido-everywhere 1))
+  :config
+  (progn
+    (setq ido-case-fold t)
+    (setq ido-everywhere t)
+    (setq ido-enable-prefix nil)
+    (setq ido-enable-flex-matching t)
+    (setq ido-create-new-buffer 'always)
+    (setq ido-max-prospects 10)
+    (setq ido-use-faces nil)
+    (setq ido-file-extensions-order '(".rb" ".el" ".coffee" ".js"))
+    (add-to-list 'ido-ignore-files "\\.DS_Store")
+    ))
+
+(use-package ido-ubiquitous
+  :init
+  ;; Fix ido-ubiquitous for newer packages
+  (defmacro ido-ubiquitous-use-new-completing-read (cmd package)
+    `(eval-after-load ,package
+       '(defadvice ,cmd (around ido-ubiquitous-new activate)
+          (let ((ido-ubiquitous-enable-compatibility nil))
+            ad-do-it)))))
+
+(use-package smex
+  :defer t
+  :config
+  (progn
+    (smex-initialize)))
+
 (require 'init-hydra)
 (require 'init-helm)
 (require 'init-evil)
 
-(use-package monokai-theme
-  :ensure t
-;;  :config (load-theme 't)
-  )
+(use-package monokai-theme :ensure t)
 ;; (use-package colonoscopy-theme)
-(use-package color-theme-sanityinc-tomorrow
-;; (use-package color-theme-solarized
-  :ensure t
-  )
-(use-package zenburn-theme
-  :ensure t
-  )
+;; (use-package color-theme-solarized :ensure t)
 ;; (use-package solarized-theme)  ;; replaced by color-theme-solarized
+(use-package color-theme-sanityinc-tomorrow :ensure t)
+(use-package zenburn-theme :ensure t)
 
 ;; (require 'init-yasnippet)
 (use-package yasnippet
@@ -115,51 +177,21 @@
 
 (require 'init-settings)
 
+               
+;; Local machine specific setup
+(if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
 
-
-;;   ;; Sets your shell to use cygwin's bash, if Emacs finds it's running
-;;   ;; under Windows and c:\cygwin exists. Assumes that C:\cygwin\bin is
-;;   ;; not already in your Windows Path (it generally should not be).
-;;   ;;
-;;   (let* ((cygwin-root "c:/cygwin64")
-;;          (cygwin-bin (concat cygwin-root "/bin")))
-;;     (when (and (eq 'windows-nt system-type)
-;;   	     (file-readable-p cygwin-root))
-;;     
-;;       (setq exec-path (cons cygwin-bin exec-path))
-;;       (setenv "PATH" (concat cygwin-bin ";" (getenv "PATH")))
-;;     
-;;       ;; By default use the Windows HOME.
-;;       ;; Otherwise, uncomment below to set a HOME
-;;       ;;      (setenv "HOME" (concat cygwin-root "/home/eric"))
-;;     
-;;       ;; NT-emacs assumes a Windows shell. Change to bash.
-;;       (setq shell-file-name "bash")
-;;       (setenv "SHELL" shell-file-name) 
-;;       (setq explicit-shell-file-name shell-file-name) 
-;;     
-;;       ;; This removes unsightly ^M characters that would otherwise
-;;       ;; appear in the output of java applications.
-;;       (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)))
-;; (require 'init-key-bindings)
-;; (put 'narrow-to-region 'disabled nil)
-;; 
-;; (require 'swiper-helm)
-;; 
-;; ;; Local machine specific setup
-;; (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
-;; 
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(custom-safe-themes
-;;    (quote
-;;     ("1e3b2c9e7e84bb886739604eae91a9afbdfb2e269936ec5dd4a9d3b7a943af7f" "196cc00960232cfc7e74f4e95a94a5977cb16fd28ba7282195338f68c84058ec" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" default))))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

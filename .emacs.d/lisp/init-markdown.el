@@ -2,8 +2,7 @@
   :ensure t
   :defer t
   :mode (("\\.text\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)
-         ("\\.md\\'" . markdown-mode))
+         ("\\.\\(m\\(ark\\)?down\\|md\\)$" . markdown-mode))
   )
 
 (provide 'init-markdown)

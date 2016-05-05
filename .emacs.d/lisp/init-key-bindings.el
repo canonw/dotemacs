@@ -328,13 +328,7 @@
 ;; (global-set-key (kbd "C-c y") 'helm-c-yas-complete)
 (global-set-key (kbd "C-x C-o") 'ffap)
 
-(global-set-key (kbd "M-x")                          'undefined)
-(global-set-key (kbd "M-x")                          'helm-M-x)
-(global-set-key (kbd "M-y")                          'helm-show-kill-ring)
-(global-set-key (kbd "C-c f")                        'helm-recentf)
-;;(global-set-key (kbd "C-x b")                        'helm-buffers-list)
 (global-set-key (kbd "C-x b")                        'helm-mini)
-(global-set-key (kbd "C-x C-f")                      'helm-find-files)
 ;;(global-set-key (kbd "C-c <SPC>")                    'helm-all-mark-rings)
 (global-set-key (kbd "C-x r b")                      'helm-filtered-bookmarks)
 (global-set-key (kbd "C-h r")                        'helm-info-emacs)
@@ -343,8 +337,8 @@
 (global-set-key (kbd "C-h i")                        'helm-info-at-point)
 (global-set-key (kbd "C-x C-d")                      'helm-browse-project)
 ;; (global-set-key (kbd "<f1>")                         'helm-resume)
-(global-set-key (kbd "C-h C-f")                      'helm-apropos)
-(global-set-key (kbd "C-h a")                        'helm-apropos)
+;; (global-set-key (kbd "C-h C-f")                      'helm-apropos)
+;; (global-set-key (kbd "C-h a")                        'helm-apropos)
 ;;(global-set-key (kbd "<f5> s")                       'helm-find)
 ;; (global-set-key (kbd "<f2>")                         'helm-execute-kmacro)
 (global-set-key (kbd "C-c i")                        'helm-imenu-in-all-buffers)
@@ -450,65 +444,6 @@
 ;;
 ;; Hydra
 
-
-;; TODO: Disable linum.  Halt in org mode.  A better way is to lookup a flag map to enable
-;; (defhydra kw/hydra-line-action (goto-map "" :pre (linum-mode 1) :post (linum-mode -1))
-(defhydra kw/hydra-line-action (:color blue :exit f)
-  "line action"
-  ("g" avy-goto-line "avy go")
-;;  ("g" goto-line "go")
-  ("c" avy-copy-line "copy from")
-  ("M" avy-move-line "move from")
-  ("t" transpose-lines "transpose")
-  ("m" set-mark-command "mark" :bind nil)
-  ("q" nil "quit"))
-(global-set-key (kbd "C-; l") 'kw/hydra-line-action/body)
-
-(require 'hydra-examples)
-(defhydra hydra-window (:color red
-                        :hint nil)
-  "
- Split: _v_ert _x_:horz
-Delete: _o_nly  _da_ce  _dw_indow  _db_uffer  _df_rame
-  Move: _s_wap
-Frames: _f_rame new  _df_ delete
-  Misc: _m_ark _a_ce  _u_ndo  _r_edo"
-  ("h" windmove-left)
-  ("j" windmove-down)
-  ("k" windmove-up)
-  ("l" windmove-right)
-  ("H" hydra-move-splitter-left)
-  ("J" hydra-move-splitter-down)
-  ("K" hydra-move-splitter-up)
-  ("L" hydra-move-splitter-right)
-  ("|" (lambda ()
-         (interactive)
-         (split-window-right)
-         (windmove-right)))
-  ("_" (lambda ()
-         (interactive)
-         (split-window-below)
-         (windmove-down)))
-  ("v" split-window-right)
-  ("x" split-window-below)
-  ;("t" transpose-frame "'")
-  ;; winner-mode must be enabled
-  ("u" winner-undo)
-  ("r" winner-redo) ;;Fixme, not working?
-  ("o" delete-other-windows :exit t)
-  ("a" ace-window :exit t)
-  ("f" new-frame :exit t)
-  ("s" ace-swap-window)
-  ("da" ace-delete-window)
-  ("dw" delete-window)
-  ("db" kill-this-buffer)
-  ("df" delete-frame :exit t)
-  ("q" nil)
-  ("i" ace-maximize-window "ace-one" :color blue)
-  ;("b" ido-switch-buffer "buf")
-  ("m" headlong-bookmark-jump))
-(global-set-key (kbd "C-; w") 'hydra-window/body)
-
 ;; (defhydra hydra-launcher (:color blue)
 ;;    "Launch"
 ;;    ("h" man "man")
@@ -587,44 +522,6 @@ Frames: _f_rame new  _df_ delete
 ;;    ("j" next-line)
 ;;    ("k" previous-line)
 ;;    ("q" nil "quit")))
-
-;; http://oremacs.com/2015/02/19/hydra-colors-reloaded/
-;; (defhydra hydra-toggle (:color pink)
-;;   "
-;; _a_ abbrev-mode:       %`abbrev-mode
-;; _d_ debug-on-error:    %`debug-on-error
-;; _f_ auto-fill-mode:    %`auto-fill-function
-;; _g_ golden-ratio-mode: %`golden-ratio-mode
-;; _t_ truncate-lines:    %`truncate-lines
-;; _w_ whitespace-mode:   %`whitespace-mode
-;; 
-;; "
-;;   ("a" abbrev-mode nil)
-;;   ("d" toggle-debug-on-error nil)
-;;   ("f" auto-fill-mode nil)
-;;   ("g" golden-ratio-mode nil)
-;;   ("t" toggle-truncate-lines nil)
-;;   ("w" whitespace-mode nil)
-;;   ("q" nil "cancel"))
-;; 
-;; (global-set-key (kbd "C-c C-v") 'hydra-toggle/body)
-
-;; (defhydra hydra-toggle (:color blue :idle 1.5)
-;;   "
-;; _a_ abbrev-mode:       %`abbrev-mode
-;; _d_ debug-on-error:    %`debug-on-error
-;; _f_ auto-fill-mode:    %`auto-fill-function
-;; _t_ truncate-lines:    %`truncate-lines
-;; _w_ whitespace-mode:   %`whitespace-mode
-;; 
-;; "
-;;   ("a" abbrev-mode nil)
-;;   ("d" toggle-debug-on-error nil)
-;;   ("f" auto-fill-mode nil)
-;;   ("t" toggle-truncate-lines nil)
-;;   ("w" whitespace-mode nil)
-;;   ("q" nil "quit"))
-;; (global-set-key (kbd "C-c t") 'hydra-toggle/body)
 
 
 ;; (defhydra hydra-yank-pop ()

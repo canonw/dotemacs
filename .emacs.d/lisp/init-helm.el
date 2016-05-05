@@ -15,15 +15,18 @@
         helm-ff-skip-boring-files t)
   (helm-mode)
   :config
-  (progn
-    (helm-autoresize-mode 1)
-    (setq helm-scroll-amount 6))
-  :bind (("C-c h" . helm-mini)
-         ("C-h a" . helm-apropos)
-         ("C-x C-b" . helm-buffers-list)
-         ("C-x b" . helm-buffers-list)
+  (helm-autoresize-mode 1)
+  (setq helm-scroll-amount 6)
+  (setq helm-ff-file-name-history-use-recentf t)
+  (define-key global-map [remap jump-to-register]      'helm-register)
+  (define-key global-map [remap list-buffers]          'helm-buffers-list)
+  (define-key global-map [remap dabbrev-expand]        'helm-dabbrev)
+  :bind (("C-c f" . helm-recentf)
+         ("C-c h" . helm-mini)
+         ("C-h a" . helm-aproposa)
          ("M-y" . helm-show-kill-ring)
          ("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)
          ("C-x c o" . helm-occur)
          ("C-x c s" . helm-swoop)
          ("C-x c y" . helm-yas-complete)
@@ -42,9 +45,7 @@
 ;;     :config
 ;;     (helm-flx-mode 1)))
 ;; (use-package helm-git-grep)
-(use-package helm-themes
-  :ensure t
-  :defer t)
+(use-package helm-themes :ensure t :defer t)
 ;; (use-package helm-hoogle)
 ;; (use-package helm-pydoc
 ;;   :config
@@ -76,25 +77,6 @@
   (setq helm-swoop-use-line-number-face t)
   )
 
-;; 
-;; (helm-mode 1) 
-;; 
-;; (autoload 'helm-c-yas-complete "helm-c-yasnippet" nil t)
-;; (autoload 'helm-ls-git-ls "helm-ls-git" nil t)
-;; (autoload 'helm-browse-project "helm-ls-git" nil t)
-;; 
-;; ;; {{ Lean helm window
-;; ;; @see http://www.reddit.com/r/emacs/comments/2z7nbv/lean_helm_window/
-;; (setq helm-display-header-line nil) ;; t by default
-;; ;; keep the full source header line when multiple sources
-;; ;; and hidden when there's a single source
-;; (defun helm-toggle-header-line ()
-;;   (if (= (length helm-sources) 1)
-;;       (set-face-attribute 'helm-source-header nil :height 0.1)
-;;     (set-face-attribute 'helm-source-header nil :height 1.0)))
-;; (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)
-;; 
-;; 
 ;; (eval-after-load 'helm
 ;;   '(progn
 ;;      ;; Helm window is too big?
@@ -142,9 +124,5 @@
 ;;      ))
 ;; ;; }}
 ;; 
-;; ;; optional fuzzy matching for helm-M-x
-;; ;;(setq helm-M-x-fuzzy-match t)
-;; 
-;; (require 'helm-eshell)
 
 (provide 'init-helm)
