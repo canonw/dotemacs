@@ -96,23 +96,30 @@ Frames: _f_rame new  _df_ delete
     ("k" flyspell-auto-correct-word)
     ("n" flyspell-goto-next-error))
 
-  (defhydra kw/hydra-mark (:body-pre (call-interactively 'set-mark-command)
-                                     :exit t)
-    "hydra for mark commands"
-    ("SPC" er/expand-region)
-    ("P" er/mark-inside-pairs)
-    ("Q" er/mark-inside-quotes)
-    ("p" er/mark-outside-pairs)
-    ("q" er/mark-outside-quotes)
-    ("d" er/mark-defun)
-    ("c" er/mark-comment)
-    ("." er/mark-text-sentence)
-    ("h" er/mark-text-paragraph)
-    ("w" er/mark-word)
-    ("u" er/mark-url)
-    ("m" er/mark-email)
-    ("s" er/mark-symbol)
-    ("j" (funcall 'set-mark-command t) :exit nil))
+  (defhydra kw/hydra-mark (:exit t
+                                 :columns 3
+                                 ;; :idle 1.0
+                                 :pre (er/expand-region 1))
+    "Mark"
+    ("." er/expand-region "Expand region" :exit nil)
+;;    ("," er/contract-region "Contract region" :exit nil)
+    ("w" er/mark-word "Word" :exit nil)
+    ("s" er/mark-sentence "Sentence")
+    ("p" er/mark-paragraph "Paragraph")
+
+    ("d" mark-defun)
+
+    ("u" er/mark-url "Url")
+    ("m" er/mark-email "Email")   
+    ("e" mark-sexp "S-Expression")
+
+    ("b" mark-whole-buffer "Whole buffer")
+
+    ("q" er/mark-inside-quotes "Inside quotes")
+    ("Q" er/mark-outside-quotes "Outside quotes")
+    ("p" er/mark-inside-pairs "Inside pairs")
+    ("P" er/mark-outside-pairs "Outside pairs")
+    )
 
   (bind-keys ("C-; s" . kw/hydra-spell/body)
              ("C-; m" . kw/hydra-mark/body)
@@ -125,6 +132,10 @@ Frames: _f_rame new  _df_ delete
   :config
   (setq hydra-is-helpful t)
   (setq hydra-lv t)
+
+;;  (add-hook 'text-mode-hook (lambda ()
+;;                              (require 'text-mode-expansions)
+;;                              (auto-fill-mode -1)))
   )
 
 (provide 'init-hydra)
