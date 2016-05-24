@@ -159,6 +159,13 @@
   (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
   )
 
+;; Use for case convertion
+(use-package string-inflection :ensure t
+  :init
+  (global-unset-key (kbd "C-q"))
+  (global-set-key (kbd "C-q C-u") 'string-inflection-cycle)
+  )
+
 ;; ;; (require 'init-ace-jump-mode) ;; Replace by avy
 
 ;; (require 'init-auto-complete)
