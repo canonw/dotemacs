@@ -58,23 +58,6 @@
 ;; TODO
 ;; (require 'init-flyspell)
 
-(use-package auto-complete
-  :diminish auto-complete-mode
-  :config
-  (progn
-;;    (ac-config-default)
-   (setq ac-use-fuzzy t
-         ac-disable-inline t
-         ac-use-menu-map t
-         ac-auto-show-menu t
-         ac-auto-start t
-         ac-ignore-case t
-         ac-candidate-menu-min 0)
-    (add-to-list 'ac-modes 'org-mode)
-    (add-to-list 'ac-modes 'web-mode)
-    (add-to-list 'ac-modes 'lisp-mode)
-    ))
-
 (use-package golden-ratio
   :ensure t
   :diminish golden-ratio-mode
@@ -85,7 +68,11 @@
     (if (boundp 'helm-alive-p)
         (symbol-value 'helm-alive-p)))
   (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
-  (add-to-list 'golden-ratio-exclude-modes 'calendar-mode)
+;;  (add-to-list 'golden-ratio-exclude-buffer-names "*Calendar*")
+  (add-to-list 'golden-ratio-exclude-modes "calendar-mode")
+  (add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+  (add-to-list 'golden-ratio-exclude-modes "eshell-mode")
+  (add-to-list 'golden-ratio-exclude-modes "dired-mode")
   )
 
 (use-package flyspell
@@ -168,7 +155,7 @@
 
 ;; ;; (require 'init-ace-jump-mode) ;; Replace by avy
 
-;; (require 'init-auto-complete)
+(require 'init-auto-complete)
 ;; 
 ;; (require 'init-sql)
 ;; 
@@ -184,7 +171,6 @@
 
 (require 'init-settings)
 
-               
 ;; Local machine specific setup
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
 

@@ -83,6 +83,9 @@
   ;; Compact the block agenda view
   (setq org-agenda-compact-blocks t)
 
+  ;; ALways follow
+  (add-hook 'org-agenda-mode-hook 'org-agenda-follow-mode)
+
   ;; Run/highlight code using babel in org-mode
   (org-babel-do-load-languages
    'org-babel-load-languages
