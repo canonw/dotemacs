@@ -29,4 +29,11 @@ See help of `format-time-string' for possible replacements")
 (defun show-me-the-colors ()  (interactive) (loop do (random-color-theme) (sit-for 3)))
 (setq color-theme-is-cumulative 'false)
 
+;; http://xahlee.blogspot.com/2010/09/emacs-select-current-line-with-single.html
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position)))
+
 (provide 'init-utils)
