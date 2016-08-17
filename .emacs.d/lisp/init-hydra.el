@@ -67,10 +67,10 @@ Frames: _f_rame new  _df_ delete
     ("g" avy-goto-line "avy go")
     ;;  ("g" goto-line "go")
     ("c" avy-copy-line "copy from")
-    ("l" select-current-line "Line")
     ("M" avy-move-line "move from")
     ("t" transpose-lines "transpose")
-    ("m" set-mark-command "mark" :bind nil)
+    ("m" select-current-line "mark line")
+    ;; ("m" set-mark-command "mark" :bind nil)
     ("q" nil "quit"))
 
   (defhydra hydra-common (:color blue)
