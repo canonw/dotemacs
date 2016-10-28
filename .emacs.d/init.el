@@ -171,6 +171,11 @@
 
 (require 'init-settings)
 
+(use-package text
+  :init
+  (add-hook 'text-mode-hook (lambda () (linum-mode 1)))
+)
+
 ;; Local machine specific setup
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
 

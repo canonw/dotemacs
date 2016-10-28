@@ -14,6 +14,7 @@
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook 'flyspell-mode)
+  (add-hook 'org-mode-hook (lambda () (linum-mode 0)))
   (add-hook 'org-clock-out-hook 'remove-empty-drawer-on-clock-out 'append)
 
   :defer t
