@@ -198,6 +198,28 @@
 (setq org-journal-time-format "%H:%M:%S ")
 
 
+;;; org-crypt
+;;;http://orgmode.org/worg/org-tutorials/encrypting-files.html 
+(use-package org-crypt)
+(require 'org-crypt)
+     (org-crypt-use-before-save-magic)
+     (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+
+     ;; Set org-crypt-key elsewhere. 
+     ;; You may grep the keys by this commad line. gpg --list-keys | grep -B1 'you '
+     ;; (setq org-crypt-key "XXXXXXX")
+       ;; GPG key to use for encryption
+       ;; Either the Key ID or set to nil to use symmetric encryption.
+     
+     (setq auto-save-default nil)
+       ;; Auto-saving does not cooperate with org-crypt.el: so you need
+       ;; to turn it off if you plan to use org-crypt.el quite often.
+       ;; Otherwise, you'll get an (annoying) message each time you
+       ;; start Org.
+     
+       ;; To turn it off only locally, you can insert this:
+       ;;
+       ;; # -*- buffer-auto-save-file-name: nil; -*-
 
 
 ;; 
