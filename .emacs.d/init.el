@@ -167,11 +167,24 @@
 ;; (require 'init-smex)
 ;; (require 'init-projectile)
 ;; 
+
 (require 'init-markdown)
 
 (require 'init-settings)
 
 (require 'init-alias)
+
+(use-package yankpad
+  :ensure t
+  :defer 10
+  :init
+  (setq yankpad-file "~/org/yankpad.org")
+  :config
+  ;; (bind-key "<f7>" 'yankpad-map)
+  ;; (bind-key "<f12>" 'yankpad-expand)
+  ;; If you want to complete snippets using company-mode
+  ;; (add-to-list 'company-backends #'company-yankpad)
+  )
 
 (use-package text
   :init
