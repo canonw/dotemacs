@@ -1,4 +1,4 @@
-;;;; -*- coding: utf-8 -*-
+;;; -*- coding: utf-8 -*-
 ;;(setq emacs-load-start-time (current-time))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
@@ -141,9 +141,13 @@
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"
                            ;; ... extra path here
                            ))
+  :demand t
+  :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+  :diminish yas-minor-mode
+  :defer 15
   :config
   (yas-global-mode 1)
-  (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+  ;; (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
   )
 
 ;; Use for case convertion
