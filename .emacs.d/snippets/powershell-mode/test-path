@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Test Path
+# key: testpath
+# --
+If( Test-Path "$1" ) { $0 }

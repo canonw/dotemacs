@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Test Path by Variable
+# key: testpath
+# --
+${1:$FileName}="$2"
+If( Test-Path $1 )
+{
+$0
+}
