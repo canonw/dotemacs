@@ -148,6 +148,13 @@
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"
                            ;; ... extra path here
                            ))
+   (setq yas-new-snippet-default "# -*- mode: snippet; require-final-newline: nil -*-
+# name: $1
+# key: ${2:${1:$(yas--key-from-desc yas-text)}}
+# group: $3
+# binding: direct-keybinding
+# --
+$0`(yas-escape-text yas-selected-text)`")
   :demand t
   :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
   :diminish yas-minor-mode
