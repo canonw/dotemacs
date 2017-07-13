@@ -1,10 +1,12 @@
 (use-package visual-regexp
   :ensure t
-  :bind (("M-5" . vr/replace)
-         ("M-%" . vr/query-replace)))
+;;  :bind (("M-5" . vr/replace)
+;;         ("M-%" . vr/query-replace))
+  )
 
 (use-package re-builder
   :init
-  (setq reb-re-syntax 'string))
+  (setq reb-re-syntax 'string)
+  )
 
 (provide 'init-regex)
