@@ -9,6 +9,7 @@
 (package-initialize)
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
 
 ;;----------------------------------------------------------------------------
 ;; Which functionality to enable (use t or nil for true and false)
@@ -42,6 +43,8 @@
               gc-cons-percentage 0.5)
 
 (require 'init-elpa)
+
+(require 'utils-buffers)
 
 (use-package expand-region
   :ensure t
@@ -111,7 +114,6 @@
           (let ((ido-ubiquitous-enable-compatibility nil))
             ad-do-it)))))
 
-(require 'init-hydra)
 (require 'init-helm)
 (require 'init-evil)
 
@@ -207,6 +209,16 @@ $0`(yas-escape-text yas-selected-text)`")
   :init
   (add-hook 'text-mode-hook (lambda () (linum-mode 1)))
 )
+
+;; key mapping
+(require 'init-hydra)
+;; Global key binding
+(global-set-key (kbd "<C-tab>") 'previous-user-buffer) ; Ctrl+Tab
+(global-set-key (kbd "<C-S-iso-lefttab>") 'next-user-buffer) ; Ctrl+Shift+Tab
+(global-set-key (kbd "<C-S-prior>") 'previous-emacs-buffer) ; Ctrl+Shift+PageUp
+(global-set-key (kbd "<C-S-next>") 'next-emacs-buffer) ; Ctrl+Shift+PageDown
+(global-set-key (kbd "C-x C-S-k") 'kill-other-buffers)
+
 
 ;; Local machine specific setup
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))

@@ -23,6 +23,24 @@
          ("\C-cl" . org-store-link)
          ("\C-cc" . org-capture))
   :config
+  ;; Don't override my key binding setting
+  ;;(define-key org-mode-map (kbd "<M-S-up>") nil)
+  ;;(define-key org-mode-map (kbd "<M-S-down>") nil)
+  ;;(define-key org-mode-map (kbd "<M-up>") nil)
+  ;;(define-key org-mode-map (kbd "<M-down>") nil)
+  ;;(define-key org-mode-map (kbd "<M-S-left>") nil)
+  ;;(define-key org-mode-map (kbd "<M-S-right>") nil)
+  ;;(define-key org-mode-map (kbd "<M-left>") nil)
+  ;;(define-key org-mode-map (kbd "<S-left>") nil)
+  ;;(define-key org-mode-map (kbd "<S-right>") nil)
+  ;;(define-key org-mode-map (kbd "<S-up>") nil)
+  ;;(define-key org-mode-map (kbd "<S-down>") nil)
+  ;;(define-key org-mode-map (kbd "<M-right>") nil) 
+  (define-key org-mode-map (kbd "C-<tab>") nil)
+  (define-key org-mode-map (kbd "C-S-<tab>") nil)
+  ;;(define-key org-mode-map (kbd "<C-up>") nil)
+  ;;(define-key org-mode-map (kbd "<C-down>") nil)
+  
   ;; Custom functions for emacs & org mode
   ;; (load-file "~/.emacs.d/config/bh-org.el")
 
