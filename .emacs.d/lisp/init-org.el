@@ -23,7 +23,7 @@
          ("\C-cl" . org-store-link)
          ("\C-cc" . org-capture))
   :config
-  ;; Don't override my key binding setting
+  ;; Uncomment to instruct ord mode not to override my key binding setting
   ;;(define-key org-mode-map (kbd "<M-S-up>") nil)
   ;;(define-key org-mode-map (kbd "<M-S-down>") nil)
   ;;(define-key org-mode-map (kbd "<M-up>") nil)
@@ -41,9 +41,6 @@
   ;;(define-key org-mode-map (kbd "<C-up>") nil)
   ;;(define-key org-mode-map (kbd "<C-down>") nil)
   
-  ;; Custom functions for emacs & org mode
-  ;; (load-file "~/.emacs.d/config/bh-org.el")
-
   ;; Make folding neat
   (setq org-log-into-drawer t
         org-clock-into-drawer t)
@@ -70,7 +67,6 @@
   ;; Allow refile to create parent tasks with confirmation
   (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
-
   ;; Multi-state flow
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -90,6 +86,12 @@
   (setq org-agenda-files (quote ("~/org" 
                                  )))
 
+  ;; Capture
+  (setq org-capture-templates
+        '(
+          ("t" "Mastery" entry (file+headline "mastery.org" "Tickler") "** TODO %?\n%U\n")
+          )
+        )
   ;; Use the current window for indirect buffer display
   (setq org-indirect-buffer-display 'current-window)
 
