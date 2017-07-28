@@ -11,15 +11,15 @@
     (setq evil-replace-state-cursor '("red" bar))
     (setq evil-operator-state-cursor '("red" hollow))
     )
-  (use-package evil-leader
-    :init (global-evil-leader-mode)
-    :config
-    (setq evil-leader/leader ";")
-    )
+;;  (use-package evil-leader
+;;    :init (global-evil-leader-mode)
+;;    :config
+;;    (setq evil-leader/leader ";")
+;;    )
   :config
   (evil-mode 1)
-  (use-package evil-surround)
-  (global-evil-surround-mode 1)
+;;  (use-package evil-surround)
+;;  (global-evil-surround-mode 1)
 
   (evil-set-initial-state 'calendar-mode 'emacs)
   (evil-set-initial-state 'help-mode 'emacs)
