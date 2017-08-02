@@ -205,6 +205,13 @@ $0`(yas-escape-text yas-selected-text)`")
   :ensure t
   :defer t)
 
+(use-package yaml-mode
+  :ensure t
+  :defer t
+;;  :init
+;;  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+  )
+
 (use-package text
   :init
   (add-hook 'text-mode-hook (lambda () (linum-mode 1)))
