@@ -42,9 +42,24 @@
 (setq-default gc-cons-threshold (* 1024 1024 512)
               gc-cons-percentage 0.5)
 
+(require 'init-settings)
+
 (require 'init-elpa)
 
 (require 'utils-buffers)
+
+(use-package which-key
+  :init (which-key-mode)
+  :ensure t
+  )
+
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)))
 
 (use-package expand-region
   :ensure t
@@ -121,8 +136,9 @@
 ;; (use-package colonoscopy-theme)
 ;; (use-package color-theme-solarized :ensure t)
 ;; (use-package solarized-theme)  ;; replaced by color-theme-solarized
-(use-package color-theme-sanityinc-tomorrow :ensure t)
-(use-package zenburn-theme :ensure t)
+;; (use-package color-theme-sanityinc-tomorrow :ensure t)
+;;(use-package zenburn-theme :ensure t
+;;  :defer t)
 
 (use-package yasnippet
   :init
@@ -197,8 +213,6 @@ $0`(yas-escape-text yas-selected-text)`")
 
 (require 'init-markdown)
 
-(require 'init-settings)
-
 (require 'init-alias)
 
 (use-package powershell
@@ -237,7 +251,10 @@ $0`(yas-escape-text yas-selected-text)`")
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "c4465c56ee0cac519dd6ab6249c7fd5bb2c7f7f78ba2875d28a50d3c20a59473" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "1e3b2c9e7e84bb886739604eae91a9afbdfb2e269936ec5dd4a9d3b7a943af7f" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))))
+    ("c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "c4465c56ee0cac519dd6ab6249c7fd5bb2c7f7f78ba2875d28a50d3c20a59473" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "1e3b2c9e7e84bb886739604eae91a9afbdfb2e269936ec5dd4a9d3b7a943af7f" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
+ '(package-selected-packages
+   (quote
+    (smartparens-config which-key zenburn-theme yasnippet yankpad yaml-mode xah-fly-keys visual-regexp use-package swiper-helm string-inflection smex smart-mode-line restclient request-deferred projectile powershell persistent-soft paradox org-journal org-caldav monokai-theme moe-theme modalka markdown-mode linum-off json-snatcher ido-ubiquitous htmlize hlinum helm-themes helm-swoop groovy-mode golden-ratio flyspell-lazy flx-ido feature-mode expand-region evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-leader evil-exchange evil-escape ergoemacs-mode emmet-mode elmacro dired-sort dired-details dired+ csharp-mode company color-theme-solarized color-theme-sanityinc-tomorrow colonoscopy-theme auto-complete alert ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

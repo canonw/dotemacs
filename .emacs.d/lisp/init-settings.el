@@ -80,10 +80,12 @@
 ;;; Color Theme
 (if window-system
     ;; Load a theme 
-    (random-color-theme)
-  ;;    (load-theme 'solarized-dark t)
+    ;;(random-color-theme)
+    (load-theme 'monokai t)
+    ;;(load-theme 'solarized-dark t)
   ;;(load-theme 'wombat t)
-  )
+    )
+  
 
 ;; Load different theme periodically
 ;;(run-with-timer 1 (* 60 60) 'load-random-theme)
