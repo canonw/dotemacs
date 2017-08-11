@@ -201,7 +201,7 @@
 
 ;;; Dired
 
-
+(require 'init-whitespace-mode)
 (require 'init-flycheck)
 (require 'init-company)
 
