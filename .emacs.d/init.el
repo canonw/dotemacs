@@ -309,17 +309,6 @@
   (auto-fill-function " AF")
   (visual-line-mode))
 
-
-
-(use-package whitespace
-  :bind (("C-c T w" . whitespace-mode))
-  :init
-  (dolist (hook '(prog-mode-hook text-mode-hooki
-                  conf-mode-hook))
-    (add-hook hook #'whitespace-mode))
-  :config (setq whitespace-line-column nil)
-  :diminish whitespace-mode)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
