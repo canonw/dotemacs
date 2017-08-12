@@ -51,6 +51,9 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+(setenv "LANG" "en_US")                 ; Required by hunspell.
+                                        ; https://emacs.stackexchange.com/questions/30008/hunspell-flyspell-and-emacs-on-windows
+
 (if (member "Consolas" (font-family-list))
     (set-face-attribute 'default nil :font "Consolas 12"))
 
