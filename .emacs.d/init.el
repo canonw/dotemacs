@@ -54,8 +54,9 @@
 (setenv "LANG" "en_US")                 ; Required by hunspell.
                                         ; https://emacs.stackexchange.com/questions/30008/hunspell-flyspell-and-emacs-on-windows
 
-(if (member "Consolas" (font-family-list))
-    (set-face-attribute 'default nil :font "Consolas 12"))
+;; (if (member "Consolas" (font-family-list))
+;;     (set-face-attribute 'default nil :font "Consolas 12"))
+(require 'init-fonts)
 
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
