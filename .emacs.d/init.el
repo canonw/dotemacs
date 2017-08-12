@@ -209,22 +209,23 @@
   (auto-fill-function " AF")
   (visual-line-mode))
 
-(use-package color-theme-sanityinc-tomorrow :ensure t :defer t)
+;; (use-package color-theme-sanityinc-tomorrow :ensure t :defer t)
 (use-package color-theme-sanityinc-solarized :ensure t :defer t)
 
-(add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-eighties nil nil)
-                             (load-theme 'sanityinc-solarized-light nil t)
-                             (load-theme 'sanityinc-solarized-dark nil t)))
-
-(add-hook 'text-mode-hook
-          (lambda ()
-            (set-frame-parameter (window-frame) 'background-mode 'light)
-            (enable-theme 'sanityinc-solarized-light)))
-
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (set-frame-parameter (window-frame) 'background-mode 'dark)
-            (load-theme 'sanityinc-solarized-dark)))
+;; Use single theme
+(add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-solarized-dark nil nil)))
+;; ;; Nice to tryout multiple themes
+;; (add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-eighties nil nil)
+;;                              (load-theme 'sanityinc-solarized-light nil t)
+;;                              (load-theme 'sanityinc-solarized-dark nil t)))
+;; (add-hook 'text-mode-hook
+;;           (lambda ()
+;;             (set-frame-parameter (window-frame) 'background-mode 'light)
+;;             (enable-theme 'sanityinc-solarized-light)))
+;; (add-hook 'prog-mode-hook
+;;           (lambda ()
+;;             (set-frame-parameter (window-frame) 'background-mode 'dark)
+;;             (load-theme 'sanityinc-solarized-dark)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
