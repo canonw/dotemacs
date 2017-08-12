@@ -22,7 +22,7 @@
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook 'flyspell-mode)
   (add-hook 'org-clock-out-hook 'remove-empty-drawer-on-clock-out 'append)
-
+  (add-hook 'org-mode-hook (lambda () (linum-mode -1))) ; Kill this mode to maintain speed
   :config
   ;; Don't override my key binding setting
   ;; (define-key org-mode-map (kbd "<M-S-up>") nil)
