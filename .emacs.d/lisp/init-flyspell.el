@@ -3,17 +3,16 @@
 (use-package flyspell
   :ensure t
   :defer t
-  ;;  :init
-  ;;  (progn
-  ;;    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-  ;;    (add-hook 'text-mode-hook 'flyspell-mode)
-  ;;    )
+  :init
+  (progn
+    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+    (add-hook 'text-mode-hook 'flyspell-mode)
+    )
   :commands
   (flyspell-mode flyspell-prog-mode)
   :config
   (cond
-   ;; try hunspell at first
-   ;; if hunspell does NOT exist, use aspell
+   ;; try hunspell at first. if hunspell does NOT exist, use aspell
    ((executable-find "hunspell")
     (message "using hunspell")
     (setq ispell-program-name "hunspell"
