@@ -1,7 +1,8 @@
 (use-package company
   :ensure t
-;;  :bind ("C-." . company-complete-common)
-  :init
+  :diminish t
+  ;; :bind ("C-." . company-complete-common)
+  ;; :init
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-tooltip-limit 10)

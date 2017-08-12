@@ -44,14 +44,15 @@
 
 ;; Set UTF-8 as default
 (set-language-environment 'utf-8)
-(setq locale-coding-system 'utf-8)
+;; (setq locale-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
-(set-selection-coding-system (if *win64* 'utf-16-le 'utf-8))
+;; (set-selection-coding-system (if *win64* 'utf-16-le 'utf-8))
+(set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
 (if (member "Consolas" (font-family-list))
-(set-face-attribute 'default nil :font "Consolas 12"))
+    (set-face-attribute 'default nil :font "Consolas 12"))
 
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
@@ -66,6 +67,9 @@
 ;;  (menu-bar-mode -1))
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; (setq standard-indent 2)
+(setq-default indent-tabs-mode nil)
 
 ;;  ____              _       _                   
 ;; | __ )  ___   ___ | |_ ___| |_ _ __ __ _ _ __  
@@ -95,7 +99,6 @@
 (setq version-control t)
 (setq vc-make-backup-files t)
 
-
 ;; History
 (setq savehist-file "~/.emacs.d/savehist")
 (savehist-mode 1)
@@ -107,102 +110,12 @@
         search-ring
         regexp-search-ring))
 
-
 (require 'init-recentf)
 
-;;; Dired
-(use-package dired
-  :ensure nil
-  :config
-
-  (use-package peep-dired
-    :commands peep-dired
-    :config
-    (modeline-set-lighter 'peep-dired " 👁")
-
-    ;; Functions
-    (defun turn-off-openwith-mode ()
-      (make-local-variable 'openwith-mode)
-      (if (not peep-dired)
-          (openwith-mode 1)
-        (openwith-mode -1)))
-
-    ;; Hooks
-    (add-hook 'peep-dired-hook #'turn-off-openwith-mode)
-
-    ;; Key Bindings
-    (bind-keys :map peep-dired-mode-map
-               ("n" . peep-dired-next-file)
-               ("p" . peep-dired-prev-file)
-               ("K" . peep-dired-kill-buffers-without-window)
-               ("C-n" . dired-next-line)
-               ("C-p" . dired-previous-line))
-
-    ;; Variables
-    (add-to-list 'peep-dired-ignored-extensions "mp3"))
-
-  ;; Commands
-  (defun dired-jump-to-top ()
-    (interactive)
-    (goto-char (point-min))
-    (if dired-hide-details-mode
-        (dired-next-line 3)
-      (dired-next-line 4)))
-
-  (defun dired-jump-to-bottom ()
-    (interactive)
-    (goto-char (point-max))
-    (dired-next-line -1))
-
-  ;; Commands
-  (put 'dired-find-alternate-file 'disabled nil)
-
-  ;; Hooks
-  (add-hook 'dired-mode-hook #'dired-hide-details-mode)
-
-  ;; Key Bindings
-  (bind-keys :map dired-mode-map
-             (")" . dired-hide-details-mode)
-             ((vector 'remap 'beginning-of-buffer) . dired-jump-to-top)
-             ((vector 'remap 'end-of-buffer) . dired-jump-to-bottom))
-
-  ;; Variables
-  (setq dired-dwim-target t)
-  (setq dired-isearch-filenames "dwim")
-  (setq dired-listing-switches "-alh --time-style=long-iso")
-  (setq dired-recursive-copies 'always))
-
-(use-package dired-x
-  :ensure nil
-  :bind ("C-x C-j" . dired-jump)
-  :config
-  ;; Hooks
-  (add-hook 'dired-mode-hook #'dired-omit-mode)
-
-  ;; Key Bindings
-  (bind-key "M-o" #'dired-omit-mode dired-mode-map)
-
-  ;; Variables
-  (setq dired-omit-files "^\\...+$"))
-
-(use-package direx
-  :bind ("C-x C-d" . direx:jump-to-directory)
-  :config
-
-  ;; Key Bindings
-  (bind-keys :map direx:direx-mode-map
-             ("M-n" . direx:next-sibling-item)
-             ("M-p" . direx:previous-sibling-item))
-
-  ;; Variables
-  (setq direx:closed-icon "▶ ")
-  (setq direx:leaf-icon "  ")
-  (setq direx:open-icon "▼ "))
-
-;;; Dired
-
 (require 'init-whitespace-mode)
+(require 'init-linum-mode)
 (require 'init-flycheck)
+(require 'init-flyspell)
 (require 'init-company)
 
 (require 'init-evil)
@@ -210,36 +123,18 @@
 
 (require 'init-helm)
 
-
-(electric-pair-mode 1)
-
-(use-package ag
-  :commands (ag ag-regexp ag-project))
-
-(use-package twilight-bright-theme
-  :ensure t
-:config (load-theme 'twilight-bright t))
-
-(use-package term
-  :disabled
-  :bind (("C-c t" . term)
-         :map term-mode-map
-         ("M-p" . term-send-up)
-         ("M-n" . term-send-down)
-         :map term-raw-map
-         ("M-o" . other-window)
-         ("M-p" . term-send-up)
-         ("M-n" . term-send-down))
-  )
-
 (require 'init-which-key)
 (require 'init-expand-region)
+(require 'init-calendar)
 
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward
+      uniquify-separator ":")
 
 (use-package miniedit
-  :ensure t
   :commands minibuffer-edit
-  :init (miniedit-install))
+  :init (miniedit-install)
+  )
 
 (use-package winner
   :defer t)
@@ -250,16 +145,17 @@
   (progn
     (global-undo-tree-mode)
     (setq undo-tree-visualizer-timestamps t)
-    (setq undo-tree-visualizer-diff t)))
+    (setq undo-tree-visualizer-diff t))
+  )
 
 (use-package browse-kill-ring
   :bind (("C-c k" . browse-kill-ring))
   :config
-  (setq browse-kill-ring-show-preview nil))
+  (setq browse-kill-ring-show-preview nil)
+  )
 
-;(use-package ruby-mode
-;  :mode "\\.rb\\'"
-;  :interpreter "ruby")
+(require 'init-markdown-mode)
+(require 'init-recentf)
 
 (use-package ruby-mode
   :mode "\\.rb\\'"
@@ -288,7 +184,8 @@
 ;;   :init
 ;;   (add-hook 'after-init-hook 'server-start t)
 ;;   (add-hook 'after-init-hook 'edit-server-start t))
-
+;; ;; Start server only if needed
+;; (unless (server-running-p) (server-start))
 
 ;; Don't show anything for rainbow-mode.
 (use-package rainbow-mode)
@@ -309,12 +206,24 @@
   (auto-fill-function " AF")
   (visual-line-mode))
 
+(use-package color-theme-sanityinc-tomorrow :ensure t :defer t)
+;; (use-package color-theme-modern :ensure t :defer t)
+;; (add-hook 'markdown-mode-hook
+;;   (lambda ()
+;;     ;; (set-frame-parameter (window-frame) 'background-mode 'dark)
+;;     (enable-theme 'sanityinc-tomorrow-eighties)
+;;     )
+;;   )
+(add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-eighties)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (fullframe))))
+ '(custom-safe-themes
+   (quote
+    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

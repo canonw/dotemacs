@@ -31,11 +31,10 @@
 (defconst sanityinc/no-ssl (and (memq system-type '(windows-nt ms-dos))
                                 (not (gnutls-available-p))))
 
-;;; Also use Melpa for most packages
-(add-to-list 'package-archives
-             `("melpa" . ,(if sanityinc/no-ssl
-                              "http://melpa.org/packages/"
-                            "https://melpa.org/packages/")))
+; Also use Melpa for most packages
+(add-to-list 'package-archives `("melpa" . ,(if sanityinc/no-ssl "http://melpa.org/packages/" "https://melpa.org/packages/")))
+;; (add-to-list 'package-archives '("melpa-stable" .  ,(if sanityinc/no-ssl "http://stable.melpa.org/packages/" "https://stable.melpa.org/packages/")))
+;; (add-to-list 'package-archives `("melpa" . "https://melpa.org/packages/"))
 
 (unless sanityinc/no-ssl
   ;; Force SSL for GNU ELPA
@@ -81,7 +80,7 @@ locate PACKAGE."
 ;;; Fire up package.el
 
 (setq package-enable-at-startup nil)
-(setq use-package-always-ensure t)	; :ensure t variable is implicit
+(setq use-package-always-ensure t)      ; :ensure t variable is implicit
 (package-initialize)
 
 
