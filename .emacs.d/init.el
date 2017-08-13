@@ -120,6 +120,7 @@
 (require 'init-linum-mode)
 (require 'init-flycheck)
 (require 'init-flyspell)
+(require 'init-dired)
 (require 'init-company)
 
 (require 'init-evil)
