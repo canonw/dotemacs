@@ -188,6 +188,10 @@
   :mode ("\\.yml\\'" . yaml-mode)
   )
 
+(use-package json-mode
+  :mode ("\\.json\\'" . json-mode)
+  )
+
 ;; (use-package edit-server
 ;;   :if window-system
 ;;   :init
