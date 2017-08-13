@@ -23,6 +23,7 @@
                              (org-indent-mode)
                              (flyspell-mode)
                              (linum-mode -1) ; Kill this mode to maintain speed
+                             (whitespace-mode -1)
                              (org-bullets-mode 1)))
   (add-hook 'org-clock-out-hook 'remove-empty-drawer-on-clock-out 'append)
   :config

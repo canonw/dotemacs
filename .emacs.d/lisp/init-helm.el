@@ -26,7 +26,7 @@
          ;; ("C-x b" . helm-buffers-list)
          ("M-y" . helm-show-kill-ring)
          ("M-x" . helm-M-x)
-         ("C-SPC" . helm-dabbrev)
+         ;; ("C-SPC" . helm-dabbrev)
          ("C-x f" . helm-find-files)
          ("C-x c o" . helm-occur)
          ("C-x c s" . helm-swoop)

@@ -31,8 +31,9 @@
 
   (use-package evil-indent-textobject)
 
-  ;; (evil-set-initial-state 'calendar-mode 'emacs)
-  ;; (evil-set-initial-state 'help-mode 'emacs)
+  (evil-set-initial-state 'calendar-mode 'emacs)
+  (evil-set-initial-state 'help-mode 'emacs)
+  (evil-set-initial-state 'dired-mode 'emacs)
 
   )
 
