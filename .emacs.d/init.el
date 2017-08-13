@@ -183,6 +183,11 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode))
 
+(use-package yaml-mode
+  :defer t
+  :mode ("\\.yml\\'" . yaml-mode)
+  )
+
 ;; (use-package edit-server
 ;;   :if window-system
 ;;   :init
