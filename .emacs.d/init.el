@@ -221,6 +221,9 @@
   (auto-fill-function " AF")
   (visual-line-mode))
 
+;; Local machine specific setup
+(if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
+
 ;; (use-package color-theme-sanityinc-tomorrow :ensure t :defer t)
 (use-package color-theme-sanityinc-solarized :ensure t :defer t)
 
