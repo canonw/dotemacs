@@ -160,8 +160,14 @@
   (setq browse-kill-ring-show-preview nil)
   )
 
+(use-package quickrun
+  )
+
 (require 'init-markdown-mode)
 (require 'init-recentf)
+
+(use-package groovy-mode
+  )
 
 (use-package ruby-mode
   :mode "\\.rb\\'"
