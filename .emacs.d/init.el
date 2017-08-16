@@ -196,9 +196,7 @@
   :mode ("\\.yml\\'" . yaml-mode)
   )
 
-(use-package json-mode
-  :mode ("\\.json\\'" . json-mode)
-  )
+(require 'init-json-mode)
 
 ;; (use-package edit-server
 ;;   :if window-system
