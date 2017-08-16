@@ -55,6 +55,11 @@
 (setenv "LANG" "en_US")                 ; Required by hunspell.
                                         ; https://emacs.stackexchange.com/questions/30008/hunspell-flyspell-and-emacs-on-windows
 
+(if (not *win64* )
+    ;; Add bash shell path reference to avoid '/bin/bash: ???: command not found' issue
+    ;; Reference: https://stackoverflow.com/questions/4393628/emacs-shell-command-not-found
+    (setq shell-command-switch "-ic"))
+
 ;; (if (member "Consolas" (font-family-list))
 ;;     (set-face-attribute 'default nil :font "Consolas 12"))
 (require 'init-fonts)
