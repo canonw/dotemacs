@@ -27,7 +27,8 @@
          ("M-y" . helm-show-kill-ring)
          ("M-x" . helm-M-x)
          ;; ("C-SPC" . helm-dabbrev)
-         ("C-x f" . helm-find-files)
+         ("C-x C-f" . helm-find-files)
+         ("C-s" . helm-occur)
          ("C-x c o" . helm-occur)
          ("C-x c s" . helm-swoop)
          ("C-x c y" . helm-yas-complete)
@@ -40,15 +41,17 @@
 (use-package helm-themes :ensure t :after helm :defer t)
 
 (use-package helm-descbinds
+  :after helm
   :defer t
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds))
   )
 
 (use-package helm-swoop
+  :after helm
   :bind
   (
-   ("C-s" . helm-swoop)
+   ;; ("C-s" . helm-swoop)
    ;; ("M-i" . helm-swoop)
    ;; ("M-s s" . helm-swoop)
    ("C-c M-i" . helm-multi-swoop)
