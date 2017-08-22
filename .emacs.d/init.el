@@ -120,6 +120,9 @@
         search-ring
         regexp-search-ring))
 
+(use-package saveplace
+  :init (save-place-mode))
+
 (require 'init-recentf)
 
 (require 'init-whitespace-mode)
