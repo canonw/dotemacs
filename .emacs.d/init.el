@@ -148,6 +148,8 @@
   :init (miniedit-install)
   )
 
+(require 'init-magit)
+
 (use-package winner
   :defer t)
 

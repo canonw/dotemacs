@@ -1,5 +1,4 @@
 (use-package evil
-  :ensure t
   :init
   (progn
     ;; if we don't have this evil overwrites the cursor color
@@ -37,5 +36,8 @@
   (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'dired-mode 'emacs)
 
+  )
+(use-package evil-magit
+  :after evil
   )
 (provide 'init-evil)
