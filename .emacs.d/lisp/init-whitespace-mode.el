@@ -1,9 +1,10 @@
 (use-package whitespace
   ;; :bind (("C-c T w" . whitespace-mode))
-  :init (dolist (hook '(prog-mode-hook
-                        text-mode-hook
-                        conf-mode-hook))
-    (add-hook hook #'whitespace-mode))
+  ;; ;; Will turn on only if needed
+  ;; :init (dolist (hook '(prog-mode-hook
+  ;;                       text-mode-hook
+  ;;                       conf-mode-hook))
+  ;;  (add-hook hook #'whitespace-mode))
   :config
   (progn
     (setq whitespace-line-column nil)
