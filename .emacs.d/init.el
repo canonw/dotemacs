@@ -128,6 +128,7 @@
 (require 'init-flyspell)
 (require 'init-dired)
 (require 'init-company)
+(require 'init-yasnippet)
 
 (require 'init-evil)
 (require 'init-org)

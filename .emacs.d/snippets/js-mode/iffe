@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: iffe
+# key: iffe
+# binding: direct-keybinding
+# --
+(function (${1:foo}) {
+
+  function ${2:bar}() {
+    var self = this;
+
+    $4
+  }
+
+}(${3:arguments}));
