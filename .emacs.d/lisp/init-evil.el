@@ -31,10 +31,11 @@
 
   (use-package evil-indent-textobject)
 
+  (setq evil-want-fine-undo t)          ; Behave undo-tree
+
   (evil-set-initial-state 'calendar-mode 'emacs)
   (evil-set-initial-state 'help-mode 'emacs)
   (evil-set-initial-state 'dired-mode 'emacs)
 
   )
-
 (provide 'init-evil)
