@@ -109,16 +109,16 @@
 (setq version-control t)
 (setq vc-make-backup-files t)
 
-;; History
-(setq savehist-file "~/.emacs.d/savehist")
-(savehist-mode 1)
-(setq history-length t)
-(setq history-delete-duplicates t)
-(setq savehist-save-minibuffer-history 1)
-(setq savehist-additional-variables
-      '(kill-ring
-        search-ring
-        regexp-search-ring))
+(use-package savehist
+  :config
+  (savehist-mode 1)
+  ;; (setq savehist-file "~/.emacs.d/savehist")
+  (setq history-length t)
+  (setq history-delete-duplicates t)
+  (setq savehist-save-minibuffer-history 1)
+  (setq savehist-additional-variables
+        '(kill-ring search-ring regexp-search-ring comint-input-ring))
+  )
 
 (use-package saveplace
   :init (save-place-mode))
@@ -208,7 +208,7 @@
 
 (use-package yaml-mode
   :defer t
-  :mode ("\\.yml\\'" . yaml-mode)
+  :mode ("\\.ya?ml\\'" . yaml-mode)
   )
 
 (require 'init-json-mode)
