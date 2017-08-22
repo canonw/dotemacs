@@ -168,6 +168,10 @@
   (setq browse-kill-ring-show-preview nil)
   )
 
+(use-package avy
+  :bind (("C-S-s" . avy-goto-char-timer))
+  )
+
 (use-package quickrun
   )
 
