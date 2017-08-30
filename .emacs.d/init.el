@@ -234,8 +234,11 @@
     (server-start)))
 
 ;; Don't show anything for rainbow-mode.
-(use-package rainbow-mode)
-;;  :delight)
+(use-package rainbow-mode
+  :config
+  (rainbow-mode)
+  (add-hook 'prog-mode-hook 'rainbow-mode)
+  )
 
 ;; Don't show anything for auto-revert-mode, which doesn't match
 ;; its package name.
