@@ -8,6 +8,7 @@
 .emacs.d/var
 .emacs.d/.org-id-locations
 .emacs.d/elpa*
+.emacs.d/history
 .emacs.d/savehist
 .emacs.d/company-statistics-cache.el
 
