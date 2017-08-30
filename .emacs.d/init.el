@@ -166,11 +166,11 @@
     (setq undo-tree-visualizer-diff t))
   )
 
-(use-package browse-kill-ring
+(use-package browse-kill-ring           ; Replace by helm-show-kill-ring
+  :disabled t
   :bind (("C-c k" . browse-kill-ring))
   :config
-  (setq browse-kill-ring-show-preview nil)
-  )
+  (setq browse-kill-ring-show-preview nil))
 
 (use-package avy
   :bind (("C-S-s" . avy-goto-char-timer))
