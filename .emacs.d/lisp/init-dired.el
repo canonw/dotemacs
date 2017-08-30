@@ -2,6 +2,14 @@
   :ensure f                             ; Use local build
   :bind (:map dired-mode-map
               ("P" . peep-dired))
+  :config
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode)
+  (put 'dired-find-alternate-file 'disabled nil)
+  (setq dired-use-ls-dired nil
+        dired-dwim-target t
+        dired-recursive-deletes 'always
+        dired-recursive-copies 'always
+        dired-auto-revert-buffer t)
   )
 
 (use-package peep-dired
