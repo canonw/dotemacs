@@ -120,8 +120,9 @@
         '(kill-ring search-ring regexp-search-ring comint-input-ring))
   )
 
-(use-package saveplace
-  :init (save-place-mode))
+(if (not *emacs24*)
+ (use-package saveplace
+   :init (save-place-mode)))
 
 (require 'init-recentf)
 
