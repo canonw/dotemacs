@@ -70,6 +70,14 @@
   :bind ("M-p" . helm-projectile-ag)
   :commands (helm-ag helm-projectile-ag)
   :init (setq helm-ag-insert-at-point 'symbol
-	      helm-ag-command-option "--path-to-ignore ~/.agignore"))
+	      ;; helm-ag-command-option "--path-to-ignore ~/.ignore"
+              )
+  )
+
+(use-package helm-projectile
+  :ensure t
+  :bind ("M-t" . helm-projectile-find-file)
+  :config
+  (helm-projectile-on))
 
 (provide 'init-helm)

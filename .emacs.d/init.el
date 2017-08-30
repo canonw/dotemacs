@@ -263,7 +263,7 @@
      ,@(if (stringp (car body)) (cdr `,body) body)))
 
 (use-package s
-  :bind ("s-;" . transform-symbol-at-point)
+  :bind ("M-c" . transform-symbol-at-point)
   :config
   (def transform-symbol-at-point
     (let* ((choices '((?c . s-lower-camel-case)
@@ -302,6 +302,11 @@
 ;;           (lambda ()
 ;;             (set-frame-parameter (window-frame) 'background-mode 'dark)
 ;;             (load-theme 'sanityinc-solarized-dark)))
+
+(if (eq *win64* t)
+    ;; (add-to-list 'exec-path "C:/ProgramData/chocolatey/bin")
+    (setenv "PATH" (mapconcat #'identity exec-path path-separator))
+    )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
