@@ -228,6 +228,10 @@
 ;;   (add-hook 'after-init-hook 'edit-server-start t))
 ;; ;; Start server only if needed
 ;; (unless (server-running-p) (server-start))
+(use-package server
+  :config
+  (unless (server-running-p)
+    (server-start)))
 
 ;; Don't show anything for rainbow-mode.
 (use-package rainbow-mode)
@@ -247,6 +251,33 @@
   :delight
   (auto-fill-function " AF")
   (visual-line-mode))
+
+(defmacro def (name &rest body)
+  (declare (indent 1) (debug t))
+  `(defun ,name (&optional _arg)
+     ,(if (stringp (car body)) (car body))
+     (interactive "p")
+     ,@(if (stringp (car body)) (cdr `,body) body)))
+
+(use-package s
+  :bind ("s-;" . transform-symbol-at-point)
+  :config
+  (def transform-symbol-at-point
+    (let* ((choices '((?c . s-lower-camel-case)
+                      (?C . s-upper-camel-case)
+                      (?_ . s-snake-case)
+                      (?- . s-dashed-words)
+                      (?d . s-downcase)
+                      (?u . s-upcase)))
+           (chars (mapcar #'car choices))
+           (prompt (concat "Transform symbol at point [" chars "]: "))
+           (ch (read-char-choice prompt chars))
+           (fn (assoc-default ch choices))
+           (symbol (thing-at-point 'symbol t))
+           (bounds (bounds-of-thing-at-point 'symbol)))
+      (when fn
+        (delete-region (car bounds) (cdr bounds))
+        (insert (funcall fn symbol))))))
 
 ;; Local machine specific setup
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
