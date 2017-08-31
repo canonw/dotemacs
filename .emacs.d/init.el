@@ -152,6 +152,15 @@
   :init (miniedit-install)
   )
 
+(use-package git-link
+  :bind
+  (
+   ("C-c g l" . git-link)
+   ("C-c g c" . git-link-commit)
+   ("C-c g h" . git-link-homepage)
+   )
+  )
+
 (require 'init-magit)
 
 (use-package winner
@@ -176,14 +185,14 @@
   :bind (("C-S-s" . avy-goto-char-timer))
   )
 
-(use-package quickrun
-  )
+(use-package quickrun)
 
 (require 'init-markdown-mode)
 (require 'init-recentf)
 
-(use-package groovy-mode
-  )
+(use-package csharp-mode)
+
+(use-package groovy-mode)
 
 (use-package ruby-mode
   :mode "\\.rb\\'"
