@@ -3,6 +3,8 @@
 
 ;;; Code:
 (use-package magit
+  :ensure t
+  :defer t
   :bind
    (("C-c g s" . magit-status)
     ("C-c C-g l" . magit-file-log)
@@ -15,8 +17,8 @@
       (setq magit-git-executable (executable-find "git")))
   )
 
-(use-package magit-blame
-  :after magit)
+;; (use-package magit-blame
+;;  :after magit)
 
 (provide 'init-magit)
 ;;; init-magit ends here

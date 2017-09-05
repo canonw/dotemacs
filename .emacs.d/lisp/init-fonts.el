@@ -55,10 +55,11 @@
        "ABCDEFTHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz\n"
        "11223344556677889900       壹貳參肆伍陸柒捌玖零"))
 
+;; setup change size font, base on emacs-font-size-pair-list
+(global-set-key (kbd "C-M-=") 'increase-emacs-font-size)
+(global-set-key (kbd "C-M--") 'decrease-emacs-font-size)
+
 (when *win64*
-  ;; setup change size font, base on emacs-font-size-pair-list
-  (global-set-key (kbd "C-M-=") 'increase-emacs-font-size)
-  (global-set-key (kbd "C-M--") 'decrease-emacs-font-size)
 
   ;; setup default english font and cjk font
   ;;(setq emacs-english-font "Source Code Pro")
@@ -70,15 +71,15 @@
                             ))
 
   (setq emacs-cjk-font "MingLiu")
-  (setq emacs-font-size-pair '(15 . 18))
+  (setq emacs-font-size-pair '(17 . 20))
   (setq emacs-font-size-pair-list '(( 5 .  6) (10 . 12)
                                     (13 . 16) (15 . 18) (17 . 20)
                                     (19 . 22) (20 . 24) (21 . 26)
                                     (24 . 28) (26 . 32) (28 . 34)
                                     (30 . 36) (34 . 40) (36 . 44)))
 
-;; Setup font size based on emacs-font-size-pair
-(set-font emacs-english-font emacs-cjk-font emacs-font-size-pair)
+  ;; Setup font size based on emacs-font-size-pair
+  (set-font emacs-english-font emacs-cjk-font emacs-font-size-pair)
 )
 
 (provide 'init-fonts)
