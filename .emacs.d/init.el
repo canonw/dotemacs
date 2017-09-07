@@ -128,6 +128,18 @@
 
 (require 'init-whitespace-mode)
 (require 'init-linum-mode)
+
+(use-package crux
+  :demand t
+  :bind
+  (("C-c n" . crux-cleanup-buffer-or-region)
+   ("C-c k" . crux-kill-other-buffers)
+   ([remap kill-whole-line] . crux-kill-whole-line))
+  :config
+  (crux-with-region-or-buffer indent-region)
+  (crux-with-region-or-buffer untabify)
+  (crux-with-region-or-line kill-region))
+
 (require 'init-flycheck)
 (require 'init-flyspell)
 (require 'init-dired)
