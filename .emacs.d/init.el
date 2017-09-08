@@ -209,6 +209,7 @@
 
 (require 'init-markdown-mode)
 (require 'init-recentf)
+(require 'init-hydra)
 
 (use-package csharp-mode)
 
