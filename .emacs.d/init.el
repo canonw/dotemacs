@@ -178,6 +178,14 @@
 (use-package winner
   :defer t)
 
+(use-package workgroups2
+  :init
+  (setq wg-prefix-key (kbd "C-c z"))
+  ;; (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
+  :config
+  (workgroups-mode 1)
+  )
+
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
