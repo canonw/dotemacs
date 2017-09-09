@@ -1,6 +1,6 @@
 (use-package company
   :ensure t
-  :diminish t
+  :diminish company-mode
   ;; :bind ("C-." . company-complete-common)
   ;; :init
   :config

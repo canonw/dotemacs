@@ -263,8 +263,8 @@
   (unless (server-running-p)
     (server-start)))
 
-;; Don't show anything for rainbow-mode.
 (use-package rainbow-mode
+  :diminish rainbow-mode
   :config
   (rainbow-mode)
   (add-hook 'prog-mode-hook 'rainbow-mode)
