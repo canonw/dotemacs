@@ -275,9 +275,15 @@
 (use-package autorevert
   :delight auto-revert-mode)
 
-;; Remove the mode name for projectile-mode, but show the project name.
 (use-package projectile
-  :delight '(:eval (concat " " (projectile-project-name))))
+  :delight '(:eval (concat " [" (projectile-project-name) "]")) ; Show project name wihtout mode name.
+  :config
+  (setq projectile-indexing-method 'native)
+  ;; (setq projectile-enable-caching t)
+  ;; (setq projectile-file-exists-local-cache-expire (* 5 60))
+  (add-hook 'prog-mode-hook 'projectile-mode)
+  )
+
 
 ;; Completely hide visual-line-mode and change auto-fill-mode to " AF".
 (use-package emacs
