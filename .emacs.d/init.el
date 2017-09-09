@@ -339,10 +339,10 @@
 ;;             (set-frame-parameter (window-frame) 'background-mode 'dark)
 ;;             (load-theme 'sanityinc-solarized-dark)))
 
-(if (eq *win64* t)
-    ;; (add-to-list 'exec-path "C:/ProgramData/chocolatey/bin")
+(when (eq *win64* t)
+    (add-to-list 'exec-path "C:/ProgramData/chocolatey/bin")
     (setenv "PATH" (mapconcat #'identity exec-path path-separator))
-    )
+    ) 
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
