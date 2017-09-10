@@ -21,9 +21,11 @@
             ((nil . "\\`artist-select-")         . (nil . "sel-"))
             ((nil . "\\`artist-toggle-")         . (nil . "toggle-"))
             ((nil . "modi/")                    . (nil . "m/")) ; The car is intentionally not "\\`modi/" to cover cases like `hydra-toggle/modi/..'.
-            ((nil . "\\`flycheck-")                 . (nil . "+fc/"))
+            ((nil . "\\`flycheck-")              . (nil . "+fc/"))
             ((nil . "\\`hydra-")                 . (nil . "+h/"))
             ((nil . "\\`org-babel-")             . (nil . "ob/"))
+            ((nil . "\\`projectile-")             . (nil . "pj/"))
+            
             ;; Replacements for how KEY is replaced when which-key displays
             ;;   KEY → FUNCTION
             ;; Eg: After "C-c", display "right → winner-redo" as "▶ → winner-redo"

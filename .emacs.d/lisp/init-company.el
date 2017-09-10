@@ -5,16 +5,17 @@
   ;; :init
   :config
   (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-tooltip-limit 10)
-  (setq company-idle-delay 0.2)
   (setq company-echo-delay 0)
+  (setq company-idle-delay 0.2)
   (setq company-minimum-prefix-length 2)
   (setq company-require-match nil)
   (setq company-selection-wrap-around t)
+  (setq company-selection-wrap-around t) ; loop over candidates
+  (setq company-show-numbers t)
   (setq company-tooltip-align-annotations t)
   (setq company-tooltip-flip-when-above t)
+  (setq company-tooltip-limit 10)
   (setq company-transformers '(company-sort-by-occurrence)) ; weight by frequency
-  (setq company-show-numbers t)
 
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
   (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
