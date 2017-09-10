@@ -178,14 +178,6 @@
 (use-package winner
   :defer t)
 
-(use-package workgroups2
-  :init
-  (setq wg-prefix-key (kbd "C-c z"))
-  ;; (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
-  :config
-  (workgroups-mode 1)
-  )
-
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
@@ -284,6 +276,48 @@
   (add-hook 'prog-mode-hook 'projectile-mode)
   )
 
+(use-package perspeen
+  :disabled t                           ; Dependency on powerline
+  :config
+  (setq perspeen-keymap-prefix (kbd "C-c C-'")))
+
+(use-package persp-mode
+  :init
+  (setq persp-keymap-prefix (kbd "C-c C-p"))
+
+  (use-package persp-mode-projectile-bridge
+    :after projectile
+    :config
+    (with-eval-after-load "persp-mode-projectile-bridge-autoloads"
+      (add-hook 'persp-mode-projectile-bridge-mode-hook
+                #'(lambda ()
+                    (if persp-mode-projectile-bridge-mode
+                        (persp-mode-projectile-bridge-find-perspectives-for-all-buffers)
+                      (persp-mode-projectile-bridge-kill-perspectives))))
+      (add-hook 'after-init-hook
+                #'(lambda ()
+                    (persp-mode-projectile-bridge-mode 1))
+                t)))
+  )
+ 
+(use-package perspective
+  :disabled t
+  :config
+  (persp-mode)) 
+
+(use-package persp-projectile
+  :disabled t
+  :after perspective
+  :config
+  (define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project))
+
+(use-package workgroups2
+  :disabled t
+  :init
+  (setq wg-prefix-key (kbd "C-c z"))
+  ;; (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
+  :config
+  (workgroups-mode 1))
 
 ;; Completely hide visual-line-mode and change auto-fill-mode to " AF".
 (use-package emacs
