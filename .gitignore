@@ -13,3 +13,8 @@
 .emacs.d/company-statistics-cache.el
 
 .emacs.d/places
+
+.emacs.d/persp-*
+.emacs.d/projectile*
+.emacs.d/projectile
+.emacs.d/server/*
