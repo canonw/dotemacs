@@ -178,6 +178,8 @@
 (use-package winner
   :defer t)
 
+(use-package ace-window)
+
 (use-package undo-tree
   :diminish undo-tree-mode
   :config
