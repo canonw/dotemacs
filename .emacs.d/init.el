@@ -205,7 +205,7 @@
 (require 'init-recentf)
 (require 'init-hydra)
 
-(use-package csharp-mode)
+(require 'init-csharp-mode)
 
 (use-package groovy-mode)
 
