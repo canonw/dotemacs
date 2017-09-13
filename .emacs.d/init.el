@@ -245,6 +245,16 @@
       (browse-url-of-file (expand-file-name default-directory))
     (error "No `default-directory' to open")))
 
+;; Insert Date and Time
+;; Reference: http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
+;; Reference :http://www.emacswiki.org/emacs/InsertingTodaysDate
+(defvar timestamp-format "%Y-%m-%dT%T%z"
+  "Format of timestamp to insert with `timestamp' func
+See help of `format-time-string' for possible replacements")
+(defun timestamp ()
+  (interactive)
+  (insert (format-time-string timestamp-format (current-time))))
+
 ;; (use-package edit-server
 ;;   :if window-system
 ;;   :init
