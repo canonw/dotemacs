@@ -38,17 +38,17 @@ $0`(yas-escape-text yas-selected-text)`")
                 '(:with company-yasnippet))))
     (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
-    (use-package yankpad
-      :defer 10
-      :init
-      (setq yankpad-file "~/org/yankpad.org")
-      ;; :config
-      ;; (bind-key "<f7>" 'yankpad-map)
-      ;; (bind-key "<f12>" 'yankpad-expand)
-      ;; If you want to complete snippets using company-mode
-      ;; (add-to-list 'company-backends #'company-yankpad)
-      )
-
     ))
+
+(use-package yankpad
+  :defer 10
+  :init
+  (setq yankpad-file "~/org/yankpad.org")
+  :config
+  ;; (bind-key "<f7>" 'yankpad-map)
+  ;; (bind-key "<f12>" 'yankpad-expand)
+  ;; If you want to complete snippets using company-mode
+  (add-to-list 'company-backends #'company-yankpad)
+  )
 
 (provide 'init-yasnippet)
