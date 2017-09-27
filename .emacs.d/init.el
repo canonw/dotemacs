@@ -274,6 +274,8 @@ See help of `format-time-string' for possible replacements")
   (add-hook 'prog-mode-hook 'rainbow-mode)
   )
 
+(require 'init-parens)
+
 ;; Don't show anything for auto-revert-mode, which doesn't match
 ;; its package name.
 (use-package autorevert
