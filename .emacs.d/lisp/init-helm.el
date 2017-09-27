@@ -74,10 +74,23 @@
               )
   )
 
+(use-package helm-company
+  :ensure t
+  :after company
+  :config
+  (progn
+    (define-key company-mode-map (kbd "C-:") 'helm-company)
+    (define-key company-active-map (kbd "C-:") 'helm-company))
+  )
+
 (use-package helm-projectile
   :ensure t
   :bind ("M-t" . helm-projectile-find-file)
   :config
   (helm-projectile-on))
 
+(use-package helm-c-yasnippet
+  :ensure t
+  :after yasnippet
+  )
 (provide 'init-helm)
