@@ -333,6 +333,8 @@ See help of `format-time-string' for possible replacements")
   :config
   (workgroups-mode 1))
 
+(use-package try :ensure t :defer t)
+
 ;; Completely hide visual-line-mode and change auto-fill-mode to " AF".
 (use-package emacs
   :delight
