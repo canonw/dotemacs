@@ -5,9 +5,10 @@
   :init (dolist (hook '(prog-mode-hook
                         text-mode-hook
                         conf-mode-hook))
-          (add-hook hook #'linum-mode))
+          (add-hook hook #'linum-relative-mode))
   :config
   (use-package linum-off)
+  (use-package linum-relative)
   (when (and *emacs24* (> emacs-minor-version 4))
     (use-package hlinum)
     (hlinum-activate))
