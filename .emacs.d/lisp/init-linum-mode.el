@@ -1,6 +1,9 @@
 ; http://stackoverflow.com/questions/3875213/
 ; https://www.emacswiki.org/emacs/LineNumbers
 ; https://www.emacswiki.org/emacs/linum-off.el
+(use-package linum-relative
+  :ensure t)
+
 (use-package linum
   :init (dolist (hook '(prog-mode-hook
                         text-mode-hook
@@ -8,9 +11,9 @@
           (add-hook hook #'linum-relative-mode))
   :config
   (use-package linum-off)
-  (use-package linum-relative)
   (when (and *emacs24* (> emacs-minor-version 4))
-    (use-package hlinum)
+    (use-package hlinum
+      :ensure t)
     (hlinum-activate))
   (linum-delete-overlays)              ; Speedup overall performance
   (setq linum-eager t)

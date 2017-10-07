@@ -372,7 +372,12 @@ See help of `format-time-string' for possible replacements")
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
 
 ;; (use-package color-theme-sanityinc-tomorrow :ensure t :defer t)
-(use-package color-theme-sanityinc-solarized :ensure t :defer t)
+(use-package color-theme
+  )
+(use-package color-theme-sanityinc-solarized
+  :after color-theme
+  :ensure t
+  :defer t)
 
 ;; Use single theme
 (add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-solarized-dark nil nil)))
