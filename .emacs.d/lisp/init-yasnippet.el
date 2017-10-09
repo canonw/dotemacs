@@ -48,7 +48,7 @@ $0`(yas-escape-text yas-selected-text)`")
   ;; (bind-key "<f7>" 'yankpad-map)
   ;; (bind-key "<f12>" 'yankpad-expand)
   ;; If you want to complete snippets using company-mode
-  (add-to-list 'company-backends #'company-yankpad)
+  ;; (add-to-list 'company-backends #'company-yankpad)
   )
 
 (provide 'init-yasnippet)

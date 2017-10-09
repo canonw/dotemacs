@@ -300,6 +300,7 @@ See help of `format-time-string' for possible replacements")
   (setq persp-keymap-prefix (kbd "C-c C-p"))
 
   (use-package persp-mode-projectile-bridge
+    :disabled t                         ; Test laster
     :after projectile
     :config
     (with-eval-after-load "persp-mode-projectile-bridge-autoloads"
@@ -371,77 +372,10 @@ See help of `format-time-string' for possible replacements")
 ;; Local machine specific setup
 (if (file-exists-p "~/init-local-setting.el") (load-file "~/init-local-setting.el"))
 
-;; (use-package color-theme-sanityinc-tomorrow :ensure t :defer t)
-(use-package color-theme
-  )
-(use-package color-theme-sanityinc-solarized
-  :after color-theme
-  :ensure t
-  :defer t)
-
-;; Use single theme
-(add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-solarized-dark nil nil)))
-;; ;; Nice to tryout multiple themes
-;; (add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-eighties nil nil)
-;;                              (load-theme 'sanityinc-solarized-light nil t)
-;;                              (load-theme 'sanityinc-solarized-dark nil t)))
-;; (add-hook 'text-mode-hook
-;;           (lambda ()
-;;             (set-frame-parameter (window-frame) 'background-mode 'light)
-;;             (enable-theme 'sanityinc-solarized-light)))
-;; (add-hook 'prog-mode-hook
-;;           (lambda ()
-;;             (set-frame-parameter (window-frame) 'background-mode 'dark)
-;;             (load-theme 'sanityinc-solarized-dark)))
+(require 'init-theme)
 
 (when (eq *win64* t)
     (add-to-list 'exec-path "C:/ProgramData/chocolatey/bin")
     (setenv "PATH" (mapconcat #'identity exec-path path-separator))
     ) 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#373b41"))
- '(custom-enabled-themes (quote (sanityinc-tomorrow-day)))
- '(custom-safe-themes
-   (quote
-    ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
- '(fci-rule-color "#373b41")
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(package-selected-packages
-   (quote
-    (color-theme-sanityinc-tomorrow projectile rainbow-mode markdown-mode browse-kill-ring miniedit expand-region which-key helm-ag helm-swoop helm-descbinds helm-themes helm org-bullets org-plus-contrib evil-indent-textobject evil-surround evil-leader evil company-statistics company-shell company-quickhelp company-math company-try-hard company flycheck-pos-tip flycheck-color-mode-line flycheck linum-off delight use-package fullframe)))
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#cc6666")
-     (40 . "#de935f")
-     (60 . "#f0c674")
-     (80 . "#b5bd68")
-     (100 . "#8abeb7")
-     (120 . "#81a2be")
-     (140 . "#b294bb")
-     (160 . "#cc6666")
-     (180 . "#de935f")
-     (200 . "#f0c674")
-     (220 . "#b5bd68")
-     (240 . "#8abeb7")
-     (260 . "#81a2be")
-     (280 . "#b294bb")
-     (300 . "#cc6666")
-     (320 . "#de935f")
-     (340 . "#f0c674")
-     (360 . "#b5bd68"))))
- '(vc-annotate-very-old-color nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
