@@ -55,10 +55,10 @@
 (setenv "LANG" "en_US")                 ; Required by hunspell.
                                         ; https://emacs.stackexchange.com/questions/30008/hunspell-flyspell-and-emacs-on-windows
 
-(if (not *win64* )
-    ;; Add bash shell path reference to avoid '/bin/bash: ???: command not found' issue
-    ;; Reference: https://stackoverflow.com/questions/4393628/emacs-shell-command-not-found
-    (setq shell-command-switch "-ic"))
+;; (if (not *win64* )
+;;     ;; Add bash shell path reference to avoid '/bin/bash: ???: command not found' issue
+;;     ;; Reference: https://stackoverflow.com/questions/4393628/emacs-shell-command-not-found
+;;     (setq shell-command-switch "-ic"))
 
 ;; (if (member "Consolas" (font-family-list))
 ;;     (set-face-attribute 'default nil :font "Consolas 12"))
@@ -230,6 +230,38 @@
 (use-package python
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode))
+
+(use-package eclim
+  :init
+  (progn
+    (use-package eclimd)
+    (add-hook 'java-mode-hook (lambda () (eclim-mode 1)))
+
+    (add-hook 'eclim-mode-hook 'setup-eclim)
+    (defun setup-eclim ()
+      (progn
+        (setq c-basic-offset 4)))
+
+    (setq eclim-executable "~/.local/share/umake/ide/eclipse/eclim")
+    (setq eclim-auto-save nil)
+    (setq eclim-eclipse-dirs '("~/.local/share/umake/ide/eclipse"))
+    (setq eclimd-default-workspace "~/eclim-workspace")
+
+    (global-eclim-mode)
+    (use-package eclimd)
+    (use-package company-emacs-eclim
+      :config
+      (company-emacs-eclim-setup)
+      )
+    ;; temporarily switch to emacs mode for this eclim command (with evil mode)
+    ;; (defadvice eclim-java-import-organize (around temporary-emacs-mode)
+    ;;   (let ((evil-emacs-state))
+    ;;     ad-do-it))
+    ;; (ad-activate 'eclim-java-import-organize)
+
+    )
+  )
+
 
 (use-package yaml-mode
   :defer t
