@@ -42,14 +42,15 @@ $0`(yas-escape-text yas-selected-text)`")
 
 (use-package yankpad
   :disabled (not (file-exists-p "~/org/yankpad.org"))
-  :defer 10
   :init
   (setq yankpad-file "~/org/yankpad.org")
-  :config
+  ;; :config
   ;; (bind-key "<f7>" 'yankpad-map)
   ;; (bind-key "<f12>" 'yankpad-expand)
-  ;; If you want to complete snippets using company-mode
-  (add-to-list 'company-backends #'company-yankpad)
+
+  ;; Commented out for now.  Bug
+  ;; ;; If you want to complete snippets using company-mode
+  ;; (add-to-list 'company-backends #'company-yankpad)
   )
 
 (provide 'init-yasnippet)
