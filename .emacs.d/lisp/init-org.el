@@ -1,4 +1,4 @@
-; Set default column view headings: Task Effort Clock_Summary
+;; Set default column view headings: Task Effort Clock_Summary
 
 ;; (setq org-columns-default-format "%80ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM")
 
@@ -108,14 +108,37 @@
   ;; Run/highlight code using babel in org-mode
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '(
+   '((awk . t)
+     (calc . t)
+     (csharp . t)
      (ditaa . t)
-     (plantuml . t)
-     (sql . t)
+     (dot . t)
      (groovy . t)
-     ))
+     (http . t)
+     (java . t)
+     (js . t)
+     (kotlin . t)
+     (mongo . t)
+     (perl . t)
+     (plantuml . t)
+     (python . t)
+     (ruby . t)
+     (scala . t)
+     (sed . t)
+     (sh . t)
+     (sql . t)))
   ;; Syntax hilight in #+begin_src blocks
   (setq org-src-fontify-natively t)
+  
+  (defun my-org-confirm-babel-evaluate (lang body)
+    (not (or (string= lang "awk")
+             (string= lang "ditaa")
+             (string= lang "dot")
+             (string= lang "http")
+             (string= lang "plantuml")
+             (string= lang "sed")
+             (string= lang "sql"))))
+  (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
   (add-hook 'org-babel-after-execute-hook (lambda ()
                                             (condition-case nil
@@ -135,15 +158,15 @@
                               ("POTM" . ?m)
                               ("NYR" . ?y)
                               (:endgroup)
-   ;                             ("WAITING" . ?w)
-   ;                             ("HOLD" . ?h)
-   ;                             ("PERSONAL" . ?P)
-   ;                             ("WORK" . ?W)
-   ;                             ("ORG" . ?O)
-   ;                             ("NORANG" . ?N)
-   ;                             ("crypt" . ?E)
-   ;                             ("NOTE" . ?n)
-   ;                             ("CANCELLED" . ?c)
+                              ;; ("WAITING" . ?w)
+                              ;; ("HOLD" . ?h)
+                              ;; ("PERSONAL" . ?P)
+                              ;; ("WORK" . ?W)
+                              ;; ("ORG" . ?O)
+                              ;; ("NORANG" . ?N)
+                              ;; ("crypt" . ?E)
+                              ;; ("NOTE" . ?n)
+                              ;; ("CANCELLED" . ?c)
                               ("FLAGGED" . ??))))
 
 
@@ -198,8 +221,15 @@
                 ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
   )
 
-; org-habit
 
+;; org-babel
+(use-package ob-csharp)
+(use-package ob-http)
+(use-package ob-kotlin)
+(use-package ob-mongo)
+
+
+;; org-habit
 (require 'org-habit)
 (setq org-habit-preceding-days 7
       org-habit-following-days 1
@@ -207,37 +237,36 @@
       org-habit-show-habits-only-for-today t
       org-habit-show-all-today t)
 
-; org-journal-dir
+;; org-journal-dir
 (setq org-journal-dir "~/journal")
 (setq org-journal-date-format "%a, %Y-%m-%d")
 (setq org-journal-time-format "%H:%M:%S ")
 
 (use-package org-bullets
   :commands (org-bullets-mode)
-  ;; :init 
   )
 
-; org-crypt
-; http://orgmode.org/worg/org-tutorials/encrypting-files.html 
+;; org-crypt
+;; http://orgmode.org/worg/org-tutorials/encrypting-files.html 
 (require 'org-crypt)
-  (org-crypt-use-before-save-magic)
-  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
-  ;; Set org-crypt-key elsewhere. 
-  ;; You may grep the keys by this commad line. gpg --list-keys | grep -B1 'you '
-  ;; (setq org-crypt-key "XXXXXXX")
-  ;; GPG key to use for encryption
-  ;; Either the Key ID or set to nil to use symmetric encryption.
+;; Set org-crypt-key elsewhere. 
+;; You may grep the keys by this commad line. gpg --list-keys | grep -B1 'you '
+;; (setq org-crypt-key "XXXXXXX")
+;; GPG key to use for encryption
+;; Either the Key ID or set to nil to use symmetric encryption.
 
-  (setq auto-save-default nil)
-  ;; Auto-saving does not cooperate with org-crypt.el: so you need
-  ;; to turn it off if you plan to use org-crypt.el quite often.
-  ;; Otherwise, you'll get an (annoying) message each time you
-  ;; start Org.
+(setq auto-save-default nil)
+;; Auto-saving does not cooperate with org-crypt.el: so you need
+;; to turn it off if you plan to use org-crypt.el quite often.
+;; Otherwise, you'll get an (annoying) message each time you
+;; start Org.
 
-  ;; To turn it off only locally, you can insert this:
-  ;;
-  ;; # -*- buffer-auto-save-file-name: nil; -*-
+;; To turn it off only locally, you can insert this:
+;;
+;; # -*- buffer-auto-save-file-name: nil; -*-
 
 
 (provide 'init-org)

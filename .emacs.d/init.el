@@ -380,3 +380,4 @@ See help of `format-time-string' for possible replacements")
     (add-to-list 'exec-path "C:/ProgramData/chocolatey/bin")
     (setenv "PATH" (mapconcat #'identity exec-path path-separator))
     ) 
+
