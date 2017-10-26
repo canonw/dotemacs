@@ -223,9 +223,9 @@
 
 
 ;; org-babel
-(use-package ob-csharp)
+(use-package ob-csharp :disabled (*win64*))
 (use-package ob-http)
-(use-package ob-kotlin)
+(use-package ob-kotlin :disabled (*win64*))
 (use-package ob-mongo)
 
 
