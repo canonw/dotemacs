@@ -238,9 +238,12 @@
       org-habit-show-all-today t)
 
 ;; org-journal-dir
-(setq org-journal-dir "~/journal")
-(setq org-journal-date-format "%a, %Y-%m-%d")
-(setq org-journal-time-format "%H:%M:%S ")
+(use-package org-journal
+  :config
+  (setq org-journal-dir "~/journal")
+  (setq org-journal-date-format "%a, %Y-%m-%d")
+  (setq org-journal-time-format "%H:%M:%S ")
+)
 
 (use-package org-bullets
   :commands (org-bullets-mode)
