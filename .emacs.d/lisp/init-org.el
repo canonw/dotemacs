@@ -74,17 +74,21 @@
 
   ;; Multi-state flow
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-                (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "MEETING"))))
+        (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DOING(D)" "REVIEW(r)" "DONE(d)")
+                (sequence "WAIT(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)")
+                )))
   (setq org-todo-keyword-faces
         (quote (("TODO" :foreground "red" :weight bold)
                 ("NEXT" :foreground "blue" :weight bold)
+                ("DOING" :foreground "forest green" :weight bold)
+                ("REVIEW" :foreground "forest green" :weight bold)
                 ("DONE" :foreground "forest green" :weight bold)
-                ("WAITING" :foreground "orange" :weight bold)
+                ("WAIT" :foreground "orange" :weight bold)
                 ("HOLD" :foreground "magenta" :weight bold)
                 ("CANCELLED" :foreground "forest green" :weight bold)
-                ("MEETING" :foreground "forest green" :weight bold)
-                ("PHONE" :foreground "forest green" :weight bold))))
+                )))
+  
+
   
   ;; Agenda
   (setq org-agenda-window-setup 'current-window)
@@ -271,5 +275,6 @@
 ;;
 ;; # -*- buffer-auto-save-file-name: nil; -*-
 
+(use-package kanban)
 
 (provide 'init-org)
