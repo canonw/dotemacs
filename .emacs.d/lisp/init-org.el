@@ -121,7 +121,7 @@
      (http . t)
      (java . t)
      (js . t)
-     (kotlin . t)
+     ;; (kotlin . t)
      (mongo . t)
      (perl . t)
      (plantuml . t)

@@ -122,7 +122,7 @@ locate PACKAGE."
 ;; Enable use-package
 (eval-when-compile
   (require 'use-package))
-(require 'diminish) ;; use by :diminish
+(use-package diminish) ;; use by :diminish
 (require 'bind-key) ;; use by :bind variant
 (require 'delight) ;; use by :delight variant
 
