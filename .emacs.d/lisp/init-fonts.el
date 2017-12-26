@@ -72,6 +72,11 @@
 
   (setq emacs-cjk-font "MingLiu")
   (setq emacs-font-size-pair '(17 . 20))
+
+;;  (setq emacs-font-size-pair cond( ((> (x-display-pixel-width) 3000) (30 . 36))
+;;                                   ((> (x-display-pixel-width) 2000) (21 . 26))
+;;                                   (t (17 . 20)))
+        
   (setq emacs-font-size-pair-list '(( 5 .  6) (10 . 12)
                                     (13 . 16) (15 . 18) (17 . 20)
                                     (19 . 22) (20 . 24) (21 . 26)
