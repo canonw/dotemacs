@@ -27,6 +27,7 @@
 
 (use-package dired+
   :after dired
+  :ensure f
   :defer t
   ;; :config
   ;; (setq diredp-hide-details-initially-flag nil)
@@ -38,10 +39,12 @@
 
 (use-package dired-details
   :after dired
+  :ensure f
   :defer t)
   
 (use-package dired-sort
   :after dired
+  :ensure f
   :defer t)
 
 (provide 'init-dired)
