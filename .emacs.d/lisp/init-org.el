@@ -7,6 +7,12 @@
     (beginning-of-line 0)
     (org-remove-empty-drawer-at (point)))
   )
+;; org-babel
+(use-package ob-csharp :disabled (*win64*))
+(use-package ob-http)
+(use-package ob-kotlin :disabled (*win64*))
+(use-package ob-mongo)
+
 (use-package org
   :ensure org-plus-contrib
   :pin org                              ; Fetch org package
@@ -121,9 +127,9 @@
      (plantuml . t)
      (python . t)
      (ruby . t)
-     (scala . t)
+     ;; (scala . t)
      (sed . t)
-     (sh . t)
+     ;; (sh . t)
      (sql . t)))
   ;; Syntax hilight in #+begin_src blocks
   (setq org-src-fontify-natively t)
@@ -217,11 +223,6 @@
                 ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
                 ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
   )
-;; org-babel
-(use-package ob-csharp :disabled (*win64*))
-(use-package ob-http)
-(use-package ob-kotlin :disabled (*win64*))
-(use-package ob-mongo)
 ;; org-habit
 (require 'org-habit)
 (setq org-habit-preceding-days 7
