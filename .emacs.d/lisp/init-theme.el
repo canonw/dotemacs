@@ -7,15 +7,15 @@
 (use-package base16-theme)
 (use-package monokai-theme)
 (use-package zenburn-theme)
-(use-package theme-looper
- :config
- (theme-looper-set-theme-set '(zenburn monokai base16-default-dark base16-default-light base16-eighties base16-github base16-tomorrow-night base16-tomorrow))
- )
+;; (use-package theme-looper
+;;  :config
+;;  (theme-looper-set-theme-set '(zenburn monokai base16-default-dark base16-default-light base16-eighties base16-github base16-tomorrow-night base16-tomorrow))
+;;  )
 
-(theme-looper-enable-random-theme)
+;; (theme-looper-enable-random-theme)
 
 ;; Use single theme
-;; (add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-solarized-dark nil nil)))
+(add-hook 'after-init-hook (lambda () (load-theme 'base16-tomorrow-night nil nil)))
 ;; ;; Nice to tryout multiple themes
 ;; (add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-eighties nil nil)
 ;;                              (load-theme 'sanityinc-solarized-light nil t)

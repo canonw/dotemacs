@@ -381,3 +381,21 @@ See help of `format-time-string' for possible replacements")
     (setenv "PATH" (mapconcat #'identity exec-path path-separator))
     ) 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("3380a2766cf0590d50d6366c5a91e976bdc3c413df963a0ab9952314b4577299" "c968804189e0fc963c641f5c9ad64bca431d41af2fb7e1d01a2a6666376f819c" "b3bcf1b12ef2a7606c7697d71b934ca0bdd495d52f901e73ce008c4c9825a3aa" default)))
+ '(package-selected-packages
+   (quote
+    (theme-looper zenburn-theme monokai-theme base16-theme try persp-mode rainbow-delimiters evil-smartparens smartparens rainbow-mode jq-mode json-mode yaml-mode groovy-mode csharp-mode hydra jekyll-modes markdown-mode quickrun ace-window git-link miniedit expand-region which-key helm-c-yasnippet helm-projectile helm-company helm-ag helm-swoop helm-descbinds helm-themes helm kanban org-bullets org-journal org-plus-contrib ob-mongo ob-http evil-magit evil-indent-textobject evil-surround evil-leader evil yasnippet company-statistics company-shell company-quickhelp company-math company-try-hard company peep-dired f flycheck-pos-tip flycheck-color-mode-line flycheck crux linum-off linum-relative diminish delight use-package fullframe))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(put 'downcase-region 'disabled nil)
