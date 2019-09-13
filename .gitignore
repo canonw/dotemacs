@@ -19,3 +19,5 @@
 .emacs.d/projectile*
 .emacs.d/projectile
 .emacs.d/server/*
+
+.emacs.d/transient/

@@ -57,7 +57,7 @@
            "%[~/org/capture-template/fin.txt]")
           ("g" "Goal" entry (file+headline  "~/org/goals.org" "Tasks")
            "%[~/org/capture-template/goal.txt]")
-          ("p" "POTD" entry (file+headline  "~/org/gtd.org" "POTD habit lead routine")
+          ("p" "POTD" entry (file+headline  "~/org/gtd.org" "Create checklist POTD habit lead routine")
            "%[~/org/capture-template/potd.txt]")
           ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")
            "* %U %? %i\n %a")

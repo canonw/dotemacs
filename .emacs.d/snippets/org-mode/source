@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: source
+# key: <s
+# group: 
+# -- binding: direct-keybinding
+# -- Reference: https://emacs.stackexchange.com/questions/12841/quickly-insert-source-blocks-in-org-mode
+# -- 
+#+NAME: $1
+#+BEGIN_SRC $2
+    $0
+#+END_SRC
